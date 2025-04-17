@@ -1,4 +1,3 @@
-
 import React from 'react';
 import VideoTestimonial from '@/components/VideoTestimonial';
 import Testimonial from '@/components/Testimonial';
@@ -15,18 +14,24 @@ const TestimonialsSection = () => {
             Découvrez les témoignages de nos clients satisfaits
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
-            <VideoTestimonial
-              thumbnailUrl="/placeholder.svg"
-              videoTitle="Témoignage Marie"
-              clientName="Marie Dupont"
-              clientRole="Fleuriste indépendante"
-            />
-            <VideoTestimonial
-              thumbnailUrl="/placeholder.svg"
-              videoTitle="Témoignage Thomas"
-              clientName="Thomas Leroy"
-              clientRole="Artisan menuisier"
-            />
+            <div className="aspect-video rounded-xl overflow-hidden">
+              <iframe 
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/rG1ho7f8fhc"
+                title="Témoignage client 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="aspect-video rounded-xl overflow-hidden">
+              <iframe 
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/owIgLNAfIbw"
+                title="Témoignage client 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
       </section>
