@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { ArrowRight, Check, MessageSquare, Code, Send, Phone, Mail, Zap, PenTool } from 'lucide-react';
 import Testimonial from '@/components/Testimonial';
 import StepCard from '@/components/StepCard';
 import FAQItem from '@/components/FAQItem';
+import VideoTestimonial from '@/components/VideoTestimonial';
 
 const Index = () => {
   const handleScrollToForm = () => {
@@ -12,8 +12,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full">
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-20 px-4 hero-gradient">
+      {/* Hero Section avec animation */}
+      <section className="relative py-16 md:py-20 px-4 hero-gradient animate-fade-in">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="w-full md:w-3/5">
@@ -84,10 +84,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Section avec animation */}
       <section className="py-16 px-4 bg-secondary">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">
             Pourquoi choisir <span className="gradient-text">eLimyt</span> pour votre site web ?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -108,7 +108,7 @@ const Index = () => {
                 description: "Un tarif unique de 249,90€ sans abonnement ni frais cachés. Vous restez propriétaire de votre site."
               },
             ].map((benefit, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg shadow-lg card-hover">
+              <div key={index} className="bg-card p-6 rounded-lg shadow-lg card-hover animate-fade-in">
                 <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4">
                   {benefit.icon}
                 </div>
@@ -120,7 +120,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Process Section avec animation */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -157,13 +157,36 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Video Testimonials Section - NEW */}
       <section className="py-16 px-4 bg-secondary">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Ils nous font <span className="gradient-text">confiance</span>
+          <h2 className="text-3xl font-bold text-center mb-4 animate-fade-in">
+            Ils ont fait confiance à <span className="gradient-text">eLimyt</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <p className="text-center text-muted-foreground mb-12 animate-fade-in">
+            Découvrez les témoignages de nos clients satisfaits
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
+            <VideoTestimonial
+              thumbnailUrl="/placeholder.svg"
+              videoTitle="Témoignage Marie"
+              clientName="Marie Dupont"
+              clientRole="Fleuriste indépendante"
+            />
+            <VideoTestimonial
+              thumbnailUrl="/placeholder.svg"
+              videoTitle="Témoignage Thomas"
+              clientName="Thomas Leroy"
+              clientRole="Artisan menuisier"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Written Testimonials Section avec animation */}
+      <section className="py-16 px-4 bg-secondary/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in">
             <Testimonial 
               name="Marie Dupont"
               role="Fleuriste indépendante"
@@ -183,7 +206,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section avec animation */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -214,8 +237,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section id="contact-form" className="py-16 px-4 bg-card">
+      {/* CTA Section avec animation pulse */}
+      <section id="contact-form" className="py-16 px-4 bg-card animate-fade-in">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-4">
             Prêt à <span className="gradient-text">démarrer votre projet</span> ?
