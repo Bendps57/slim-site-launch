@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
+import PricingCard from '@/components/sections/PricingCard';
 
 interface HeroSectionProps {
   onScrollToForm: () => void;
