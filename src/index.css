@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,44 +6,35 @@
 
 @layer base {
   :root {
-    --background: 225 20% 10%;
+    --background: 265 70% 40%;
     --foreground: 0 0% 100%;
 
-    --card: 225 20% 12%;
+    --card: 265 70% 35%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 225 20% 10%;
+    --popover: 265 70% 40%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 210 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 265 70% 40%;
 
-    --secondary: 225 20% 15%;
+    --secondary: 265 70% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 225 20% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 265 70% 50%;
+    --muted-foreground: 0 0% 90%;
 
-    --accent: 210 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 265 70% 40%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 225 20% 20%;
-    --input: 225 20% 20%;
-    --ring: 210 100% 50%;
+    --border: 265 70% 50%;
+    --input: 265 70% 50%;
+    --ring: 0 0% 100%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -60,14 +50,14 @@
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #1EAEDB 0%, #33C3F0 100%);
+  background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .hero-gradient {
-  background: radial-gradient(circle at center, rgba(30, 174, 219, 0.1) 0%, rgba(10, 15, 30, 0) 70%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, rgba(103, 58, 183, 0) 70%);
 }
 
 .card-hover {

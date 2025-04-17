@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { ArrowRight, Check, MessageSquare, Code, Send, Clock, CalendarCheck, PenTool, Zap, Phone, Mail } from 'lucide-react';
+import { ArrowRight, Check, MessageSquare, Code, Send, Phone, Mail } from 'lucide-react';
 import Testimonial from '@/components/Testimonial';
 import StepCard from '@/components/StepCard';
 import FAQItem from '@/components/FAQItem';
@@ -17,6 +16,11 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="w-full md:w-3/5">
+              <img 
+                src="/lovable-uploads/97ddbd67-b8b1-44b2-acd2-196d4e12a3a2.png" 
+                alt="eLimyt Logo" 
+                className="w-48 h-auto mb-8 mx-auto md:mx-0"
+              />
               <h1 className="text-3xl md:text-5xl font-bold mb-4">
                 <span className="gradient-text">Votre site web professionnel</span> prêt en quelques jours
               </h1>
