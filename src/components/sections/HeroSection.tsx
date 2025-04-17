@@ -14,7 +14,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToForm }) => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="w-full md:w-3/5">
             <img 
-              src="/lovable-uploads/97ddbd67-b8b1-44b2-acd2-196d4e12a3a2.png" 
+              src="/lovable-uploads/56490a21-2262-4aa9-87ed-d2cc23be530c.png" 
               alt="eLimyt Logo" 
               className="w-48 h-auto mb-8 mx-auto md:mx-0"
             />
