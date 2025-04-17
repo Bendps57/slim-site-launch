@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { ArrowRight, Check, MessageSquare, Code, Send, Phone, Mail } from 'lucide-react';
+import { ArrowRight, Check, MessageSquare, Code, Send, Phone, Mail, Zap, PenTool } from 'lucide-react';
 import Testimonial from '@/components/Testimonial';
 import StepCard from '@/components/StepCard';
 import FAQItem from '@/components/FAQItem';
