@@ -14,7 +14,7 @@ const EbookHeroSection = () => (
       />
       <div style={{ height: "48px" }} />
       <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-snug w-full">
-        Offert&nbsp;: Le guide des <span className="gradient-text">7 erreurs à éviter</span> pour réussir son site web.
+        📘 Obtenir ses premiers clients grâce à un site vitrine
       </h1>
       <h2 className="text-lg md:text-2xl font-medium mb-6 text-muted-foreground w-full">
         Recevez gratuitement notre ebook pour éviter les pièges les plus courants lors de la création de votre site, et découvrez comment en faire un outil de conversion puissant.
@@ -30,3 +30,4 @@ const EbookHeroSection = () => (
 );
 
 export default EbookHeroSection;
+
