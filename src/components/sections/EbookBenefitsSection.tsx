@@ -1,6 +1,5 @@
 
 import React from "react";
-import { X, Check } from "lucide-react";
 
 const avantList = [
   "Aucune visibilité en dehors d’Instagram ou Facebook",
@@ -23,32 +22,40 @@ const apresList = [
 const EbookBenefitsSection = () => (
   <section className="py-12 px-3 bg-secondary/10">
     <div className="max-w-4xl mx-auto">
-      <h3 className="text-2xl font-bold mb-8">
-        Obtenir ses premiers clients grâce à un site vitrine
+      <h3 className="text-2xl font-bold mb-6">
+        Les éléments clés qui transforment un simple site en véritable générateur de clients
       </h3>
-      <div className="flex flex-col md:flex-row gap-6">
+      <h4 className="text-lg font-semibold mb-3">
+        Ce qui freine (ou motive) un visiteur à passer à l’action
+      </h4>
+      <h5 className="mb-8 text-base italic text-muted-foreground">
+        Comment créer une première offre irrésistible
+      </h5>
+
+      <div className="flex flex-col md:flex-row gap-8">
         {/* Avant */}
         <div className="flex-1 bg-[#FFDEE2] border border-[#FFB6C1] rounded-xl shadow-sm p-6">
-          <h4 className="text-lg font-semibold text-[#E34364] mb-3">
+          <h4 className="text-xl font-bold text-[#E34364] mb-4 tracking-wide uppercase">
             AVANT <span className="ml-1 font-normal text-xs text-gray-500">(Sans site vitrine professionnel)</span>
           </h4>
-          <ul className="space-y-3">
+          <ul className="space-y-3 list-disc list-inside text-sm text-[#5F2535]">
             {avantList.map((item, i) => (
-              <li key={i} className="flex items-start text-sm text-[#5F2535]">
-                • {item}
+              <li key={i}>
+                ❌ {item}
               </li>
             ))}
           </ul>
         </div>
+
         {/* Après */}
         <div className="flex-1 bg-[#F2FCE2] border border-[#B4E582] rounded-xl shadow-sm p-6">
-          <h4 className="text-lg font-semibold text-[#5C9746] mb-3">
+          <h4 className="text-xl font-bold text-[#5C9746] mb-4 tracking-wide uppercase">
             APRÈS <span className="ml-1 font-normal text-xs text-gray-500">(Avec ton site eLimyt)</span>
           </h4>
-          <ul className="space-y-3">
+          <ul className="space-y-3 list-disc list-inside text-sm text-[#27412C]">
             {apresList.map((item, i) => (
-              <li key={i} className="flex items-start text-sm text-[#27412C]">
-                • {item}
+              <li key={i}>
+                ✅ {item}
               </li>
             ))}
           </ul>
@@ -59,3 +66,4 @@ const EbookBenefitsSection = () => (
 );
 
 export default EbookBenefitsSection;
+
