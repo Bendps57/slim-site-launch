@@ -1,4 +1,3 @@
-
 import React from "react";
 import EbookHeroSection from "@/components/sections/EbookHeroSection";
 import EbookBenefitsSection from "@/components/sections/EbookBenefitsSection";
@@ -6,6 +5,8 @@ import EbookTestimonialsSection from "@/components/sections/EbookTestimonialsSec
 import FAQSection from "@/components/sections/FAQSection";
 import FooterSection from "@/components/sections/FooterSection";
 import EbookForm from "@/components/sections/EbookForm";
+import OfficialSiteSection from "@/components/sections/OfficialSiteSection";
+import VideoTestimonialsSection from "@/components/sections/VideoTestimonialsSection";
 
 const Index = () => {
   // 2e CTA : scroll to "ebook-second-cta"
@@ -16,6 +17,8 @@ const Index = () => {
   return (
     <div className="min-h-screen w-full bg-background">
       <EbookHeroSection />
+      <OfficialSiteSection />
+      <VideoTestimonialsSection />
       <EbookBenefitsSection />
       <EbookTestimonialsSection />
       <FAQSection />

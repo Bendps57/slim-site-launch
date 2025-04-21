@@ -2,6 +2,7 @@
 import React from "react";
 import EbookForm from "./EbookForm";
 import SocialProofSection from "./SocialProofSection";
+import OfficialSiteSection from "./OfficialSiteSection";
 
 const EbookHeroSection = () => (
   <section className="w-full pt-16 pb-10 bg-background px-3 md:px-0">
@@ -11,6 +12,7 @@ const EbookHeroSection = () => (
         alt="Logo eLimyt"
         className="w-36 h-auto mb-2"
       />
+      <div style={{ height: "48px" }} />
       <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-snug w-full">
         Offert&nbsp;: Le guide des <span className="gradient-text">7 erreurs à éviter</span> pour réussir son site web.
       </h1>
@@ -22,6 +24,7 @@ const EbookHeroSection = () => (
         <EbookForm />
         <div className="text-xs text-muted-foreground mt-2 text-center md:text-left">Aucune pub. Juste de la valeur.</div>
       </div>
+      <OfficialSiteSection />
     </div>
   </section>
 );
