@@ -23,37 +23,32 @@ const apresList = [
 const EbookBenefitsSection = () => (
   <section className="py-12 px-3 bg-secondary/10">
     <div className="max-w-4xl mx-auto">
-      <h3 className="text-2xl font-bold mb-8 flex items-center gap-2">
-        <span role="img" aria-label="ebook">📘</span>
+      <h3 className="text-2xl font-bold mb-8">
         Obtenir ses premiers clients grâce à un site vitrine
       </h3>
       <div className="flex flex-col md:flex-row gap-6">
         {/* Avant */}
         <div className="flex-1 bg-[#FFDEE2] border border-[#FFB6C1] rounded-xl shadow-sm p-6">
-          <h4 className="text-lg font-semibold flex items-center text-[#E34364] mb-3">
-            <X className="w-5 h-5 mr-2 text-[#E34364]" />
+          <h4 className="text-lg font-semibold text-[#E34364] mb-3">
             AVANT <span className="ml-1 font-normal text-xs text-gray-500">(Sans site vitrine professionnel)</span>
           </h4>
           <ul className="space-y-3">
             {avantList.map((item, i) => (
               <li key={i} className="flex items-start text-sm text-[#5F2535]">
-                <X className="w-4 h-4 mr-2 mt-1 text-[#E34364] flex-shrink-0" />
-                {item}
+                • {item}
               </li>
             ))}
           </ul>
         </div>
         {/* Après */}
         <div className="flex-1 bg-[#F2FCE2] border border-[#B4E582] rounded-xl shadow-sm p-6">
-          <h4 className="text-lg font-semibold flex items-center text-[#5C9746] mb-3">
-            <Check className="w-5 h-5 mr-2 text-[#5C9746]" />
+          <h4 className="text-lg font-semibold text-[#5C9746] mb-3">
             APRÈS <span className="ml-1 font-normal text-xs text-gray-500">(Avec ton site eLimyt)</span>
           </h4>
           <ul className="space-y-3">
             {apresList.map((item, i) => (
               <li key={i} className="flex items-start text-sm text-[#27412C]">
-                <Check className="w-4 h-4 mr-2 mt-1 text-[#5C9746] flex-shrink-0" />
-                {item}
+                • {item}
               </li>
             ))}
           </ul>
@@ -64,4 +59,3 @@ const EbookBenefitsSection = () => (
 );
 
 export default EbookBenefitsSection;
-
