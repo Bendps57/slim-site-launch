@@ -1,66 +1,45 @@
 
 import React from "react";
 
-const avantList = [
-  "Aucune visibilité en dehors d’Instagram ou Facebook",
-  "Les prospects doutent de ton sérieux",
-  "Tu réponds sans cesse aux mêmes questions en DM",
-  "Ton offre n’est pas claire (ou difficile à expliquer)",
-  "Tu dépends du bouche-à-oreille ou des stories éphémères",
-  "Tes clients vont voir ailleurs, chez ceux qui ont l’air plus “pro”",
-];
-
-const apresList = [
-  "Tu es visible sur Google 24h/24, même quand tu dors",
-  "Tu inspires confiance dès les premières secondes",
-  "Ton site présente ton offre clairement, sans répéter 100 fois la même chose",
-  "Tu reçois des demandes qualifiées directement par formulaire ou email",
-  "Tu gagnes du temps, tu attires mieux, tu vends plus",
-  "Tu as enfin un outil pro qui travaille pour toi, pas l’inverse",
+const points = [
+  "Comment transformer ton site en véritable aimant à clients – même si tu débutes",
+  "Les erreurs qui font fuir tes prospects… et comment les éviter dès le départ",
+  "La méthode simple pour décrocher tes 3 premiers clients grâce à ton site vitrine",
+  "Des exemples concrets, des appels à l’action qui marchent, et une checklist SEO prête à l’emploi",
+  "Et surtout : comment ton site peut bosser pour toi pendant que tu fais autre chose 🧠💸",
 ];
 
 const EbookBenefitsSection = () => (
-  <section className="py-12 px-3 bg-secondary/10">
-    <div className="max-w-4xl mx-auto">
-      <h3 className="text-2xl font-bold mb-6">
-        Les éléments clés qui transforment un simple site en véritable générateur de clients
-      </h3>
-      <h4 className="text-lg font-semibold mb-3">
-        Ce qui freine (ou motive) un visiteur à passer à l’action
-      </h4>
-      <h5 className="mb-8 text-base italic text-muted-foreground">
-        Comment créer une première offre irrésistible
-      </h5>
-
-      <div className="flex flex-col md:flex-row gap-8">
-        {/* Avant */}
-        <div className="flex-1 bg-[#FFDEE2] border border-[#FFB6C1] rounded-xl shadow-sm p-6">
-          <h4 className="text-xl font-bold text-[#E34364] mb-4 tracking-wide uppercase">
-            AVANT <span className="ml-1 font-normal text-xs text-gray-500">(Sans site vitrine professionnel)</span>
-          </h4>
-          <ul className="space-y-3 list-disc list-inside text-sm text-[#5F2535]">
-            {avantList.map((item, i) => (
-              <li key={i}>
-                ❌ {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Après */}
-        <div className="flex-1 bg-[#F2FCE2] border border-[#B4E582] rounded-xl shadow-sm p-6">
-          <h4 className="text-xl font-bold text-[#5C9746] mb-4 tracking-wide uppercase">
-            APRÈS <span className="ml-1 font-normal text-xs text-gray-500">(Avec ton site eLimyt)</span>
-          </h4>
-          <ul className="space-y-3 list-disc list-inside text-sm text-[#27412C]">
-            {apresList.map((item, i) => (
-              <li key={i}>
-                ✅ {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+  <section className="py-12 px-3 bg-gradient-to-br from-[#9b87f5]/30 to-white">
+    <div className="max-w-3xl mx-auto rounded-2xl shadow-xl bg-white border border-[#c4b5fd] p-6 md:p-12 flex flex-col items-center animate-fade-in">
+      <div className="w-full flex justify-center mb-5">
+        <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-widest"
+              style={{
+                background: "linear-gradient(90deg, #A084EE 0%, #9b87f5 100%)",
+                color: "white",
+                boxShadow: "0 4px 18px rgba(154,134,245,0.08)",
+                letterSpacing: "0.1em",
+              }}>
+          🚀 Ce que ce guide va t’apporter concrètement
+        </span>
       </div>
+      <ul className="w-full mt-2 space-y-5 text-[1.08rem] md:text-lg font-medium text-[#473393]">
+        {points.map((pt, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-2 md:gap-3 group"
+          >
+            <span
+              className="text-green-500 dark:text-green-400 text-lg md:text-xl mt-1"
+              aria-hidden="true"
+              style={{
+                textShadow: "0 0 8px #d1faf8",
+              }}
+            >✅</span>
+            <span className="leading-snug">{pt}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 );
