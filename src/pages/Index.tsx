@@ -1,30 +1,32 @@
 
 import React from "react";
-import HeroESection from "@/components/sections/HeroESection";
-import SocialProofSection from "@/components/sections/SocialProofSection";
-import BenefitsObjectionsSection from "@/components/sections/BenefitsObjectionsSection";
-import AuthenticTestimonialSection from "@/components/sections/AuthenticTestimonialSection";
+import EbookHeroSection from "@/components/sections/EbookHeroSection";
+import EbookBenefitsSection from "@/components/sections/EbookBenefitsSection";
+import EbookTestimonialsSection from "@/components/sections/EbookTestimonialsSection";
 import FAQSection from "@/components/sections/FAQSection";
-import SecondCTASection from "@/components/sections/SecondCTASection";
 import FooterSection from "@/components/sections/FooterSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import ContactFormSection from "@/components/sections/ContactFormSection";
+import EbookForm from "@/components/sections/EbookForm";
 
 const Index = () => {
+  // 2e CTA : scroll to "ebook-second-cta"
   const handleScrollToForm = () => {
-    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("ebook-second-cta")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="min-h-screen w-full bg-background">
-      <HeroESection onScrollToForm={handleScrollToForm} />
-      <SocialProofSection />
-      <BenefitsObjectionsSection />
-      <AuthenticTestimonialSection />
-      <TestimonialsSection />
+      <EbookHeroSection />
+      <EbookBenefitsSection />
+      <EbookTestimonialsSection />
       <FAQSection />
-      <SecondCTASection onScrollToForm={handleScrollToForm} />
-      <ContactFormSection />
+      <section id="ebook-second-cta" className="py-12 px-3 text-center bg-secondary/30">
+        <div className="max-w-xl mx-auto rounded-xl shadow-lg p-8 bg-background">
+          <h3 className="text-2xl md:text-3xl font-bold mb-3">
+            Prêt à éviter les erreurs que 80% des entrepreneurs font&nbsp;?
+          </h3>
+          <EbookForm />
+        </div>
+      </section>
       <FooterSection />
     </div>
   );

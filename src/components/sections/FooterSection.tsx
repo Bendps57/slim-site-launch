@@ -1,6 +1,6 @@
 
 import React from "react";
-import { facebook, instagram, linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 const FooterSection = () => (
   <footer className="py-10 px-4 bg-secondary text-center">
@@ -18,7 +18,7 @@ const FooterSection = () => (
             aria-label="Facebook"
             className="hover:scale-110 transition-transform"
           >
-            <facebook className="w-5 h-5 text-primary" />
+            <Facebook className="w-5 h-5 text-primary" />
           </a>
           <a
             href="https://www.instagram.com/"
@@ -27,7 +27,7 @@ const FooterSection = () => (
             aria-label="Instagram"
             className="hover:scale-110 transition-transform"
           >
-            <instagram className="w-5 h-5 text-primary" />
+            <Instagram className="w-5 h-5 text-primary" />
           </a>
           <a
             href="https://www.linkedin.com/"
@@ -36,7 +36,7 @@ const FooterSection = () => (
             aria-label="LinkedIn"
             className="hover:scale-110 transition-transform"
           >
-            <linkedin className="w-5 h-5 text-primary" />
+            <Linkedin className="w-5 h-5 text-primary" />
           </a>
         </div>
       </div>
@@ -46,7 +46,7 @@ const FooterSection = () => (
           <a href="/politique-confidentialite" className="underline hover:text-primary">Politique de confidentialité</a>
         </div>
         <div>
-          Contact : <a href="mailto:contact@elimyt.com" className="hover:underline text-primary pl-1">contact@elimyt.com</a>
+          Contact&nbsp;: <a href="mailto:contact@elimyt.com" className="hover:underline text-primary pl-1">contact@elimyt.com</a>
         </div>
       </div>
       <p className="text-xs text-muted-foreground mt-2">
