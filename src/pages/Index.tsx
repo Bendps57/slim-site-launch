@@ -1,3 +1,4 @@
+
 import React from "react";
 import EbookHeroSection from "@/components/sections/EbookHeroSection";
 import EbookBenefitsSection from "@/components/sections/EbookBenefitsSection";
@@ -5,11 +6,10 @@ import EbookTestimonialsSection from "@/components/sections/EbookTestimonialsSec
 import FAQSection from "@/components/sections/FAQSection";
 import FooterSection from "@/components/sections/FooterSection";
 import EbookForm from "@/components/sections/EbookForm";
-import OfficialSiteSection from "@/components/sections/OfficialSiteSection";
 import VideoTestimonialsSection from "@/components/sections/VideoTestimonialsSection";
 
 const Index = () => {
-  // 2e CTA : scroll to "ebook-second-cta"
+  // 2e CTA : scroll to "ebook-second-cta"
   const handleScrollToForm = () => {
     document.getElementById("ebook-second-cta")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -17,7 +17,6 @@ const Index = () => {
   return (
     <div className="min-h-screen w-full bg-background">
       <EbookHeroSection />
-      <OfficialSiteSection />
       <VideoTestimonialsSection />
       <EbookBenefitsSection />
       <EbookTestimonialsSection />
@@ -28,6 +27,21 @@ const Index = () => {
             Prêt à éviter les erreurs que 80% des entrepreneurs font&nbsp;?
           </h3>
           <EbookForm />
+          <div className="w-full mt-8 flex justify-center">
+            <a
+              href="https://www.elimyt.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-5 py-3 rounded-xl shadow bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all text-base"
+            >
+              💡 Découvrez notre offre clé en main&nbsp;: création de site internet complet pour <span className="font-bold">249,90€</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 3h6v6" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 14L21 3" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
       <FooterSection />
