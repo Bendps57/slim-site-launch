@@ -5,7 +5,7 @@ import { ExternalLink } from "lucide-react";
 const OfficialSiteSection = () => (
   <div className="w-full mt-8 flex justify-center">
     <a
-      href="https://elimyt.fr"
+      href="https://www.elimyt.com"
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center gap-2 px-5 py-3 rounded-xl shadow bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all text-base"
