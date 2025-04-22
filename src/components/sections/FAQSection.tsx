@@ -4,24 +4,24 @@ import FAQItem from "@/components/FAQItem";
 
 const faqs = [
   {
-    question: "Quels sont les délais de réalisation ?",
-    answer: "Le délai habituel de réalisation est de 5 à 10 jours ouvrés, selon la complexité de votre projet."
+    question: "En combien de temps vais-je voir les premiers résultats ?",
+    answer: "Avec les stratégies détaillées dans l'ebook, vous pouvez commencer à attirer vos premiers prospects qualifiés en quelques semaines. Le guide vous donne une feuille de route claire pour maximiser la visibilité de votre site dès son lancement."
   },
   {
-    question: "Proposez-vous des services de maintenance ?",
-    answer: "Oui, nous proposons des forfaits de maintenance adaptés à vos besoins : sécurité, mises à jour, évolutions."
+    question: "Je n'ai aucune expérience en création de site, est-ce que ce guide est fait pour moi ?",
+    answer: "Absolument ! L'ebook a été conçu spécialement pour les entrepreneurs débutants. Vous y trouverez des conseils pratiques et des exemples concrets, sans jargon technique complexe."
   },
   {
-    question: "Puis-je modifier mon site moi-même après sa création ?",
-    answer: "Bien sûr. Nous créons des sites faciles à prendre en main et vous formons pour les modifications courantes."
+    question: "Comment ce guide va m'aider à convertir plus de visiteurs en clients ?",
+    answer: "Le guide vous révèle les techniques éprouvées pour créer un site qui convertit : structure optimale des pages, éléments de confiance à mettre en avant, et surtout comment créer des appels à l'action efficaces qui poussent les visiteurs à passer à l'action."
   }
 ];
 
 const FAQSection = () => (
-  <section className="py-16 px-4">
+  <section className="py-16 px-4 bg-gradient-to-br from-[#9b87f5]/20 to-white">
     <div className="max-w-3xl mx-auto">
       <h2 className="text-3xl font-bold text-center mb-12">
-        Questions <span className="gradient-text">fréquentes</span>
+        Questions <span className="text-[#9b87f5]">fréquentes</span>
       </h2>
       <div className="space-y-4">
         {faqs.map((f, i) => (
