@@ -16,15 +16,15 @@ const FAQItem: React.FC<FAQItemProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const textColorClass = variant === 'light' 
-    ? 'text-white' 
-    : 'text-white';
+    ? 'text-foreground' 
+    : 'text-foreground';
 
   const chevronColorClass = variant === 'light' 
-    ? 'text-white/80' 
-    : 'text-white/80';
+    ? 'text-foreground/80' 
+    : 'text-foreground/80';
 
   return (
-    <div className={`border-b ${variant === 'light' ? 'border-white/20' : 'border-white/20'} py-4`}>
+    <div className={`border-b ${variant === 'light' ? 'border-foreground/20' : 'border-foreground/20'} py-4`}>
       <button 
         className={`flex justify-between items-center w-full text-left font-medium text-lg ${textColorClass}`}
         onClick={() => setIsOpen(!isOpen)}
@@ -36,7 +36,7 @@ const FAQItem: React.FC<FAQItemProps> = ({
       </button>
       <div className={`mt-2 overflow-hidden transition-all duration-300 ${
         isOpen ? 'max-h-96' : 'max-h-0'
-      } ${variant === 'light' ? 'text-white/80' : 'text-white/80'}`}>
+      } ${variant === 'light' ? 'text-foreground/80' : 'text-foreground/80'}`}>
         <p className="py-2">{answer}</p>
       </div>
     </div>
