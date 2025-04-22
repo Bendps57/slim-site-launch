@@ -23,13 +23,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-background">
-      <PricingHeroSection />
-      <FeaturesSection />
-      <BeforeAfterSection />
-      <VideoTestimonialsSection />
-      <BonusSection />
-      <NewFAQSection />
-      <FinalCTASection />
+      <div className="animate-fade-in">
+        <PricingHeroSection />
+        <FeaturesSection />
+        <BeforeAfterSection />
+        <VideoTestimonialsSection />
+        <BonusSection />
+        <NewFAQSection />
+        <FinalCTASection />
+      </div>
     </div>
   );
 };
