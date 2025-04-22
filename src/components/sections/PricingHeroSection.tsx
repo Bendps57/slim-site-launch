@@ -7,10 +7,8 @@ const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
 
   const handleContactRedirect = () => {
-    // Use window.open to open in a new tab or window.location.href for same tab
     window.location.href = 'https://elimyt.com/contact';
     
-    // Track the click event
     trackEvent('Lead', {
       content_name: 'Contact Button Click',
       content_category: 'CTA',
@@ -38,11 +36,11 @@ const PricingHeroSection = () => {
 
           <div className="bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-300 p-1 rounded-lg mb-8 inline-block animate-pulse">
             <div className="bg-background/95 rounded-md p-4">
-              <p className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-400 to-yellow-600 bg-clip-text text-transparent">
-                Pour seulement 249,90€{' '}
-                <span className="line-through text-2xl opacity-70">2000€</span>
+              <p className="text-3xl md:text-4xl font-bold">
+                Pour seulement <span className="text-primary">249,90€</span>{' '}
+                <span className="text-red-500 line-through text-2xl animate-bounce">2000€</span>
               </p>
-              <p className="text-amber-500 font-semibold mt-2">
+              <p className="text-yellow-600 font-bold mt-2 animate-pulse">
                 Offre limitée - Seulement 5 places disponibles ce mois-ci
               </p>
             </div>
