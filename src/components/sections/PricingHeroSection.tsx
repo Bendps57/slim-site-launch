@@ -6,11 +6,8 @@ import useFacebookPixel from '@/hooks/useFacebookPixel';
 const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
 
-  const handleOrderClick = () => {
-    trackEvent('InitiateCheckout', {
-      value: 249.90,
-      currency: 'EUR'
-    });
+  const handleContactRedirect = () => {
+    window.location.href = 'https://elimyt.com/contact';
   };
 
   return (
@@ -45,16 +42,15 @@ const PricingHeroSection = () => {
             </div>
           ))}
         </div>
-
-        <Button
-          size="lg"
-          onClick={handleOrderClick}
-          className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
-        >
-          Je veux mon site maintenant
-          <ArrowRight className="ml-2" />
-        </Button>
-      </div>
+      
+      <Button
+        size="lg"
+        onClick={handleContactRedirect}
+        className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
+      >
+        Je profite de l'offre à 249,90€
+        <ArrowRight className="ml-2" />
+      </Button>
     </section>
   );
 };

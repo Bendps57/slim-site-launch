@@ -1,17 +1,10 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import useFacebookPixel from '@/hooks/useFacebookPixel';
 
 const FinalCTASection = () => {
-  const { trackEvent } = useFacebookPixel();
-
-  const handleOrderClick = () => {
-    trackEvent('InitiateCheckout', {
-      value: 249.90,
-      currency: 'EUR'
-    });
+  const handleContactRedirect = () => {
+    window.location.href = 'https://elimyt.com/contact';
   };
 
   return (
@@ -25,10 +18,10 @@ const FinalCTASection = () => {
         </p>
         <Button
           size="lg"
-          onClick={handleOrderClick}
+          onClick={handleContactRedirect}
           className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
         >
-          Je veux mon site maintenant
+          Je profite de l'offre à 249,90€
           <ArrowRight className="ml-2" />
         </Button>
       </div>
