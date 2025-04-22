@@ -44,7 +44,7 @@
   }
 
   body {
-    @apply bg-background text-foreground; // Cela utilisera le noir #212529
+    @apply bg-background text-foreground; /* Cela utilisera le noir #212529 */
     font-family: 'Montserrat', sans-serif;
   }
 }
