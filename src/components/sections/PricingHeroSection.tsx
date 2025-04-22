@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,7 +8,8 @@ const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
 
   const handleContactRedirect = () => {
-    window.location.href = 'https://elimyt.com/contact';
+    // Changement de l'URL ici
+    window.open('https://elimyt.com/contact', '_blank');
     
     trackEvent('Lead', {
       content_name: 'Contact Button Click',

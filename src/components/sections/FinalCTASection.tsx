@@ -8,8 +8,8 @@ const FinalCTASection = () => {
   const { trackEvent } = useFacebookPixel();
   
   const handleContactRedirect = () => {
-    // Use window.open to open in a new tab or window.location.href for same tab
-    window.location.href = 'https://elimyt.com/contact';
+    // Changement de l'URL et ouverture dans un nouvel onglet
+    window.open('https://elimyt.com/contact', '_blank');
     
     // Track the click event
     trackEvent('Lead', {
