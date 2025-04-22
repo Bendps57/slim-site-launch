@@ -9,15 +9,15 @@ const faqs = [
   },
   {
     question: "Peut-on modifier le site après livraison ?",
-    answer: "Oui, nous pouvons effectuer des modifications après la livraison. Nous vous fournirons également un accès pour effectuer vous-même des modifications basiques."
+    answer: "Oui, nous pouvons effectuer des modifications après la livraison."
   },
   {
     question: "Comment se passe la création du site ?",
     answer: "Après votre commande, nous vous envoyons un questionnaire pour comprendre vos besoins. Nous créons ensuite une première version en 3-4 jours, puis effectuons les ajustements selon vos retours pour une livraison en 7 jours maximum."
   },
   {
-    question: "Que se passe-t-il après 1 an d'hébergement ?",
-    answer: "Après la première année gratuite, l'hébergement est facturé à un tarif compétitif d'environ 10€/mois. Vous pouvez aussi choisir de transférer votre site chez un autre hébergeur."
+    question: "Que se passe-t-il après la première année ?",
+    answer: "L'hébergement et le nom de domaine sont offerts la première année. Ensuite, vous ne payez que 9,90€/mois pour l'hébergement premium, les mises à jour de sécurité et l'assistance. Vous restez propriétaire de votre nom de domaine."
   },
   {
     question: "Et si je ne suis pas satisfait ?",
@@ -48,3 +48,4 @@ const NewFAQSection = () => {
 };
 
 export default NewFAQSection;
+
