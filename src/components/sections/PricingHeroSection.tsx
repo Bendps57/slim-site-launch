@@ -17,7 +17,7 @@ const PricingHeroSection = () => {
     <section className="relative py-16 md:py-24 px-4 bg-gradient-to-b from-primary/10 to-background">
       <div className="max-w-6xl mx-auto text-center">
         <img 
-          src="https://i.imgur.com/r31D71Y.png" 
+          src="/lovable-uploads/e0efda63-50ee-4d5e-bace-82a438cb3313.png" 
           alt="eLimyt Logo" 
           className="mx-auto mb-8 w-52 h-auto animate-scale-in"
         />
@@ -49,7 +49,7 @@ const PricingHeroSection = () => {
         <Button
           size="lg"
           onClick={handleOrderClick}
-          className="text-lg px-8 py-6 h-auto animate-pulse"
+          className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
         >
           Je veux mon site maintenant
           <ArrowRight className="ml-2" />

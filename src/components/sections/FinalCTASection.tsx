@@ -26,7 +26,7 @@ const FinalCTASection = () => {
         <Button
           size="lg"
           onClick={handleOrderClick}
-          className="text-lg px-8 py-6 h-auto animate-pulse"
+          className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
         >
           Je veux mon site maintenant
           <ArrowRight className="ml-2" />

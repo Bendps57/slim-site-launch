@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,7 +51,9 @@ export default {
         card: {
           DEFAULT: '#FFFFFF',
           foreground: '#212529'
-        }
+        },
+        'button-start': '#9b87f5',
+        'button-end': '#1EAEDB'
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -67,11 +68,22 @@ export default {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' }
+        },
+        'button-gradient': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'gradient-x': 'button-gradient 3s ease infinite',
       }
     }
   },
