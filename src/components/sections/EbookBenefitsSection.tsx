@@ -23,7 +23,7 @@ const EbookBenefitsSection = () => (
           🚀 Ce que ce guide va t'apporter concrètement
         </span>
       </div>
-      <ul className="w-full mt-2 space-y-5 text-[1.08rem] md:text-lg font-medium text-white">
+      <ul className="w-full mt-2 space-y-5 text-[1.08rem] md:text-lg font-medium text-foreground">
         {points.map((pt, i) => (
           <li
             key={i}

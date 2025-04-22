@@ -1,4 +1,3 @@
-
 import React from "react";
 import EbookForm from "./EbookForm";
 import SocialProofSection from "./SocialProofSection";
@@ -8,7 +7,7 @@ const EbookHeroSection = () => (
   <section className="w-full pt-16 pb-10 bg-background px-3 md:px-0">
     <div className="max-w-4xl mx-auto flex flex-col items-start">
       <img
-        src="https://i.imgur.com/r31D71Y.png"
+        src="https://i.imgur.com/PudTzSY.png"
         alt="Logo eLimyt"
         className="w-36 h-auto mb-2"
       />
@@ -30,4 +29,3 @@ const EbookHeroSection = () => (
 );
 
 export default EbookHeroSection;
-
