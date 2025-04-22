@@ -34,15 +34,18 @@ const PricingHeroSection = () => {
             Avec un Site Web Premium livré en 7 jours
           </h2>
 
-          <div className="bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-300 p-1 rounded-lg mb-8 inline-block animate-pulse">
-            <div className="bg-background/95 rounded-md p-4">
-              <p className="text-3xl md:text-4xl font-bold">
-                Pour seulement <span className="text-primary">249,90€</span>{' '}
-                <span className="text-red-500 line-through text-2xl animate-bounce">2000€</span>
-              </p>
-              <p className="text-yellow-600 font-bold mt-2 animate-pulse">
-                Offre limitée - Seulement 5 places disponibles ce mois-ci
-              </p>
+          <div className="bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-300 p-1 rounded-lg mb-8 inline-block animate-[pulse_1.5s_ease-in-out_infinite]">
+            <div className="bg-background/95 rounded-md p-4 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 animate-[pulse_2s_ease-in-out_infinite] opacity-50 rounded-md"></div>
+              <div className="relative z-10">
+                <p className="text-3xl md:text-4xl font-bold">
+                  Pour seulement <span className="text-primary">249,90€</span>{' '}
+                  <span className="text-red-500 line-through text-2xl animate-bounce">2000€</span>
+                </p>
+                <p className="text-yellow-600 font-bold mt-2 animate-pulse">
+                  Offre limitée - Seulement 5 places disponibles ce mois-ci
+                </p>
+              </div>
             </div>
           </div>
           
