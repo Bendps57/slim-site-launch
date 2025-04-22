@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import EbookHeroSection from "@/components/sections/EbookHeroSection";
 import EbookBenefitsSection from "@/components/sections/EbookBenefitsSection";
 import EbookTestimonialsSection from "@/components/sections/EbookTestimonialsSection";
@@ -7,8 +7,22 @@ import FAQSection from "@/components/sections/FAQSection";
 import FooterSection from "@/components/sections/FooterSection";
 import EbookForm from "@/components/sections/EbookForm";
 import VideoTestimonialsSection from "@/components/sections/VideoTestimonialsSection";
+import useFacebookPixel from "@/hooks/useFacebookPixel";
 
 const Index = () => {
+  const { trackEvent } = useFacebookPixel();
+  
+  // Suivre la vue de page
+  useEffect(() => {
+    // Envoyer un événement de vue de page personnalisé
+    trackEvent('ViewContent', {
+      content_name: 'Landing Page Ebook',
+      content_category: 'Landing',
+      currency: 'EUR',
+      value: 0.00
+    });
+  }, [trackEvent]);
+
   // 2e CTA : scroll to "ebook-second-cta"
   const handleScrollToForm = () => {
     document.getElementById("ebook-second-cta")?.scrollIntoView({ behavior: "smooth" });
@@ -33,6 +47,7 @@ const Index = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-3 rounded-xl shadow bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all text-base"
+              onClick={() => trackEvent('ClickButton', { button_name: 'Offre clé en main' })}
             >
               💡 Découvrez notre offre clé en main&nbsp;: création de site internet complet pour <span className="font-bold">249,90€</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">

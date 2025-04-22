@@ -2,14 +2,27 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import useFacebookPixel from "@/hooks/useFacebookPixel";
 
 const EbookForm = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const { trackLead, trackEbookDownload } = useFacebookPixel();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    
+    // Suivre l'événement de conversion "Lead"
+    trackLead({ email_address: email });
+    
+    // Suivre l'événement de téléchargement de l'ebook
+    trackEbookDownload("Guide premier clients site vitrine", { 
+      currency: "EUR", 
+      value: 0.00,
+      status: "complete" 
+    });
+    
     setSubmitted(true);
   };
 
