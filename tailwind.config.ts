@@ -19,34 +19,34 @@ export default {
 		},
 		extend: {
 			colors: {
-				border: '#1A1F2C',
-				input: '#1A1F2C',
-				ring: '#1A1F2C',
-				background: '#1A1F2C',
+				border: '#622725',
+				input: '#622725',
+				ring: '#622725',
+				background: '#622725',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: '#1A1F2C'
+					foreground: '#622725'
 				},
 				secondary: {
-					DEFAULT: '#1A1F2C',
+					DEFAULT: '#622725',
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
-				muted: '#1A1F2C',
+				muted: '#622725',
 				accent: {
-					DEFAULT: '#1A1F2C',
+					DEFAULT: '#622725',
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
-					DEFAULT: '#1A1F2C',
+					DEFAULT: '#622725',
 					foreground: 'hsl(var(--popover-foreground))'
 				},
 				card: {
-					DEFAULT: '#1A1F2C',
+					DEFAULT: '#622725',
 					foreground: 'hsl(var(--card-foreground))'
 				}
 			},
