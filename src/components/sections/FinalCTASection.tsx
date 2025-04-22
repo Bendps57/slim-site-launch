@@ -1,10 +1,23 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import useFacebookPixel from '@/hooks/useFacebookPixel';
 
 const FinalCTASection = () => {
+  const { trackEvent } = useFacebookPixel();
+  
   const handleContactRedirect = () => {
+    // Ensure this redirects to the contact page
     window.location.href = 'https://elimyt.com/contact';
+    
+    // Track the click event
+    trackEvent('Lead', {
+      content_name: 'Final CTA Button Click',
+      content_category: 'CTA',
+      value: 249.90,
+      currency: 'EUR'
+    });
   };
 
   return (
@@ -14,7 +27,7 @@ const FinalCTASection = () => {
           Prêt à transformer votre présence en ligne ?
         </h2>
         <p className="text-xl mb-8">
-          Commandez votre site vitrine pour 249,90€ maintenant – Offre limitée !
+          Commandez votre site vitrine pour <span className="font-bold text-primary">249,90€</span> maintenant – Offre limitée !
         </p>
         <Button
           size="lg"

@@ -8,7 +8,16 @@ const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
 
   const handleContactRedirect = () => {
+    // Ensure this redirects to the contact page
     window.location.href = 'https://elimyt.com/contact';
+    
+    // Track the click event
+    trackEvent('Lead', {
+      content_name: 'Contact Button Click',
+      content_category: 'CTA',
+      value: 249.90,
+      currency: 'EUR'
+    });
   };
 
   return (
@@ -22,11 +31,16 @@ const PricingHeroSection = () => {
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           Transformez Votre Image Professionnelle
         </h1>
-        <h2 className="text-2xl md:text-3xl font-semibold mb-8">
-          Avec un Site Web Premium livré en 7 jours – Pour seulement{' '}
-          <span className="text-primary">249,90€</span>{' '}
-          <span className="line-through text-muted-foreground">2000€</span>
+        
+        {/* Make pricing more visible with animation and larger font */}
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4">
+          Avec un Site Web Premium livré en 7 jours
         </h2>
+        <div className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-button-start p-4 rounded-lg inline-block text-white shadow-lg pulse-animation">
+          Pour seulement <span className="text-white">249,90€</span>{' '}
+          <span className="line-through text-white/70 text-2xl">2000€</span>
+        </div>
+        
         <div className="bg-destructive/10 text-destructive font-semibold p-4 rounded-lg mb-8 inline-block">
           Offre limitée : seulement 5 places disponibles ce mois-ci.
         </div>
