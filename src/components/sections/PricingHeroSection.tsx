@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -43,14 +44,15 @@ const PricingHeroSection = () => {
           ))}
         </div>
       
-      <Button
-        size="lg"
-        onClick={handleContactRedirect}
-        className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
-      >
-        Je profite de l'offre à 249,90€
-        <ArrowRight className="ml-2" />
-      </Button>
+        <Button
+          size="lg"
+          onClick={handleContactRedirect}
+          className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
+        >
+          Je profite de l'offre à 249,90€
+          <ArrowRight className="ml-2" />
+        </Button>
+      </div>
     </section>
   );
 };
