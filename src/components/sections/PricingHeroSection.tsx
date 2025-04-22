@@ -1,8 +1,29 @@
 
 import React from 'react';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { Check, Clock, Package, ShieldCheck, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useFacebookPixel from '@/hooks/useFacebookPixel';
+
+const featureItems = [
+  {
+    title: "Livré en 7 jours",
+    description: "Votre site prêt à propulser votre image rapidement.",
+    icon: <Clock className="h-6 w-6 text-primary" />,
+    style: "from-[#FDE68A] to-[#F59E42]"
+  },
+  {
+    title: "Satisfait ou remboursé 14 jours",
+    description: "Essayez sans risque, remboursement garanti.",
+    icon: <ShieldCheck className="h-6 w-6 text-primary" />,
+    style: "from-[#A7F3D0] to-[#38BDF8]"
+  },
+  {
+    title: "Hébergement & nom de domaine offerts 1ère année",
+    description: "Tout inclus, pas de frais cachés la première année.",
+    icon: <Package className="h-6 w-6 text-primary" />,
+    style: "from-[#E0E7FF] to-[#C7D2FE]"
+  },
+];
 
 const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
@@ -51,15 +72,21 @@ const PricingHeroSection = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            {[
-              'Livré en 7 jours',
-              'Satisfaction garantie (remboursement sous 14 jours)',
-              'Hébergement offert pendant 1 an'
-            ].map((feature, index) => (
-              <div key={index} className="flex items-center gap-2 text-left bg-card p-4 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                <span>{feature}</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {featureItems.map((item, idx) => (
+              <div
+                key={idx}
+                className={`relative bg-gradient-to-tr ${item.style} p-[2px] rounded-xl shadow-lg hover:scale-105 transition-transform duration-200`}
+              >
+                <div className="flex flex-col h-full items-center text-center bg-card rounded-[10px] p-6 relative z-10 animate-fade-in">
+                  <div className="flex items-center justify-center mb-2">
+                    <span className="flex items-center justify-center bg-primary/10 rounded-full w-12 h-12 shadow">
+                      {item.icon}
+                    </span>
+                  </div>
+                  <h4 className="font-bold text-lg mb-1">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -70,7 +97,7 @@ const PricingHeroSection = () => {
             className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white"
           >
             Je profite de l'offre à 249,90€
-            <ArrowRight className="ml-2" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-7-7l7 7-7 7" /></svg>
           </Button>
         </div>
       </div>
