@@ -18,7 +18,7 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section className="py-16 px-4 bg-[#9b87f5] text-white">
+  <section className="py-16 px-4 bg-background text-white">
     <div className="max-w-3xl mx-auto">
       <h2 className="text-3xl font-bold text-center mb-12">
         Questions <span className="text-white/80">fréquentes</span>
@@ -29,7 +29,7 @@ const FAQSection = () => (
             key={i} 
             question={f.question} 
             answer={f.answer} 
-            variant="light" 
+            variant="dark" 
           />
         ))}
       </div>
