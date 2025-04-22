@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,6 +16,11 @@ const PricingHeroSection = () => {
   return (
     <section className="relative py-16 md:py-24 px-4 bg-gradient-to-b from-primary/10 to-background">
       <div className="max-w-6xl mx-auto text-center">
+        <img 
+          src="https://i.imgur.com/r31D71Y.png" 
+          alt="eLimyt Logo" 
+          className="mx-auto mb-8 w-52 h-auto animate-scale-in"
+        />
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           Transformez Votre Image Professionnelle
         </h1>
