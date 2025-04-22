@@ -18,14 +18,19 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section className="py-16 px-4 bg-gradient-to-br from-[#9b87f5]/20 to-white">
+  <section className="py-16 px-4 bg-[#9b87f5] text-white">
     <div className="max-w-3xl mx-auto">
       <h2 className="text-3xl font-bold text-center mb-12">
-        Questions <span className="text-[#9b87f5]">fréquentes</span>
+        Questions <span className="text-white/80">fréquentes</span>
       </h2>
       <div className="space-y-4">
         {faqs.map((f, i) => (
-          <FAQItem key={i} question={f.question} answer={f.answer} />
+          <FAQItem 
+            key={i} 
+            question={f.question} 
+            answer={f.answer} 
+            variant="light" 
+          />
         ))}
       </div>
     </div>

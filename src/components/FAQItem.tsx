@@ -5,21 +5,38 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 interface FAQItemProps {
   question: string;
   answer: string;
+  variant?: 'dark' | 'light';
 }
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
+const FAQItem: React.FC<FAQItemProps> = ({ 
+  question, 
+  answer, 
+  variant = 'dark' 
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const textColorClass = variant === 'light' 
+    ? 'text-white' 
+    : 'text-foreground';
+
+  const chevronColorClass = variant === 'light' 
+    ? 'text-white/80' 
+    : 'text-primary';
+
   return (
-    <div className="border-b border-border py-4">
+    <div className={`border-b ${variant === 'light' ? 'border-white/20' : 'border-border'} py-4`}>
       <button 
-        className="flex justify-between items-center w-full text-left font-medium text-lg"
+        className={`flex justify-between items-center w-full text-left font-medium text-lg ${textColorClass}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{question}</span>
-        {isOpen ? <ChevronUp className="h-5 w-5 text-primary" /> : <ChevronDown className="h-5 w-5 text-primary" />}
+        {isOpen 
+          ? <ChevronUp className={`h-5 w-5 ${chevronColorClass}`} /> 
+          : <ChevronDown className={`h-5 w-5 ${chevronColorClass}`} />}
       </button>
-      <div className={`mt-2 text-muted-foreground overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+      <div className={`mt-2 overflow-hidden transition-all duration-300 ${
+        isOpen ? 'max-h-96' : 'max-h-0'
+      } ${variant === 'light' ? 'text-white/80' : 'text-muted-foreground'}`}>
         <p className="py-2">{answer}</p>
       </div>
     </div>
