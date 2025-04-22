@@ -8,7 +8,7 @@ const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
 
   const handleContactRedirect = () => {
-    // Ensure this redirects to the contact page
+    // Use window.open to open in a new tab or window.location.href for same tab
     window.location.href = 'https://elimyt.com/contact';
     
     // Track the click event
