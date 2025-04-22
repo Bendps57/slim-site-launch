@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 
 declare global {
@@ -7,19 +6,8 @@ declare global {
   }
 }
 
-// Token d'accès : EAARA4qsgZB5oBOZBVq6PReou6fYyZCgtCCcwS62SYLoCAyI4BbXD3Y5rloJ3cgIscLltGIZAjz3OZATCbW2anEQVHy9chLoaZAKm73apbdB1zfHQerxGOSTt25ZCB3SYPYfBi4IY50WABz41JKo2Uh3YGBDMYG4tAMvGUCnZBlZCcxOgaBQoi5qw58WSRoKJ7GlTcYwZDZD
-// ID du pixel : 1203620008094951
-
 export function useFacebookPixel() {
-  // Initialiser le pixel lors du montage du composant
-  useEffect(() => {
-    if (window.fbq) {
-      window.fbq('init', '1203620008094951');
-      window.fbq('track', 'PageView');
-    }
-  }, []);
-
-  // Fonction pour suivre des événements personnalisés
+  // Supprimer l'initialisation redondante
   const trackEvent = (eventName: string, options = {}) => {
     if (window.fbq) {
       window.fbq('track', eventName, options);
