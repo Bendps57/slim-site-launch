@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,7 +8,8 @@ import { openContactPopup } from '@/utils/popupUtils';
 const FinalCTASection = () => {
   const { trackEvent } = useFacebookPixel();
   
-  const handleContactClick = () => {
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     openContactPopup();
     
     trackEvent('Lead', {

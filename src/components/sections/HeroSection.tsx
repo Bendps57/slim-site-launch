@@ -30,14 +30,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToForm }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
-                onClick={openContactPopup}
+                onClick={(e) => {
+                  e.preventDefault();
+                  openContactPopup();
+                }}
                 className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center pulse-animation"
               >
                 Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
               </button>
               <button 
                 className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
-                onClick={openContactPopup}
+                onClick={(e) => {
+                  e.preventDefault();
+                  openContactPopup();
+                }}
               >
                 Réservez votre appel gratuit <Phone className="ml-2 h-5 w-5" />
               </button>
