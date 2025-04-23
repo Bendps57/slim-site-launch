@@ -54,10 +54,10 @@ const PricingHeroSection = () => {
         />
         <div className="mt-14">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Transformez Votre Image Professionnelle
+            Un Site Web Professionnel Qui Convertit Vos Visiteurs en Clients
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-            Avec un Site Web Premium livré en 7 jours
+            Démarquez-vous avec un site premium livré en 7 jours seulement
           </h2>
           <div className="bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-300 p-1 rounded-lg mb-8 inline-block animate-[pulse_1.5s_ease-in-out_infinite]">
             <div className="bg-background/95 rounded-md p-4 relative">
@@ -104,9 +104,9 @@ const PricingHeroSection = () => {
           <Button
             size="lg"
             onClick={handleContactRedirect}
-            className="text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10"
+            className="text-lg px-10 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold"
           >
-            Je profite de l'offre à 249,90€
+            Transformez votre présence en ligne maintenant
             <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-7-7l7 7-7 7" /></svg>
           </Button>
         </div>
@@ -116,4 +116,3 @@ const PricingHeroSection = () => {
 };
 
 export default PricingHeroSection;
-

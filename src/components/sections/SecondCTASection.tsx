@@ -24,18 +24,21 @@ const SecondCTASection = () => {
     <section className="py-16 px-4 text-center bg-secondary/30">
       <div className="max-w-2xl mx-auto rounded-xl shadow-lg p-10 bg-background">
         <h3 className="text-2xl md:text-3xl font-bold mb-4">
-          Prêt à accélérer votre présence en ligne ?
+          Ne ratez pas cette opportunité exclusive
         </h3>
         <p className="mb-8 text-muted-foreground">
-          Ensemble, donnons vie à votre présence en ligne.
+          Un site web professionnel n'a jamais été aussi accessible. Transformez votre présence en ligne dès aujourd'hui.
         </p>
         <Button
           onClick={handleContactRedirect}
-          className="bg-primary hover:bg-primary/90 text-background font-bold py-3 px-6 rounded-lg shadow pulse-animation"
+          className="bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start text-white font-bold py-3 px-8 rounded-lg shadow-lg pulse-animation text-lg"
         >
-          Je profite de l'offre à 249,90€
+          Je veux mon site à 249,90€
           <ArrowRight className="ml-2" />
         </Button>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Satisfait ou remboursé sous 14 jours. Sans engagement.
+        </p>
       </div>
     </section>
   );

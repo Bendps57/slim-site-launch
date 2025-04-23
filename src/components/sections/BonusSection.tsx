@@ -7,25 +7,36 @@ const BonusSection = () => {
     <section className="py-16 px-4 bg-secondary/20">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">
-          Bonus Offerts
+          Bonus Exclusifs Inclus
           <span className="text-muted-foreground ml-2">(valeur 449€)</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          <div className="bg-card p-6 rounded-lg shadow-lg">
-            <Gift className="h-8 w-8 text-primary mx-auto mb-4" />
-            <h3 className="font-semibold text-xl mb-2">
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
+          Pour maximiser l'impact de votre nouveau site web et accélérer vos résultats
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+          <div className="bg-card p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/10">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Gift className="h-8 w-8 text-primary" />
+            </div>
+            <h3 className="font-bold text-xl mb-3">
               Audit SEO personnalisé
             </h3>
-            <p className="text-muted-foreground">valeur 350€</p>
-          </div>
-          <div className="bg-card p-6 rounded-lg shadow-lg">
-            <Gift className="h-8 w-8 text-primary mx-auto mb-4" />
-            <h3 className="font-semibold text-xl mb-2">
-              Guide Premium
-            </h3>
-            <p className="text-muted-foreground">
-              Stratégies pour convertir vos visiteurs (valeur 99€)
+            <p className="text-muted-foreground mb-3">
+              Analyse complète de votre positionnement actuel et recommandations stratégiques pour améliorer votre visibilité sur Google.
             </p>
+            <p className="text-primary font-semibold">valeur 350€</p>
+          </div>
+          <div className="bg-card p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/10">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Gift className="h-8 w-8 text-primary" />
+            </div>
+            <h3 className="font-bold text-xl mb-3">
+              Guide Premium de Conversion
+            </h3>
+            <p className="text-muted-foreground mb-3">
+              Stratégies éprouvées pour transformer vos visiteurs en clients et optimiser votre taux de conversion.
+            </p>
+            <p className="text-primary font-semibold">valeur 99€</p>
           </div>
         </div>
       </div>
