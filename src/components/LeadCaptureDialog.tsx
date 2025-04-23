@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -16,10 +15,9 @@ const LeadCaptureDialog = () => {
   const { trackLead } = useFacebookPixel();
 
   useEffect(() => {
-    // Afficher le pop-up après 5 secondes de présence sur la page
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 5000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -31,7 +29,6 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      // Send form data to formspree endpoint - correcting the URL format
       const response = await fetch("https://formspree.io/f/xzbnpalq", {
         method: "POST",
         headers: {
@@ -58,7 +55,6 @@ const LeadCaptureDialog = () => {
       
       setSubmitted(true);
       
-      // Fermer le dialog après 2 secondes
       setTimeout(() => {
         setIsOpen(false);
         setSubmitted(false);
