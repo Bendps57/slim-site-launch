@@ -10,6 +10,7 @@ import NewFAQSection from '@/components/sections/NewFAQSection';
 import FinalCTASection from '@/components/sections/FinalCTASection';
 import SecondCTASection from '@/components/sections/SecondCTASection';
 import AuthenticTestimonialSection from '@/components/sections/AuthenticTestimonialSection';
+import LeadCaptureDialog from '@/components/LeadCaptureDialog';
 
 const Index = () => {
   const { trackEvent } = useFacebookPixel();
@@ -26,6 +27,7 @@ const Index = () => {
   return (
     <div className="min-h-screen w-full bg-background">
       <div className="animate-fade-in">
+        <LeadCaptureDialog />
         <PricingHeroSection />
         <FeaturesSection />
         <BeforeAfterSection />
