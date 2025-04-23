@@ -1,17 +1,15 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useFacebookPixel from '@/hooks/useFacebookPixel';
+import { openContactPopup } from '@/utils/popupUtils';
 
 const FinalCTASection = () => {
   const { trackEvent } = useFacebookPixel();
   
-  const handleContactRedirect = () => {
-    // Changement de l'URL et ouverture dans un nouvel onglet
-    window.open('https://elimyt.com/contact', '_blank');
+  const handleContactClick = () => {
+    openContactPopup();
     
-    // Track the click event
     trackEvent('Lead', {
       content_name: 'Final CTA Button Click',
       content_category: 'CTA',
@@ -50,7 +48,7 @@ const FinalCTASection = () => {
           </ul>
           <Button
             size="lg"
-            onClick={handleContactRedirect}
+            onClick={handleContactClick}
             className="w-full text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white font-bold rounded-xl shadow-lg"
           >
             Je transforme ma présence en ligne maintenant

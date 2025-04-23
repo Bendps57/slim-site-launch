@@ -2,6 +2,7 @@
 import React from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import PricingCard from '@/components/sections/PricingCard';
+import { openContactPopup } from '@/utils/popupUtils';
 
 interface HeroSectionProps {
   onScrollToForm: () => void;
@@ -29,14 +30,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToForm }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
-                onClick={onScrollToForm}
+                onClick={openContactPopup}
                 className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center pulse-animation"
               >
                 Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
               </button>
               <button 
                 className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
-                onClick={onScrollToForm}
+                onClick={openContactPopup}
               >
                 Réservez votre appel gratuit <Phone className="ml-2 h-5 w-5" />
               </button>

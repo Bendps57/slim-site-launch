@@ -1,17 +1,15 @@
-
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
+import { openContactPopup } from "@/utils/popupUtils";
 
 const SecondCTASection = () => {
   const { trackEvent } = useFacebookPixel();
 
-  const handleContactRedirect = () => {
-    // Ouverture dans un nouvel onglet
-    window.open('https://elimyt.com/contact', '_blank');
+  const handleContactClick = () => {
+    openContactPopup();
     
-    // Track the click event
     trackEvent('Lead', {
       content_name: 'Second CTA Button Click',
       content_category: 'CTA',
@@ -30,7 +28,7 @@ const SecondCTASection = () => {
           Un site web d'exception n'a jamais été aussi accessible. Démarquez-vous de vos concurrents et captez l'attention de vos clients idéaux dès aujourd'hui.
         </p>
         <Button
-          onClick={handleContactRedirect}
+          onClick={handleContactClick}
           className="bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start text-white font-bold py-3 px-8 rounded-lg shadow-lg pulse-animation text-lg"
         >
           Je veux mon site professionnel à 249,90€

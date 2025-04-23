@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Check, ArrowRight } from 'lucide-react';
+import { openContactPopup } from '@/utils/popupUtils';
 
 interface PricingCardProps {
   onScrollToForm: () => void;
@@ -36,7 +37,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ onScrollToForm }) => {
         <span className="text-xl line-through text-muted-foreground">499€</span>
       </div>
       <button 
-        onClick={onScrollToForm}
+        onClick={openContactPopup}
         className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
       >
         Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
