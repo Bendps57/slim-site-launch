@@ -50,7 +50,7 @@ const PricingHeroSection = () => {
       <div className="max-w-6xl mx-auto text-center">
         <img 
           src="/lovable-uploads/e0efda63-50ee-4d5e-bace-82a438cb3313.png" 
-          alt="eLimyt Logo" 
+          alt="eLimyt - Création de sites web professionnels" 
           className="mx-auto mb-8 w-64 h-auto animate-scale-in"
         />
         <div className="mt-14">
