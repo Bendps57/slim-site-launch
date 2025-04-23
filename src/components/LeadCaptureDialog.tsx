@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 
 const LeadCaptureDialog = () => {
@@ -10,6 +11,8 @@ const LeadCaptureDialog = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
   const { trackLead } = useFacebookPixel();
 
   useEffect(() => {
@@ -21,21 +24,54 @@ const LeadCaptureDialog = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !firstName) return;
 
-    trackLead({ 
-      email_address: email,
-      first_name: firstName 
-    });
-    setSubmitted(true);
-    
-    // Fermer le dialog après 2 secondes
-    setTimeout(() => {
-      setIsOpen(false);
-      setSubmitted(false);
-    }, 2000);
+    setIsLoading(true);
+
+    try {
+      // Send form data to formspree endpoint
+      const response = await fetch("https://formspree.io/f/contact@elimyt.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          email,
+          subject: "Nouvelle demande de site vitrine à 249,90€",
+          message: `Nouveau lead pour site vitrine:
+          Prénom: ${firstName}
+          Email: ${email}
+          Source: Pop-up de capture`
+        }),
+      });
+
+      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
+
+      trackLead({ 
+        email_address: email,
+        first_name: firstName 
+      });
+      
+      setSubmitted(true);
+      
+      // Fermer le dialog après 2 secondes
+      setTimeout(() => {
+        setIsOpen(false);
+        setSubmitted(false);
+      }, 2000);
+      
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -48,7 +84,7 @@ const LeadCaptureDialog = () => {
           <DialogDescription className="text-center pt-4 space-y-4">
             <p>
               Profite de notre offre exclusive avant qu'elle disparaisse :
-              Un site pro, rapide, optimisé pour Google… livré en 5 jours, sans que tu aies à t'en occuper.
+              Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
             </p>
             <p className="font-medium">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
@@ -69,6 +105,7 @@ const LeadCaptureDialog = () => {
               onChange={(e) => setFirstName(e.target.value)}
               required
               className="border-2 border-primary/30 focus:border-primary"
+              disabled={isLoading}
             />
             <Input
               type="email"
@@ -77,12 +114,14 @@ const LeadCaptureDialog = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="border-2 border-primary/30 focus:border-primary"
+              disabled={isLoading}
             />
             <Button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3"
+              disabled={isLoading}
             >
-              Je veux mon site pro à 249,90 €
+              {isLoading ? "Envoi en cours..." : "Je veux mon site pro à 249,90 €"}
             </Button>
           </form>
         )}
