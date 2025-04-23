@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Clock, ShieldCheck, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -34,14 +33,9 @@ const featureItems = [
 const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
 
-  const handleContactRedirect = () => {
-    window.open('https://elimyt.com/contact', '_blank');
-    trackEvent('Lead', {
-      content_name: 'Contact Button Click',
-      content_category: 'CTA',
-      value: 249.90,
-      currency: 'EUR'
-    });
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openContactPopup();
   };
 
   return (
@@ -74,7 +68,6 @@ const PricingHeroSection = () => {
             </div>
           </div>
 
-          {/* Nouveau bloc "Avantages" hyper stylé */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 mb-12">
             {featureItems.map((item, idx) => (
               <div
@@ -94,7 +87,6 @@ const PricingHeroSection = () => {
                   <h4 className={`font-extrabold text-lg mb-2 ${item.titleColor}`}>{item.title}</h4>
                   <p className="text-base text-muted-foreground font-medium">{item.description}</p>
                 </div>
-                {/* Glow effet */}
                 <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent opacity-80 pointer-events-none rounded-2xl"></div>
                 <div className="absolute -bottom-8 right-0 w-36 h-36 bg-primary/20 rounded-full blur-2xl opacity-50 pointer-events-none"></div>
               </div>
@@ -103,7 +95,7 @@ const PricingHeroSection = () => {
 
           <Button
             size="lg"
-            onClick={handleContactRedirect}
+            onClick={handleContactClick}
             className="text-lg px-10 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold"
           >
             Obtenez votre site web professionnel maintenant

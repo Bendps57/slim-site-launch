@@ -1,4 +1,3 @@
-
 import React from "react";
 import { openContactPopup } from "@/utils/popupUtils";
 
@@ -8,7 +7,7 @@ interface HeroESectionProps {
 
 const HeroESection: React.FC<HeroESectionProps> = ({ onScrollToForm }) => {
   const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault(); // S'assurer que l'événement par défaut est empêché
+    e.preventDefault();
     openContactPopup();
   };
 

@@ -8,6 +8,11 @@ interface PricingCardProps {
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({ onScrollToForm }) => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openContactPopup();
+  };
+
   return (
     <div className="w-full md:w-2/5 bg-card p-6 rounded-lg shadow-lg">
       <div className="pricing-badge text-white font-bold py-2 px-4 rounded-lg inline-block mb-4">
@@ -37,10 +42,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ onScrollToForm }) => {
         <span className="text-xl line-through text-muted-foreground">499€</span>
       </div>
       <button 
-        onClick={(e) => {
-          e.preventDefault();
-          openContactPopup();
-        }}
+        onClick={handleClick}
         className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
       >
         Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />

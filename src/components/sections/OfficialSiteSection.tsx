@@ -2,11 +2,14 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
+import { openContactPopup } from "@/utils/popupUtils";
 
 const OfficialSiteSection = () => {
   const { trackEvent } = useFacebookPixel();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openContactPopup();
     trackEvent('ClickButton', { 
       button_name: 'Offre site internet',
       button_location: 'Hero section' 
@@ -15,16 +18,13 @@ const OfficialSiteSection = () => {
 
   return (
     <div className="w-full mt-8 flex justify-center">
-      <a
-        href="https://www.elimyt.com"
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
         onClick={handleClick}
         className="flex items-center gap-2 px-5 py-3 rounded-xl shadow bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all text-base"
       >
         💡 Découvrez notre offre clé en main&nbsp;: création de site internet complet pour <span className="font-bold">249,90€</span>
         <ExternalLink className="w-4 h-4" />
-      </a>
+      </button>
     </div>
   );
 };
