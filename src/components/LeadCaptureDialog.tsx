@@ -1,14 +1,17 @@
+
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
+import { Phone } from "lucide-react";
 
 const LeadCaptureDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -38,12 +41,14 @@ const LeadCaptureDialog = () => {
         body: JSON.stringify({
           firstName,
           email,
+          phone,
           _subject: "Nouvelle demande de site vitrine à 249,90€",
           _captcha: "false",
-          _template: "table", 
+          _template: "table",
           message: `Nouveau lead pour site vitrine:
           Prénom: ${firstName}
           Email: ${email}
+          Téléphone: ${phone}
           Source: Pop-up de capture`
         }),
       });
@@ -52,7 +57,8 @@ const LeadCaptureDialog = () => {
 
       trackLead({ 
         email_address: email,
-        first_name: firstName 
+        first_name: firstName,
+        phone_number: phone
       });
       
       setSubmitted(true);
@@ -115,6 +121,17 @@ const LeadCaptureDialog = () => {
               className="border-2 border-primary/30 focus:border-primary"
               disabled={isLoading}
             />
+            <div className="relative">
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
+              <Input
+                type="tel"
+                placeholder="Votre numéro de téléphone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="border-2 border-primary/30 focus:border-primary pl-10"
+                disabled={isLoading}
+              />
+            </div>
             <Button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3"
