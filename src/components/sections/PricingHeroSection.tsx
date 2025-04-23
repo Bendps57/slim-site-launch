@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { Clock, ShieldCheck, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useFacebookPixel from '@/hooks/useFacebookPixel';
+import { openContactPopup } from '@/utils/popupUtils';
 
 const featureItems = [
   {
@@ -36,6 +38,11 @@ const PricingHeroSection = () => {
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
     openContactPopup();
+    
+    trackEvent('ClickButton', { 
+      button_name: 'Contact Button - Hero',
+      button_location: 'Pricing Hero Section' 
+    });
   };
 
   return (
