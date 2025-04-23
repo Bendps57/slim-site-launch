@@ -19,8 +19,8 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      // Using FormSubmit.co
-      const response = await fetch("https://formsubmit.co/contact@elimyt.com", {
+      // Optimisation de la configuration de FormSubmit.co
+      const response = await fetch("https://formsubmit.co/ajax/contact@elimyt.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,6 +29,8 @@ const EbookForm = () => {
         body: JSON.stringify({
           email,
           _subject: "Téléchargement Ebook Site Vitrine",
+          _captcha: "false", // Désactivation du captcha pour faciliter les tests
+          _template: "table", // Format des emails plus propre
           message: `Nouveau téléchargement d'ebook:
           Email: ${email}
           Source: Formulaire ebook`

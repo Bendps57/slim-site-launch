@@ -30,8 +30,8 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      // Switched from Formspree to FormSubmit.co
-      const response = await fetch("https://formsubmit.co/contact@elimyt.com", {
+      // Optimisation de la configuration de FormSubmit.co
+      const response = await fetch("https://formsubmit.co/ajax/contact@elimyt.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,6 +41,8 @@ const LeadCaptureDialog = () => {
           firstName,
           email,
           _subject: "Nouvelle demande de site vitrine à 249,90€",
+          _captcha: "false", // Désactivation du captcha pour faciliter les tests
+          _template: "table", // Format des emails plus propre
           message: `Nouveau lead pour site vitrine:
           Prénom: ${firstName}
           Email: ${email}
