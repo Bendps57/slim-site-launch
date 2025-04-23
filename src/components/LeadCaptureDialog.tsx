@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -30,8 +29,7 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      // Optimisation de la configuration de FormSubmit.co
-      const response = await fetch("https://formsubmit.co/ajax/contact@elimyt.com", {
+      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,8 +39,8 @@ const LeadCaptureDialog = () => {
           firstName,
           email,
           _subject: "Nouvelle demande de site vitrine à 249,90€",
-          _captcha: "false", // Désactivation du captcha pour faciliter les tests
-          _template: "table", // Format des emails plus propre
+          _captcha: "false",
+          _template: "table", 
           message: `Nouveau lead pour site vitrine:
           Prénom: ${firstName}
           Email: ${email}

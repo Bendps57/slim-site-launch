@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -19,8 +18,7 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      // Optimisation de la configuration de FormSubmit.co
-      const response = await fetch("https://formsubmit.co/ajax/contact@elimyt.com", {
+      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,8 +27,8 @@ const EbookForm = () => {
         body: JSON.stringify({
           email,
           _subject: "Téléchargement Ebook Site Vitrine",
-          _captcha: "false", // Désactivation du captcha pour faciliter les tests
-          _template: "table", // Format des emails plus propre
+          _captcha: "false", 
+          _template: "table", 
           message: `Nouveau téléchargement d'ebook:
           Email: ${email}
           Source: Formulaire ebook`
@@ -39,10 +37,8 @@ const EbookForm = () => {
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
-      // Suivre l'événement de conversion "Lead"
       trackLead({ email_address: email });
       
-      // Suivre l'événement de téléchargement de l'ebook
       trackEbookDownload("Guide premier clients site vitrine", { 
         currency: "EUR", 
         value: 0.00,
