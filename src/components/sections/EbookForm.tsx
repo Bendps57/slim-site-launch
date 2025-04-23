@@ -3,27 +3,60 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
+import { useToast } from "@/hooks/use-toast";
 
 const EbookForm = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
   const { trackLead, trackEbookDownload } = useFacebookPixel();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     
-    // Suivre l'événement de conversion "Lead"
-    trackLead({ email_address: email });
+    setIsLoading(true);
     
-    // Suivre l'événement de téléchargement de l'ebook
-    trackEbookDownload("Guide premier clients site vitrine", { 
-      currency: "EUR", 
-      value: 0.00,
-      status: "complete" 
-    });
-    
-    setSubmitted(true);
+    try {
+      // Using FormSubmit.co
+      const response = await fetch("https://formsubmit.co/contact@elimyt.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          _subject: "Téléchargement Ebook Site Vitrine",
+          message: `Nouveau téléchargement d'ebook:
+          Email: ${email}
+          Source: Formulaire ebook`
+        }),
+      });
+
+      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
+      
+      // Suivre l'événement de conversion "Lead"
+      trackLead({ email_address: email });
+      
+      // Suivre l'événement de téléchargement de l'ebook
+      trackEbookDownload("Guide premier clients site vitrine", { 
+        currency: "EUR", 
+        value: 0.00,
+        status: "complete" 
+      });
+      
+      setSubmitted(true);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return submitted ? (
@@ -39,12 +72,14 @@ const EbookForm = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Votre adresse email"
         className="flex-1 border-2 border-primary/30 bg-white placeholder:text-gray-500 text-foreground"
+        disabled={isLoading}
       />
       <Button 
         type="submit" 
         className="font-bold px-6 bg-primary text-white hover:bg-primary/90 transition-all duration-300 pulse-animation"
+        disabled={isLoading}
       >
-        Recevoir le guide gratuitement
+        {isLoading ? "Envoi..." : "Recevoir le guide gratuitement"}
       </Button>
     </form>
   );

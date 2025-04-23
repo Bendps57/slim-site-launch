@@ -30,17 +30,17 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/xzbnpalq", {
+      // Switched from Formspree to FormSubmit.co
+      const response = await fetch("https://formsubmit.co/contact@elimyt.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
           firstName,
           email,
-          _replyto: email,
           _subject: "Nouvelle demande de site vitrine à 249,90€",
-          _to: "contact@elimyt.com", // Ajout de l'adresse email de destination
           message: `Nouveau lead pour site vitrine:
           Prénom: ${firstName}
           Email: ${email}
