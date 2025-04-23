@@ -7,7 +7,7 @@ import useFacebookPixel from '@/hooks/useFacebookPixel';
 const featureItems = [
   {
     title: "Livré en 7 jours",
-    description: "Votre site web est prêt en un temps record, sans compromis sur la qualité.",
+    description: "Votre site web professionnel prêt en un temps record, sans compromis sur la qualité.",
     icon: <Clock className="h-7 w-7 text-[#F59E42] animate-spin-slow" />,
     badge: "Express",
     grad: "from-[#FFF5E0] to-[#FFEFD0]",
@@ -15,15 +15,15 @@ const featureItems = [
   },
   {
     title: "Satisfaction garantie",
-    description: "Remboursé(e) sous 14 jours si vous n'êtes pas satisfait.",
+    description: "100% remboursé sous 14 jours si vous n'êtes pas entièrement satisfait de votre site.",
     icon: <ShieldCheck className="h-7 w-7 text-[#5BE49B] animate-pulse" />,
     badge: "Garanti",
     grad: "from-[#D0FBEA] to-[#D0F3FB]",
     titleColor: "text-[#2DB887]"
   },
   {
-    title: "Nom de domaine & hébergement offerts 1ère année",
-    description: "Aucun frais la première année, tout est inclus dès le départ.",
+    title: "Tout inclus pour démarrer",
+    description: "Domaine & hébergement inclus la 1ère année, sans aucuns frais cachés.",
     icon: <Package className="h-7 w-7 text-[#4E60CE] animate-bounce" />,
     badge: "Tout inclus",
     grad: "from-[#E0E7FF] to-[#C7D2FE]",
@@ -54,10 +54,10 @@ const PricingHeroSection = () => {
         />
         <div className="mt-14">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Un Site Web Professionnel Qui Convertit Vos Visiteurs en Clients
+            Un Site Web Professionnel Qui Transforme Vos Visiteurs en Clients Fidèles
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-            Démarquez-vous avec un site premium livré en 7 jours seulement
+            Propulsez votre entreprise avec un site qui vous ressemble, en 7 jours seulement
           </h2>
           <div className="bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-300 p-1 rounded-lg mb-8 inline-block animate-[pulse_1.5s_ease-in-out_infinite]">
             <div className="bg-background/95 rounded-md p-4 relative">
@@ -68,7 +68,7 @@ const PricingHeroSection = () => {
                   <span className="text-red-500 line-through text-2xl animate-bounce">2000€</span>
                 </p>
                 <p className="text-yellow-600 font-bold mt-2 animate-pulse">
-                  Offre limitée - Seulement 5 places disponibles ce mois-ci
+                  Offre exceptionnelle - 5 places seulement ce mois-ci
                 </p>
               </div>
             </div>
@@ -106,7 +106,7 @@ const PricingHeroSection = () => {
             onClick={handleContactRedirect}
             className="text-lg px-10 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold"
           >
-            Transformez votre présence en ligne maintenant
+            Obtenez votre site web professionnel maintenant
             <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-7-7l7 7-7 7" /></svg>
           </Button>
         </div>

@@ -5,27 +5,27 @@ import { Check } from 'lucide-react';
 const features = [
   {
     title: "Design Premium Sur Mesure",
-    description: "Une identité visuelle unique qui reflète vos valeurs et attire votre clientèle cible"
+    description: "Une identité visuelle qui vous démarque immédiatement de vos concurrents"
   },
   {
     title: "100% Responsive",
-    description: "Une expérience parfaite sur tous les appareils : ordinateurs, tablettes, smartphones"
+    description: "Une expérience utilisateur parfaite sur tous les appareils, même en mobilité"
   },
   {
     title: "Optimisé pour Google",
-    description: "Structure technique et contenus pensés pour un meilleur référencement naturel"
+    description: "Un positionnement stratégique pour attirer vos clients idéaux naturellement"
   },
   {
     title: "Chargement Ultra-Rapide",
-    description: "Performance optimale pour garder vos visiteurs et améliorer votre référencement"
+    description: "Une performance optimale qui conserve l'attention de vos visiteurs"
   },
   {
-    title: "Tout Inclus",
-    description: "Nom de domaine et hébergement premium offerts la première année"
+    title: "Tout Inclus Sans Surprise",
+    description: "Domaine et hébergement premium offerts pendant toute la première année"
   },
   {
-    title: "Livraison Express Garantie",
-    description: "Votre site en ligne en 7 jours maximum ou c'est offert !"
+    title: "Livraison Express 7 Jours",
+    description: "Un site opérationnel en un temps record, ou c'est offert !"
   }
 ];
 
@@ -34,10 +34,10 @@ const FeaturesSection = () => {
     <section className="py-16 px-4 bg-secondary/20">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-4">
-          Le Site Web Qu'il Vous Faut, Sans Compromis
+          Le Site Web Premium Que Votre Entreprise Mérite
         </h2>
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
-          Nous combinons design premium et performances techniques pour créer un site qui convertit vos visiteurs en clients.
+          Nous fusionnons esthétique soignée et technologie performante pour créer un site qui transforme vos visiteurs en clients fidèles.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feature, index) => (

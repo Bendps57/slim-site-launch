@@ -9,6 +9,7 @@ import BonusSection from '@/components/sections/BonusSection';
 import NewFAQSection from '@/components/sections/NewFAQSection';
 import FinalCTASection from '@/components/sections/FinalCTASection';
 import SecondCTASection from '@/components/sections/SecondCTASection';
+import AuthenticTestimonialSection from '@/components/sections/AuthenticTestimonialSection';
 
 const Index = () => {
   const { trackEvent } = useFacebookPixel();
@@ -28,6 +29,7 @@ const Index = () => {
         <PricingHeroSection />
         <FeaturesSection />
         <BeforeAfterSection />
+        <AuthenticTestimonialSection />
         <VideoTestimonialsSection />
         <BonusSection />
         <SecondCTASection />
