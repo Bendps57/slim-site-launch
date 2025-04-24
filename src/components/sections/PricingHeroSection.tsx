@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Clock, ShieldCheck, Package, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -75,9 +76,10 @@ const PricingHeroSection = () => {
           <Button
             size="lg"
             onClick={handleContactClick}
-            className="text-xs sm:text-base px-3 sm:px-10 py-2 sm:py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold mb-8 truncate flex items-center justify-center"
+            className="text-base px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold mb-8"
           >
             Transformer ma présence en ligne
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 mt-12">

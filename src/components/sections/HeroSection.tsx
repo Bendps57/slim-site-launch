@@ -3,11 +3,21 @@ import React from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import PricingCard from '@/components/sections/PricingCard';
 import { openContactPopup } from '@/utils/popupUtils';
+import useFacebookPixel from '@/hooks/useFacebookPixel';
 
 const HeroSection: React.FC<{ onScrollToForm: () => void }> = ({ onScrollToForm }) => {
+  const { trackEvent } = useFacebookPixel();
+
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
     openContactPopup();
+    
+    trackEvent('Lead', {
+      content_name: 'Hero Button Click',
+      content_category: 'CTA',
+      value: 249.90,
+      currency: 'EUR'
+    });
   };
 
   return (
@@ -32,15 +42,15 @@ const HeroSection: React.FC<{ onScrollToForm: () => void }> = ({ onScrollToForm 
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={handleContactClick}
-                className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-3 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center pulse-animation text-xs sm:text-base truncate"
+                className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center text-sm md:text-base"
               >
-                Profitez de l'offre <ArrowRight className="ml-2 h-3 w-3 sm:h-5 sm:w-5" />
+                Profitez de l'offre <ArrowRight className="ml-2 h-4 w-4" />
               </button>
               <button 
-                className="bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-3 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center text-xs sm:text-base truncate"
                 onClick={handleContactClick}
+                className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center text-sm md:text-base"
               >
-                Réservez votre appel <Phone className="ml-2 h-3 w-3 sm:h-5 sm:w-5" />
+                Réservez votre appel <Phone className="ml-2 h-4 w-4" />
               </button>
             </div>
           </div>
@@ -52,4 +62,3 @@ const HeroSection: React.FC<{ onScrollToForm: () => void }> = ({ onScrollToForm 
 };
 
 export default HeroSection;
-

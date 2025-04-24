@@ -1,15 +1,26 @@
+
 import React from 'react';
 import { Check, ArrowRight } from 'lucide-react';
 import { openContactPopup } from '@/utils/popupUtils';
+import useFacebookPixel from '@/hooks/useFacebookPixel';
 
 interface PricingCardProps {
   onScrollToForm: () => void;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({ onScrollToForm }) => {
+  const { trackEvent } = useFacebookPixel();
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     openContactPopup();
+    
+    trackEvent('Lead', {
+      content_name: 'Pricing Card Button Click',
+      content_category: 'CTA',
+      value: 249.90,
+      currency: 'EUR'
+    });
   };
 
   return (
@@ -42,9 +53,9 @@ const PricingCard: React.FC<PricingCardProps> = ({ onScrollToForm }) => {
       </div>
       <button 
         onClick={handleClick}
-        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-3 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center text-xs sm:text-base truncate"
+        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center text-sm md:text-base"
       >
-        Je veux mon site pro <ArrowRight className="ml-2 h-3 w-3 sm:h-5 sm:w-5" />
+        Je veux mon site pro <ArrowRight className="ml-2 h-4 w-4" />
       </button>
     </div>
   );

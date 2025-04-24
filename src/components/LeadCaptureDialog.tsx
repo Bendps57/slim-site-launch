@@ -7,6 +7,15 @@ import { useToast } from "@/hooks/use-toast";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { Phone } from "lucide-react";
 
+// Create a trigger function that can be imported by other components
+let setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>> | null = null;
+
+export const openLeadCaptureDialog = () => {
+  if (setIsOpenDialog) {
+    setIsOpenDialog(true);
+  }
+};
+
 const LeadCaptureDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -17,12 +26,19 @@ const LeadCaptureDialog = () => {
   const { toast } = useToast();
   const { trackLead } = useFacebookPixel();
 
+  // Store the setter function in the module-scoped variable
   useEffect(() => {
+    setIsOpenDialog = setIsOpen;
+    
+    // Set a timeout to show the dialog automatically after 10 seconds
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 10000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      setIsOpenDialog = null;
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
