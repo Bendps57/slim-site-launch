@@ -42,9 +42,9 @@ const PricingCard: React.FC<PricingCardProps> = ({ onScrollToForm }) => {
       </div>
       <button 
         onClick={handleClick}
-        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center text-sm sm:text-base"
+        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-3 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center text-xs sm:text-base truncate"
       >
-        Je veux mon site pro à 249,90€ <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+        Je veux mon site pro <ArrowRight className="ml-2 h-3 w-3 sm:h-5 sm:w-5" />
       </button>
     </div>
   );

@@ -38,9 +38,11 @@ const PricingHeroSection = () => {
     e.preventDefault();
     openContactPopup();
     
-    trackEvent('ClickButton', { 
-      button_name: 'Contact Button - Hero',
-      button_location: 'Pricing Hero Section' 
+    trackEvent('Lead', {
+      content_name: 'Hero Section Button Click',
+      content_category: 'CTA',
+      value: 249.90,
+      currency: 'EUR'
     });
   };
 
@@ -73,9 +75,9 @@ const PricingHeroSection = () => {
           <Button
             size="lg"
             onClick={handleContactClick}
-            className="text-sm sm:text-lg px-4 sm:px-10 py-2 sm:py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold mb-8 truncate flex items-center justify-center"
+            className="text-xs sm:text-base px-3 sm:px-10 py-2 sm:py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold mb-8 truncate flex items-center justify-center"
           >
-            Transformer ma présence en ligne maintenant
+            Transformer ma présence en ligne
           </Button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 mt-12">

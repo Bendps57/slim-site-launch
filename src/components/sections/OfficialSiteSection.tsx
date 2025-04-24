@@ -20,13 +20,14 @@ const OfficialSiteSection = () => {
     <div className="w-full mt-8 flex justify-center">
       <button
         onClick={handleClick}
-        className="flex items-center gap-2 px-5 py-3 rounded-xl shadow bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all text-base"
+        className="flex items-center gap-2 px-3 py-2 sm:px-5 sm:py-3 rounded-xl shadow bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all text-xs sm:text-base truncate"
       >
-        💡 Découvrez notre offre clé en main&nbsp;: création de site internet complet pour <span className="font-bold">249,90€</span>
-        <ExternalLink className="w-4 h-4" />
+        Découvrez notre offre : site à 249,90€
+        <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
     </div>
   );
 };
 
 export default OfficialSiteSection;
+
