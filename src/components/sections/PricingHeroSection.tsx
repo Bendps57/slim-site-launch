@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Clock, ShieldCheck, Package } from 'lucide-react';
+import { Clock, ShieldCheck, Package, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useFacebookPixel from '@/hooks/useFacebookPixel';
 import { openContactPopup } from '@/utils/popupUtils';
@@ -74,9 +73,9 @@ const PricingHeroSection = () => {
           <Button
             size="lg"
             onClick={handleContactClick}
-            className="text-lg px-10 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold mb-8"
+            className="text-sm sm:text-lg px-4 sm:px-10 py-2 sm:py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold mb-8 truncate flex items-center justify-center"
           >
-            Je lance mon projet maintenant
+            Transformer ma présence en ligne maintenant
           </Button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 mt-12">

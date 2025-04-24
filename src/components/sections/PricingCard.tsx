@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check, ArrowRight } from 'lucide-react';
 import { openContactPopup } from '@/utils/popupUtils';
@@ -43,9 +42,9 @@ const PricingCard: React.FC<PricingCardProps> = ({ onScrollToForm }) => {
       </div>
       <button 
         onClick={handleClick}
-        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
+        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center text-sm sm:text-base"
       >
-        Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
+        Je veux mon site pro à 249,90€ <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
       </button>
     </div>
   );
