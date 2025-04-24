@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import PricingCard from '@/components/sections/PricingCard';
@@ -31,15 +32,15 @@ const HeroSection: React.FC<{ onScrollToForm: () => void }> = ({ onScrollToForm 
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={handleContactClick}
-                className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center pulse-animation"
+                className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center pulse-animation text-sm sm:text-base truncate"
               >
-                Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
+                Profitez de l'offre maintenant <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </button>
               <button 
-                className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
+                className="bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg flex items-center justify-center text-sm sm:text-base truncate"
                 onClick={handleContactClick}
               >
-                Réservez votre appel gratuit <Phone className="ml-2 h-5 w-5" />
+                Réservez votre appel <Phone className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </button>
             </div>
           </div>
@@ -51,3 +52,4 @@ const HeroSection: React.FC<{ onScrollToForm: () => void }> = ({ onScrollToForm 
 };
 
 export default HeroSection;
+
