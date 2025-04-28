@@ -9,7 +9,7 @@ const EbookForm = () => {
   const { trackLead, trackEbookDownload } = useFacebookPixel();
 
   // This function will handle the tracking before form submission
-  const handleSubmitTracking = () => {
+  const handleSubmitTracking = (e: React.FormEvent) => {
     // Get the email from the form
     const emailInput = document.getElementById("email-input") as HTMLInputElement;
     const email = emailInput?.value;
@@ -25,7 +25,7 @@ const EbookForm = () => {
         status: "complete" 
       });
 
-      // We'll let the form submit naturally with action and method
+      // Show success message but allow form submission to continue
       setSubmitted(true);
     }
   };
@@ -44,6 +44,9 @@ const EbookForm = () => {
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value={window.location.href} />
       <input type="hidden" name="_subject" value="Téléchargement Ebook Site Vitrine" />
+      
+      {/* Honeypot field to prevent spam */}
+      <input type="text" name="_honey" style={{ display: 'none' }} />
       
       <input
         type="email"

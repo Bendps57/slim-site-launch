@@ -51,9 +51,10 @@ const LeadCaptureDialog = () => {
         phone_number: phone || ''
       });
 
-      // Set as submitted and show toast
+      // Set as submitted
       setSubmitted(true);
       
+      // Show success toast
       toast({
         title: "Succès",
         description: "Votre demande a bien été envoyée. Nous vous recontacterons très vite.",
@@ -99,6 +100,9 @@ const LeadCaptureDialog = () => {
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value={window.location.href} />
             <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
+            
+            {/* Honeypot field to prevent spam */}
+            <input type="text" name="_honey" style={{ display: 'none' }} />
 
             <input
               type="text"

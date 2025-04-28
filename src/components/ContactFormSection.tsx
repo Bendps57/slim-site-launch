@@ -62,6 +62,9 @@ const ContactFormSection = () => {
               <input type="hidden" name="_next" value={window.location.href} />
               <input type="hidden" name="_subject" value="Nouveau contact depuis le site" />
               
+              {/* Honeypot field to prevent spam */}
+              <input type="text" name="_honey" style={{ display: 'none' }} />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
