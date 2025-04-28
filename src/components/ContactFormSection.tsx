@@ -1,44 +1,86 @@
 
-import React, { useState } from 'react';
-import useFacebookPixel from '@/hooks/useFacebookPixel';
-import ContactSuccess from './ContactSuccess';
-import ContactInfo from './ContactInfo';
+import React from 'react';
+import { ArrowRight, Phone, Mail } from 'lucide-react';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactFormSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const { trackLead, trackFormSubmission } = useFacebookPixel();
+  const { toast } = useToast();
 
-  // Cette fonction gère uniquement le tracking et n'empêche pas la soumission
-  const handleSubmitTracking = () => {
-    // Récupérer les valeurs du formulaire
-    const nameInput = document.getElementById("name") as HTMLInputElement;
-    const emailInput = document.getElementById("email") as HTMLInputElement;
-    const phoneInput = document.getElementById("phone") as HTMLInputElement;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     
-    const name = nameInput?.value;
-    const email = emailInput?.value;
-    const phone = phoneInput?.value;
-
-    if (name && email && phone) {
-      console.log("Tracking contact form submission for:", email, name);
-      
-      // Suivre le lead
-      trackLead({ 
-        email_address: email,
-        first_name: name,
-        phone_number: phone
+    if (!formData.name || !formData.email || !formData.phone) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Veuillez remplir tous les champs obligatoires.",
       });
-      
-      // Suivre la soumission du formulaire
-      trackFormSubmission("Contact Form", {
-        currency: "EUR",
-        value: 0.00,
-        form_name: "Contact Form"
+      return;
+    }
+    
+    setIsLoading(true);
+    
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          _subject: "Nouvelle demande de contact site vitrine",
+          _captcha: "false",
+          _template: "table",
+          recipient: "rlacy376@gmail.com"
+        }),
       });
 
-      // Afficher message de succès et laisser le formulaire se soumettre naturellement
+      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
+      
       setSubmitted(true);
-      console.log("Formulaire de contact soumis avec succès à FormSubmit");
+      toast({
+        title: "Succès",
+        description: "Votre message a bien été envoyé. Nous vous recontacterons rapidement.",
+      });
+      
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -52,93 +94,85 @@ const ContactFormSection = () => {
           Remplissez le formulaire ci-dessous ou appelez-nous directement pour profiter de notre offre limitée.
         </p>
         <div className="bg-background p-8 rounded-lg shadow-lg">
-          {submitted ? (
-            <ContactSuccess />
-          ) : (
-            <form 
-              action="https://formsubmit.co/rlacy376@gmail.com" 
-              method="POST" 
-              className="space-y-6"
-              onSubmit={handleSubmitTracking}
-            >
-              {/* Configuration FormSubmit */}
-              <input type="hidden" name="_subject" value="Nouveau contact depuis le site" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_next" value={window.location.href} />
-              <input type="hidden" name="_replyto" value="" />
-              <input type="hidden" name="_autoresponse" value="Merci pour votre demande de contact" />
-              
-              {/* Champ pour empêcher le spam */}
-              <input type="text" name="_honey" style={{ display: 'none' }} />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
-                  <input 
-                    type="text" 
-                    id="name"
-                    name="name"
-                    required 
-                    className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="company" className="block mb-2 font-medium">Entreprise</label>
-                  <input 
-                    type="text" 
-                    id="company"
-                    name="company"
-                    className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="email" className="block mb-2 font-medium">Email *</label>
-                  <input 
-                    type="email" 
-                    id="email"
-                    name="email" 
-                    required 
-                    className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block mb-2 font-medium">Téléphone *</label>
-                  <input 
-                    type="tel" 
-                    id="phone"
-                    name="phone"
-                    required 
-                    className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                  />
-                </div>
-              </div>
-              
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="message" className="block mb-2 font-medium">Votre projet en quelques mots</label>
-                <textarea 
-                  id="message"
-                  name="message"
-                  rows={4} 
+                <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                ></textarea>
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
               </div>
-              
-              <button 
-                type="submit" 
-                className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
-              >
-                Profitez de l'offre maintenant
-                <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </button>
-            </form>
-          )}
-          <ContactInfo />
+              <div>
+                <label htmlFor="company" className="block mb-2 font-medium">Entreprise</label>
+                <input 
+                  type="text" 
+                  id="company" 
+                  className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                  value={formData.company}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="email" className="block mb-2 font-medium">Email *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  required 
+                  className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block mb-2 font-medium">Téléphone *</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  required 
+                  className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="message" className="block mb-2 font-medium">Votre projet en quelques mots</label>
+              <textarea 
+                id="message" 
+                rows={4} 
+                className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                value={formData.message}
+                onChange={handleChange}
+                disabled={isLoading}
+              ></textarea>
+            </div>
+            <button 
+              type="submit" 
+              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
+              disabled={isLoading}
+            >
+              {isLoading ? "Envoi en cours..." : "Profitez de l'offre maintenant"} <ArrowRight className="ml-2 h-5 w-5" />
+            </button>
+          </form>
+          <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
+            <a href="tel:+33600000000" className="flex items-center text-primary hover:text-primary/80">
+              <Phone className="h-5 w-5 mr-2" /> +33 6 00 00 00 00
+            </a>
+            <a href="mailto:contact@elimyt.com" className="flex items-center text-primary hover:text-primary/80">
+              <Mail className="h-5 w-5 mr-2" /> contact@elimyt.com
+            </a>
+          </div>
         </div>
       </div>
     </section>
