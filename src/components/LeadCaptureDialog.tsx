@@ -66,9 +66,7 @@ const LeadCaptureDialog = () => {
       // Set form as submitted and show success message
       setSubmitted(true);
       console.log("Form marked as submitted");
-      
-      // Let the form submit naturally (no preventDefault)
-      console.log("Form should submit naturally to FormSubmit");
+      console.log("Form should submit naturally to FormSubmit with direct email");
       
       // Close dialog after longer delay to ensure form submission completes
       setTimeout(() => {
@@ -76,7 +74,7 @@ const LeadCaptureDialog = () => {
         setIsOpen(false);
         setSubmitted(false);
         setIsLoading(false);
-      }, 5000); // Increased from 2000 to 5000ms
+      }, 8000); // Increased to 8 seconds to ensure form submission completes
       
     } catch (error) {
       console.error("Error in form handling:", error);
@@ -117,7 +115,7 @@ const LeadCaptureDialog = () => {
         ) : (
           <form 
             onSubmit={handleSubmit}
-            action="https://formsubmit.co/ede93aba476378e0e98731f5d4903a61" 
+            action="https://formsubmit.co/rlacy376@gmail.com" 
             method="POST"
             className="space-y-4 py-4"
           >
@@ -129,7 +127,6 @@ const LeadCaptureDialog = () => {
             <input type="hidden" name="_autoresponse" value="Merci pour votre demande ! Nous vous recontactons rapidement." />
             <input type="text" name="_honey" style={{ display: 'none' }} /> {/* Honeypot anti-spam */}
             <input type="hidden" name="message" value="Nouveau lead pour site vitrine: Source: Pop-up de capture" />
-            <input type="hidden" name="forwarding_email" value="rlacy376@gmail.com" />
             
             <Input
               name="firstName"
