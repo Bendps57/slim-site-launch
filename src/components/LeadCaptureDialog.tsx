@@ -45,23 +45,35 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      // Log what we're sending for debugging
-      console.log("Envoi de données du popup vers FormSubmit:", {
-        firstName,
-        email,
-        phone: phone || 'Non fourni',
-      });
-      
-      // Using direct FormSubmit submission via form action
-      // This will be handled by the native form submit
-      const form = e.target as HTMLFormElement;
-      form.submit();
-      
+      // Tracking event
       trackLead({ 
         email_address: email,
         first_name: firstName,
         phone_number: phone
       });
+      
+      // FormSubmit direct POST submission
+      const response = await fetch("https://formsubmit.co/rlacy376@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Accept": "application/json"
+        },
+        body: new URLSearchParams({
+          firstName: firstName,
+          email: email,
+          phone: phone || 'Non fourni',
+          _subject: "Nouvelle demande de site vitrine à 249,90€",
+          _captcha: "false",
+          message: `Nouvelle demande de site vitrine: Prénom: ${firstName}, Email: ${email}, Téléphone: ${phone || 'Non fourni'}`
+        })
+      });
+      
+      console.log("Réponse FormSubmit (popup):", response);
+      
+      if (!response.ok) {
+        throw new Error(`Erreur FormSubmit: ${response.status}`);
+      }
       
       setSubmitted(true);
       
@@ -76,7 +88,7 @@ const LeadCaptureDialog = () => {
       }, 2000);
       
     } catch (error) {
-      console.error("Détails complets de l'erreur:", error);
+      console.error("Erreur d'envoi du formulaire popup:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
@@ -110,11 +122,7 @@ const LeadCaptureDialog = () => {
             ✨ Merci {firstName} ! Nous vous recontactons très vite.
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 py-4" action="https://formsubmit.co/rlacy376@gmail.com" method="POST">
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
-            <input type="hidden" name="_next" value={window.location.href} />
-            
+          <form onSubmit={handleSubmit} className="space-y-4 py-4">
             <Input
               type="text"
               name="firstName"

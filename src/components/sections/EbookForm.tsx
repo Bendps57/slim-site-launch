@@ -19,25 +19,7 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('_subject', 'Téléchargement Ebook Site Vitrine');
-      formData.append('_captcha', 'false');
-      formData.append('message', `Nouveau téléchargement d'ebook: Email: ${email}`);
-      
-      // Log what we're sending for debugging
-      console.log("Envoi de données vers FormSubmit:", {
-        email,
-        subject: 'Téléchargement Ebook Site Vitrine',
-        message: `Nouveau téléchargement d'ebook: Email: ${email}`
-      });
-      
-      // Using direct FormSubmit submission via form action
-      // This will be handled by the native form submit
-      const form = e.target as HTMLFormElement;
-      form.submit();
-      
-      // Track events after submission
+      // Tracking events
       trackLead({ email_address: email });
       
       trackEbookDownload("Guide premier clients site vitrine", { 
@@ -46,6 +28,27 @@ const EbookForm = () => {
         status: "complete" 
       });
       
+      // FormSubmit direct POST submission
+      const response = await fetch("https://formsubmit.co/rlacy376@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Accept": "application/json"
+        },
+        body: new URLSearchParams({
+          email: email,
+          _subject: "Téléchargement Ebook Site Vitrine",
+          _captcha: "false",
+          message: `Nouveau téléchargement d'ebook: Email: ${email}`
+        })
+      });
+      
+      console.log("Réponse FormSubmit:", response);
+      
+      if (!response.ok) {
+        throw new Error(`Erreur FormSubmit: ${response.status}`);
+      }
+      
       toast({
         title: "Succès",
         description: "Le guide a été envoyé à votre email.",
@@ -53,7 +56,7 @@ const EbookForm = () => {
       
       setSubmitted(true);
     } catch (error) {
-      console.error("Détails complets de l'erreur:", error);
+      console.error("Erreur d'envoi du formulaire:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
@@ -72,13 +75,7 @@ const EbookForm = () => {
     <form 
       onSubmit={handleSubmit} 
       className="flex flex-col sm:flex-row gap-2 w-full max-w-md bg-white shadow-lg rounded-lg p-4 animate-fade-in"
-      action="https://formsubmit.co/rlacy376@gmail.com"
-      method="POST"
     >
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_subject" value="Téléchargement Ebook Site Vitrine" />
-      <input type="hidden" name="_next" value={window.location.href} />
-      
       <Input
         type="email"
         name="email"
