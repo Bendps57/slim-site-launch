@@ -115,7 +115,7 @@ const LeadCaptureDialog = () => {
         ) : (
           <form 
             onSubmit={handleSubmit}
-            action="https://formsubmit.co/rlacy376@gmail.com" 
+            action="https://formsubmit.co/elimytagency@gmail.com" 
             method="POST"
             className="space-y-4 py-4"
           >
