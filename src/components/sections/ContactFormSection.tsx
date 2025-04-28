@@ -1,8 +1,21 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
+import useFacebookPixel from "@/hooks/useFacebookPixel";
 
 const ContactFormSection = () => {
+  const { toast } = useToast();
+  const { trackLead } = useFacebookPixel();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    trackLead({ 
+      content_name: 'Contact Form Submission',
+      content_category: 'Contact'
+    });
+  };
+
   return (
     <section id="contact-form" className="py-16 px-4 bg-card animate-fade-in">
       <div className="max-w-4xl mx-auto">
@@ -13,13 +26,25 @@ const ContactFormSection = () => {
           Remplissez le formulaire ci-dessous ou appelez-nous directement pour profiter de notre offre limitée.
         </p>
         <div className="bg-background p-8 rounded-lg shadow-lg">
-          <form className="space-y-6">
+          <form 
+            className="space-y-6"
+            action="https://formsubmit.co/de6f1460387106439bcf91723d37902d" 
+            method="POST"
+            onSubmit={handleSubmit}
+          >
+            {/* FormSubmit Configuration */}
+            <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={window.location.href} />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
                 <input 
                   type="text" 
                   id="name" 
+                  name="name"
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                 />
@@ -29,6 +54,7 @@ const ContactFormSection = () => {
                 <input 
                   type="text" 
                   id="company" 
+                  name="company"
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                 />
               </div>
@@ -39,6 +65,7 @@ const ContactFormSection = () => {
                 <input 
                   type="email" 
                   id="email" 
+                  name="email"
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                 />
@@ -48,6 +75,7 @@ const ContactFormSection = () => {
                 <input 
                   type="tel" 
                   id="phone" 
+                  name="phone"
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                 />
@@ -57,6 +85,7 @@ const ContactFormSection = () => {
               <label htmlFor="message" className="block mb-2 font-medium">Votre projet en quelques mots</label>
               <textarea 
                 id="message" 
+                name="message"
                 rows={4} 
                 className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
               ></textarea>
@@ -64,8 +93,9 @@ const ContactFormSection = () => {
             <button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
+              disabled={isSubmitting}
             >
-              Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
+              {isSubmitting ? "Envoi en cours..." : "Profitez de l'offre maintenant"} <ArrowRight className="ml-2 h-5 w-5" />
             </button>
           </form>
           <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">

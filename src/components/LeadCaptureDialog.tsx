@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { Phone } from "lucide-react";
+import { usePopupStore } from "@/utils/popupUtils";
 
 const LeadCaptureDialog = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isLeadDialogOpen, closeLeadDialog } = usePopupStore();
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -18,8 +19,12 @@ const LeadCaptureDialog = () => {
   const { trackLead } = useFacebookPixel();
 
   useEffect(() => {
+    // Auto-open on page load after 10 seconds
     const timer = setTimeout(() => {
-      setIsOpen(true);
+      // Only open if it's not already open from a button click
+      if (!usePopupStore.getState().isLeadDialogOpen) {
+        usePopupStore.getState().openLeadDialog();
+      }
     }, 10000);
 
     return () => clearTimeout(timer);
@@ -64,7 +69,7 @@ const LeadCaptureDialog = () => {
       setSubmitted(true);
       
       setTimeout(() => {
-        setIsOpen(false);
+        closeLeadDialog();
         setSubmitted(false);
       }, 2000);
       
@@ -80,7 +85,7 @@ const LeadCaptureDialog = () => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isLeadDialogOpen} onOpenChange={closeLeadDialog}>
       <DialogContent className="sm:max-w-[425px] bg-card">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-primary">
