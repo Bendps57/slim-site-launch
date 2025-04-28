@@ -3,6 +3,7 @@ import React from 'react';
 import { Clock, ShieldCheck, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useFacebookPixel from '@/hooks/useFacebookPixel';
+import { openContactPopup } from '@/utils/popupUtils';
 
 const featureItems = [
   {
@@ -34,10 +35,12 @@ const featureItems = [
 const PricingHeroSection = () => {
   const { trackEvent } = useFacebookPixel();
 
-  const handleContactRedirect = () => {
-    window.open('https://elimyt.com/contact', '_blank');
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openContactPopup();
+    
     trackEvent('Lead', {
-      content_name: 'Contact Button Click',
+      content_name: 'Hero CTA Button Click',
       content_category: 'CTA',
       value: 249.90,
       currency: 'EUR'
@@ -103,7 +106,7 @@ const PricingHeroSection = () => {
 
           <Button
             size="lg"
-            onClick={handleContactRedirect}
+            onClick={handleContactClick}
             className="text-base sm:text-lg px-4 sm:px-10 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold break-normal"
           >
             <span className="text-sm sm:text-base">Obtenez votre site web pro</span>

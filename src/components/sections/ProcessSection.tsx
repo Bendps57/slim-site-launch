@@ -2,12 +2,28 @@
 import React from 'react';
 import { ArrowRight, MessageSquare, Code, Send } from 'lucide-react';
 import StepCard from '@/components/StepCard';
+import { openContactPopup } from '@/utils/popupUtils';
+import useFacebookPixel from '@/hooks/useFacebookPixel';
 
 interface ProcessSectionProps {
   onScrollToForm: () => void;
 }
 
 const ProcessSection: React.FC<ProcessSectionProps> = ({ onScrollToForm }) => {
+  const { trackEvent } = useFacebookPixel();
+  
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openContactPopup();
+    
+    trackEvent('Lead', {
+      content_name: 'Process Section CTA Button Click',
+      content_category: 'CTA',
+      value: 249.90,
+      currency: 'EUR'
+    });
+  };
+  
   return (
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
@@ -36,7 +52,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({ onScrollToForm }) => {
         </div>
         <div className="mt-12 text-center">
           <button 
-            onClick={onScrollToForm}
+            onClick={handleButtonClick}
             className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center mx-auto pulse-animation"
           >
             Démarrer mon projet maintenant <ArrowRight className="ml-2 h-5 w-5" />

@@ -1,15 +1,25 @@
 
 import React from "react";
 import { openContactPopup } from "@/utils/popupUtils";
+import useFacebookPixel from "@/hooks/useFacebookPixel";
 
 interface HeroESectionProps {
   onScrollToForm: () => void;
 }
 
 const HeroESection: React.FC<HeroESectionProps> = ({ onScrollToForm }) => {
+  const { trackEvent } = useFacebookPixel();
+  
   const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault(); // S'assurer que l'événement par défaut est empêché
+    e.preventDefault();
     openContactPopup();
+    
+    trackEvent('Lead', {
+      content_name: 'Hero E CTA Button Click',
+      content_category: 'CTA',
+      value: 249.90,
+      currency: 'EUR'
+    });
   };
 
   return (
