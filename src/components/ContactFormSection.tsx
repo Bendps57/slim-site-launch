@@ -39,34 +39,33 @@ const ContactFormSection = () => {
     setIsLoading(true);
     
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('company', formData.company);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('message', formData.message);
-      formDataToSend.append('_subject', 'Nouvelle demande de contact site vitrine');
-      formDataToSend.append('_captcha', 'false');
-      formDataToSend.append('_template', 'table');
-
+      const formAction = "https://formsubmit.co/ajax/rlacy376@gmail.com";
+      
       // Afficher les données envoyées pour le débogage
-      console.log("Données du formulaire envoyées:", {
-        name: formData.name,
-        company: formData.company,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message
-      });
+      console.log("Données du formulaire envoyées:", formData);
 
-      // Envoi avec méthode FormData directe
-      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
+      // Envoi en JSON
+      const response = await fetch(formAction, {
         method: "POST",
-        body: formDataToSend
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          _subject: 'Nouvelle demande de contact site vitrine',
+          _captcha: 'false',
+          _template: 'table'
+        })
       });
 
-      console.log("Statut de la réponse FormSubmit:", response.status);
-      const responseText = await response.text();
-      console.log("Contenu de la réponse:", responseText.substring(0, 500)); // Afficher les 500 premiers caractères
+      console.log("Statut de la réponse FormSubmit (JSON):", response.status);
+      const responseData = await response.json();
+      console.log("Données de réponse:", responseData);
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       

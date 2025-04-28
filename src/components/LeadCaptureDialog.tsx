@@ -45,24 +45,32 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      const formData = new FormData();
-      formData.append('firstName', firstName);
-      formData.append('email', email);
-      formData.append('phone', phone);
-      formData.append('_subject', 'Nouvelle demande de site vitrine à 249,90€');
-      formData.append('_captcha', 'false');
-      formData.append('_template', 'table');
-      formData.append('message', `Nouveau lead pour site vitrine:
+      const formAction = "https://formsubmit.co/ajax/rlacy376@gmail.com";
+      
+      const response = await fetch(formAction, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName: firstName,
+          email: email,
+          phone: phone,
+          _subject: 'Nouvelle demande de site vitrine à 249,90€',
+          _captcha: 'false',
+          _template: 'table',
+          message: `Nouveau lead pour site vitrine:
 Prénom: ${firstName}
 Email: ${email}
 Téléphone: ${phone}
-Source: Pop-up de capture`);
-
-      // Using standard form submission method instead of JSON
-      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
-        method: "POST",
-        body: formData
+Source: Pop-up de capture`
+        })
       });
+
+      console.log("Statut de la réponse FormSubmit (JSON):", response.status);
+      const responseData = await response.json();
+      console.log("Données de réponse:", responseData);
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
 
@@ -80,12 +88,12 @@ Source: Pop-up de capture`);
       }, 2000);
       
     } catch (error) {
+      console.error("Détails complets de l'erreur:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
         description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
-      console.error("Erreur d'envoi du formulaire lead capture:", error);
     } finally {
       setIsLoading(false);
     }

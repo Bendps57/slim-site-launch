@@ -20,24 +20,28 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('_subject', 'Téléchargement Ebook Site Vitrine');
-      formData.append('_captcha', 'false');
-      formData.append('_template', 'table');
-      formData.append('message', `Nouveau téléchargement d'ebook:
-Email: ${email}
-Source: Formulaire ebook`);
-
-      // Envoyer directement le formulaire au service
-      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
+      const formAction = "https://formsubmit.co/ajax/rlacy376@gmail.com";
+      
+      const response = await fetch(formAction, {
         method: "POST",
-        body: formData
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          _subject: 'Téléchargement Ebook Site Vitrine',
+          _captcha: 'false',
+          _template: 'table',
+          message: `Nouveau téléchargement d'ebook:
+Email: ${email}
+Source: Formulaire ebook`
+        })
       });
 
-      console.log("Réponse FormSubmit:", response.status);
-      const responseText = await response.text();
-      console.log("Contenu de la réponse:", responseText);
+      console.log("Réponse FormSubmit (JSON):", response.status);
+      const responseData = await response.json();
+      console.log("Données de réponse:", responseData);
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
@@ -56,7 +60,7 @@ Source: Formulaire ebook`);
       
       setSubmitted(true);
     } catch (error) {
-      console.error("Détails de l'erreur:", error);
+      console.error("Détails complets de l'erreur:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
