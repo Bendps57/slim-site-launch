@@ -19,23 +19,25 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      // Create form data for direct submission
       const formData = new FormData();
       formData.append('email', email);
       formData.append('_subject', 'Téléchargement Ebook Site Vitrine');
       formData.append('_captcha', 'false');
       formData.append('message', `Nouveau téléchargement d'ebook: Email: ${email}`);
       
-      // Using direct FormSubmit URL
-      const response = await fetch('https://formsubmit.co/rlacy376@gmail.com', {
-        method: 'POST',
-        body: formData
+      // Log what we're sending for debugging
+      console.log("Envoi de données vers FormSubmit:", {
+        email,
+        subject: 'Téléchargement Ebook Site Vitrine',
+        message: `Nouveau téléchargement d'ebook: Email: ${email}`
       });
-
-      console.log("Réponse FormSubmit:", response.status, response.statusText);
       
-      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
+      // Using direct FormSubmit submission via form action
+      // This will be handled by the native form submit
+      const form = e.target as HTMLFormElement;
+      form.submit();
       
+      // Track events after submission
       trackLead({ email_address: email });
       
       trackEbookDownload("Guide premier clients site vitrine", { 
@@ -75,6 +77,7 @@ const EbookForm = () => {
     >
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_subject" value="Téléchargement Ebook Site Vitrine" />
+      <input type="hidden" name="_next" value={window.location.href} />
       
       <Input
         type="email"

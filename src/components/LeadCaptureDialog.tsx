@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -45,24 +45,18 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      // Create form data object with the standard FormSubmit approach
-      const formData = new FormData();
-      formData.append('firstName', firstName);
-      formData.append('email', email);
-      formData.append('phone', phone || 'Non fourni');
-      formData.append('_subject', 'Nouvelle demande de site vitrine à 249,90€');
-      formData.append('_captcha', 'false');
-      
-      // Using the direct FormSubmit URL (not the AJAX endpoint)
-      const response = await fetch('https://formsubmit.co/rlacy376@gmail.com', {
-        method: 'POST',
-        body: formData
+      // Log what we're sending for debugging
+      console.log("Envoi de données du popup vers FormSubmit:", {
+        firstName,
+        email,
+        phone: phone || 'Non fourni',
       });
       
-      console.log("Réponse FormSubmit:", response.status, response.statusText);
+      // Using direct FormSubmit submission via form action
+      // This will be handled by the native form submit
+      const form = e.target as HTMLFormElement;
+      form.submit();
       
-      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
-
       trackLead({ 
         email_address: email,
         first_name: firstName,
@@ -100,7 +94,7 @@ const LeadCaptureDialog = () => {
           <DialogTitle className="text-2xl font-bold text-center text-primary">
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
-          <DialogDescription className="text-center pt-4">
+          <div className="text-center pt-4">
             <p className="mb-4">
               Profite de notre offre exclusive avant qu'elle disparaisse :
               Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
@@ -108,7 +102,7 @@ const LeadCaptureDialog = () => {
             <p className="font-medium">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
             </p>
-          </DialogDescription>
+          </div>
         </DialogHeader>
         
         {submitted ? (
@@ -119,6 +113,7 @@ const LeadCaptureDialog = () => {
           <form onSubmit={handleSubmit} className="space-y-4 py-4" action="https://formsubmit.co/rlacy376@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
+            <input type="hidden" name="_next" value={window.location.href} />
             
             <Input
               type="text"

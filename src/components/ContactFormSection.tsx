@@ -39,31 +39,13 @@ const ContactFormSection = () => {
     setIsLoading(true);
     
     try {
-      // Create form data for direct submission
+      // Log what we're sending for debugging
+      console.log("Envoi du formulaire de contact avec les données:", formData);
+      
+      // Using direct FormSubmit submission via form action
+      // This will be handled by the native form submit
       const form = e.target as HTMLFormElement;
-      const formDataSubmit = new FormData(form);
-      
-      // Add hidden fields if not already in the form
-      if (!formDataSubmit.has('_captcha')) {
-        formDataSubmit.append('_captcha', 'false');
-      }
-      
-      if (!formDataSubmit.has('_subject')) {
-        formDataSubmit.append('_subject', 'Nouvelle demande de contact site vitrine');
-      }
-      
-      // Log the data being sent
-      console.log("Envoi du formulaire de contact avec les données:", Object.fromEntries(formDataSubmit));
-      
-      // Using direct FormSubmit URL
-      const response = await fetch('https://formsubmit.co/rlacy376@gmail.com', {
-        method: 'POST',
-        body: formDataSubmit
-      });
-
-      console.log("Statut de la réponse FormSubmit:", response.status, response.statusText);
-      
-      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
+      form.submit();
       
       setSubmitted(true);
       toast({
@@ -103,12 +85,12 @@ const ContactFormSection = () => {
           <form 
             onSubmit={handleSubmit} 
             className="space-y-6" 
-            id="contactForm"
             action="https://formsubmit.co/rlacy376@gmail.com"
             method="POST"
           >
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_subject" value="Nouvelle demande de contact site vitrine" />
+            <input type="hidden" name="_next" value={window.location.href} />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
