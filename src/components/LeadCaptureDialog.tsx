@@ -52,8 +52,8 @@ const LeadCaptureDialog = () => {
         phone_number: phone
       });
       
-      // FormSubmit direct POST submission
-      const response = await fetch("https://formsubmit.co/rlacy376@gmail.com", {
+      // FormSubmit with activation string instead of naked email
+      const response = await fetch("https://formsubmit.co/1af96ee36446d1694daab4b1c6791dd2", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
