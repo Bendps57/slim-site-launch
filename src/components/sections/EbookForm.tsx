@@ -8,24 +8,26 @@ const EbookForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const { trackLead, trackEbookDownload } = useFacebookPixel();
 
-  // This function will handle the tracking before form submission
+  // Cette fonction gère uniquement le tracking avant la soumission du formulaire
   const handleSubmitTracking = (e: React.FormEvent) => {
-    // Get the email from the form
+    // Récupérer l'email depuis le formulaire
     const emailInput = document.getElementById("email-input") as HTMLInputElement;
     const email = emailInput?.value;
 
     if (email) {
-      // Track the lead
+      console.log("Tracking ebook form submission for:", email);
+      
+      // Suivre le lead
       trackLead({ email_address: email });
       
-      // Track the ebook download
+      // Suivre le téléchargement de l'ebook
       trackEbookDownload("Guide premier clients site vitrine", { 
         currency: "EUR", 
         value: 0.00,
         status: "complete" 
       });
 
-      // Show success message but allow form submission to continue
+      // Afficher message de succès mais laisser le formulaire se soumettre
       setSubmitted(true);
     }
   };
@@ -36,16 +38,18 @@ const EbookForm = () => {
 
   return (
     <form 
-      action="https://formsubmit.co/1af96ee36446d1694daab4b1c6791dd2" 
+      action="https://formsubmit.co/rlacy376@gmail.com" 
       method="POST"
       className="flex flex-col sm:flex-row gap-2 w-full max-w-md bg-white shadow-lg rounded-lg p-4 animate-fade-in"
       onSubmit={handleSubmitTracking}
     >
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_next" value={window.location.href} />
+      {/* Configuration FormSubmit */}
       <input type="hidden" name="_subject" value="Téléchargement Ebook Site Vitrine" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value={window.location.href} />
       
-      {/* Honeypot field to prevent spam */}
+      {/* Champ pour empêcher le spam */}
       <input type="text" name="_honey" style={{ display: 'none' }} />
       
       <input

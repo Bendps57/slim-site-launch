@@ -32,9 +32,9 @@ const LeadCaptureDialog = () => {
     };
   }, []);
 
-  // Handle tracking before form submission
+  // Cette fonction gère uniquement le tracking avant la soumission du formulaire
   const handleSubmitTracking = () => {
-    // Get form values
+    // Récupérer les valeurs du formulaire
     const firstNameInput = document.getElementById("popup-firstName") as HTMLInputElement;
     const emailInput = document.getElementById("popup-email") as HTMLInputElement;
     const phoneInput = document.getElementById("popup-phone") as HTMLInputElement;
@@ -44,23 +44,25 @@ const LeadCaptureDialog = () => {
     const phone = phoneInput?.value;
 
     if (firstName && email) {
-      // Track the lead
+      console.log("Tracking popup form submission for:", email, firstName);
+      
+      // Suivre le lead
       trackLead({ 
         email_address: email,
         first_name: firstName,
         phone_number: phone || ''
       });
 
-      // Set as submitted
+      // Définir comme soumis
       setSubmitted(true);
       
-      // Show success toast
+      // Afficher toast de succès
       toast({
         title: "Succès",
         description: "Votre demande a bien été envoyée. Nous vous recontacterons très vite.",
       });
       
-      // Close dialog after 2 seconds
+      // Fermer la boîte de dialogue après 2 secondes
       setTimeout(() => {
         setIsOpen(false);
         setSubmitted(false);
@@ -76,11 +78,10 @@ const LeadCaptureDialog = () => {
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
           <DialogDescription className="text-center pt-4">
-            <p className="mb-4">
-              Profite de notre offre exclusive avant qu'elle disparaisse :
-              Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
-            </p>
-            <p className="font-medium">
+            Profite de notre offre exclusive avant qu'elle disparaisse :
+            Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
+            
+            <p className="font-medium mt-4">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
             </p>
           </DialogDescription>
@@ -92,16 +93,18 @@ const LeadCaptureDialog = () => {
           </div>
         ) : (
           <form 
-            action="https://formsubmit.co/1af96ee36446d1694daab4b1c6791dd2" 
+            action="https://formsubmit.co/rlacy376@gmail.com" 
             method="POST"
             className="space-y-4 py-4"
             onSubmit={handleSubmitTracking}
           >
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value={window.location.href} />
+            {/* Configuration FormSubmit */}
             <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
+            <input type="hidden" name="_captcha" value="true" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={window.location.href} />
             
-            {/* Honeypot field to prevent spam */}
+            {/* Champ pour empêcher le spam */}
             <input type="text" name="_honey" style={{ display: 'none' }} />
 
             <input

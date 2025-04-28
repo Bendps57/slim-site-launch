@@ -2,15 +2,14 @@
 import React, { useState } from 'react';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 import useFacebookPixel from '@/hooks/useFacebookPixel';
-import ContactInfo from '@/components/ContactInfo';
 
 const ContactFormSection = () => {
   const [submitted, setSubmitted] = useState(false);
   const { trackLead, trackFormSubmission } = useFacebookPixel();
 
-  // Handle tracking before form submission
+  // Cette fonction gère uniquement le tracking avant la soumission du formulaire
   const handleSubmitTracking = () => {
-    // Get form values
+    // Récupérer les valeurs du formulaire
     const nameInput = document.getElementById("name") as HTMLInputElement;
     const emailInput = document.getElementById("email") as HTMLInputElement;
     const phoneInput = document.getElementById("phone") as HTMLInputElement;
@@ -20,21 +19,23 @@ const ContactFormSection = () => {
     const phone = phoneInput?.value;
 
     if (name && email && phone) {
-      // Track the lead
+      console.log("Tracking contact form submission for:", email, name);
+      
+      // Suivre le lead
       trackLead({ 
         email_address: email,
         first_name: name,
         phone_number: phone
       });
       
-      // Track form submission
+      // Suivre la soumission du formulaire
       trackFormSubmission("Contact Form", {
         currency: "EUR",
         value: 0.00,
         form_name: "Contact Form"
       });
 
-      // Set submitted state but let the form continue with normal submission
+      // Définir comme soumis et laisser le formulaire se soumettre normalement
       setSubmitted(true);
     }
   };
@@ -56,16 +57,18 @@ const ContactFormSection = () => {
             </div>
           ) : (
             <form 
-              action="https://formsubmit.co/1af96ee36446d1694daab4b1c6791dd2" 
+              action="https://formsubmit.co/rlacy376@gmail.com" 
               method="POST" 
               className="space-y-6"
               onSubmit={handleSubmitTracking}
             >
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value={window.location.href} />
+              {/* Configuration FormSubmit */}
               <input type="hidden" name="_subject" value="Nouveau contact depuis le site" />
+              <input type="hidden" name="_captcha" value="true" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value={window.location.href} />
               
-              {/* Honeypot field to prevent spam */}
+              {/* Champ pour empêcher le spam */}
               <input type="text" name="_honey" style={{ display: 'none' }} />
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -132,8 +135,8 @@ const ContactFormSection = () => {
             <a href="tel:+33600000000" className="flex items-center text-primary hover:text-primary/80">
               <Phone className="h-5 w-5 mr-2" /> +33 6 00 00 00 00
             </a>
-            <a href="mailto:contact@elimyt.com" className="flex items-center text-primary hover:text-primary/80">
-              <Mail className="h-5 w-5 mr-2" /> contact@elimyt.com
+            <a href="mailto:rlacy376@gmail.com" className="flex items-center text-primary hover:text-primary/80">
+              <Mail className="h-5 w-5 mr-2" /> rlacy376@gmail.com
             </a>
           </div>
         </div>

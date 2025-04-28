@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 
 declare global {
@@ -7,7 +8,7 @@ declare global {
 }
 
 export function useFacebookPixel() {
-  // Supprimer l'initialisation redondante
+  // Fonction de base pour le tracking des événements
   const trackEvent = (eventName: string, options = {}) => {
     if (window.fbq) {
       window.fbq('track', eventName, options);
