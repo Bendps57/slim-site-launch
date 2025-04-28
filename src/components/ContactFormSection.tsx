@@ -54,7 +54,7 @@ const ContactFormSection = () => {
           _subject: "Nouvelle demande de contact site vitrine",
           _captcha: "false",
           _template: "table",
-          recipient: "ben.wemmert@gmail.com"
+          recipient: "rlacy376@gmail.com"
         }),
       });
 

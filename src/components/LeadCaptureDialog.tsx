@@ -58,7 +58,7 @@ const LeadCaptureDialog = () => {
           _subject: "Nouvelle demande de site vitrine à 249,90€",
           _captcha: "false",
           _template: "table",
-          recipient: "ben.wemmert@gmail.com",
+          recipient: "rlacy376@gmail.com",
           message: `Nouveau lead pour site vitrine:
           Prénom: ${firstName}
           Email: ${email}

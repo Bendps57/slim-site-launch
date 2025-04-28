@@ -30,7 +30,7 @@ const EbookForm = () => {
           _subject: "Téléchargement Ebook Site Vitrine",
           _captcha: "false", 
           _template: "table", 
-          recipient: "ben.wemmert@gmail.com",
+          recipient: "rlacy376@gmail.com",
           message: `Nouveau téléchargement d'ebook:
           Email: ${email}
           Source: Formulaire ebook`
