@@ -19,22 +19,19 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      // Utilisation directe de l'email dans l'URL FormSubmit pour une meilleure délivrabilité
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('_subject', 'Téléchargement Ebook Site Vitrine');
+      formData.append('_captcha', 'false');
+      formData.append('_template', 'table');
+      formData.append('message', `Nouveau téléchargement d'ebook:
+Email: ${email}
+Source: Formulaire ebook`);
+
+      // Using standard form submission method instead of JSON
       const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          _subject: "Téléchargement Ebook Site Vitrine",
-          _captcha: "false", 
-          _template: "table", 
-          message: `Nouveau téléchargement d'ebook:
-          Email: ${email}
-          Source: Formulaire ebook`
-        }),
+        body: formData
       });
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');

@@ -39,23 +39,20 @@ const ContactFormSection = () => {
     setIsLoading(true);
     
     try {
-      // Utilisation directe de l'email dans l'URL FormSubmit pour une meilleure délivrabilité
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('company', formData.company);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('message', formData.message);
+      formDataToSend.append('_subject', 'Nouvelle demande de contact site vitrine');
+      formDataToSend.append('_captcha', 'false');
+      formDataToSend.append('_template', 'table');
+
+      // Using standard form submission method instead of JSON
       const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          company: formData.company,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          _subject: "Nouvelle demande de contact site vitrine",
-          _captcha: "false",
-          _template: "table"
-        }),
+        body: formDataToSend
       });
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');

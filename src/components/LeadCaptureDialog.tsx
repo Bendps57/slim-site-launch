@@ -45,26 +45,23 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      // Utilisation directe de l'email dans l'URL FormSubmit pour une meilleure délivrabilité
+      const formData = new FormData();
+      formData.append('firstName', firstName);
+      formData.append('email', email);
+      formData.append('phone', phone);
+      formData.append('_subject', 'Nouvelle demande de site vitrine à 249,90€');
+      formData.append('_captcha', 'false');
+      formData.append('_template', 'table');
+      formData.append('message', `Nouveau lead pour site vitrine:
+Prénom: ${firstName}
+Email: ${email}
+Téléphone: ${phone}
+Source: Pop-up de capture`);
+
+      // Using standard form submission method instead of JSON
       const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          firstName,
-          email,
-          phone,
-          _subject: "Nouvelle demande de site vitrine à 249,90€",
-          _captcha: "false",
-          _template: "table",
-          message: `Nouveau lead pour site vitrine:
-          Prénom: ${firstName}
-          Email: ${email}
-          Téléphone: ${phone}
-          Source: Pop-up de capture`
-        }),
+        body: formData
       });
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
@@ -102,13 +99,13 @@ const LeadCaptureDialog = () => {
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
           <DialogDescription className="text-center pt-4 space-y-4">
-            <div>
+            <p>
               Profite de notre offre exclusive avant qu'elle disparaisse :
               Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
-            </div>
-            <div className="font-medium">
+            </p>
+            <p className="font-medium">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
-            </div>
+            </p>
           </DialogDescription>
         </DialogHeader>
         
