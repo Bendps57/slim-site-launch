@@ -104,9 +104,9 @@ const PricingHeroSection = () => {
           <Button
             size="lg"
             onClick={handleContactRedirect}
-            className="text-lg px-10 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold"
+            className="text-base sm:text-lg px-4 sm:px-10 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white shadow-xl shadow-primary/10 rounded-xl font-bold break-normal"
           >
-            Obtenez votre site web professionnel maintenant
+            <span className="text-sm sm:text-base">Obtenez votre site web pro</span>
             <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-7-7l7 7-7 7" /></svg>
           </Button>
         </div>
