@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -7,7 +6,6 @@ import { useToast } from "@/hooks/use-toast";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { Phone } from "lucide-react";
 
-// Create a trigger function that can be imported by other components
 let setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>> | null = null;
 
 export const openLeadCaptureDialog = () => {
@@ -26,11 +24,9 @@ const LeadCaptureDialog = () => {
   const { toast } = useToast();
   const { trackLead } = useFacebookPixel();
 
-  // Store the setter function in the module-scoped variable
   useEffect(() => {
     setIsOpenDialog = setIsOpen;
     
-    // Set a timeout to show the dialog automatically after 10 seconds
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 10000);
@@ -48,7 +44,7 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
+      const response = await fetch(`https://formsubmit.co/ajax/ben.wemmert@gmail.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
