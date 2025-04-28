@@ -40,48 +40,36 @@ const LeadCaptureDialog = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !firstName) return;
+    console.log("Form submission started", { firstName, email, phone });
+    
+    if (!email || !firstName) {
+      console.log("Form validation failed: missing required fields");
+      return;
+    }
 
     setIsLoading(true);
-
+    
     try {
-      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          firstName,
-          email,
-          phone,
-          _subject: "Nouvelle demande de site vitrine à 249,90€",
-          _captcha: "false",
-          _template: "table",
-          message: `Nouveau lead pour site vitrine:
-          Prénom: ${firstName}
-          Email: ${email}
-          Téléphone: ${phone}
-          Source: Pop-up de capture`
-        }),
-      });
-
-      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
-
+      // Track lead with Facebook Pixel (separate from form submission)
       trackLead({ 
         email_address: email,
         first_name: firstName,
         phone_number: phone
       });
+      console.log("Facebook Pixel lead tracking triggered");
       
+      // Set form as submitted and show success message
       setSubmitted(true);
+      console.log("Form marked as submitted");
       
+      // Close dialog after delay
       setTimeout(() => {
         setIsOpen(false);
         setSubmitted(false);
       }, 2000);
       
     } catch (error) {
+      console.error("Error in form handling:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
@@ -115,8 +103,22 @@ const LeadCaptureDialog = () => {
             ✨ Merci {firstName} ! Nous vous recontactons très vite.
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 py-4">
+          <form 
+            onSubmit={handleSubmit}
+            action="https://formsubmit.co/rlacy376@gmail.com" 
+            method="POST"
+            className="space-y-4 py-4"
+          >
+            {/* FormSubmit configuration fields */}
+            <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_autoresponse" value="Merci pour votre demande ! Nous vous recontactons rapidement." />
+            <input type="hidden" name="message" value={`Nouveau lead pour site vitrine:
+            Source: Pop-up de capture`} />
+            
             <Input
+              name="firstName"
               type="text"
               placeholder="Votre prénom"
               value={firstName}
@@ -126,6 +128,7 @@ const LeadCaptureDialog = () => {
               disabled={isLoading}
             />
             <Input
+              name="email"
               type="email"
               placeholder="Votre email"
               value={email}
@@ -137,6 +140,7 @@ const LeadCaptureDialog = () => {
             <div className="relative">
               <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
               <Input
+                name="phone"
                 type="tel"
                 placeholder="Votre numéro de téléphone"
                 value={phone}
