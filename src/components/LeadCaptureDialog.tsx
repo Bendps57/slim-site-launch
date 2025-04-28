@@ -32,7 +32,7 @@ const LeadCaptureDialog = () => {
     };
   }, []);
 
-  // Cette fonction gère uniquement le tracking avant la soumission du formulaire
+  // Cette fonction gère uniquement le tracking et n'empêche pas la soumission
   const handleSubmitTracking = () => {
     // Récupérer les valeurs du formulaire
     const firstNameInput = document.getElementById("popup-firstName") as HTMLInputElement;
@@ -62,6 +62,8 @@ const LeadCaptureDialog = () => {
         description: "Votre demande a bien été envoyée. Nous vous recontacterons très vite.",
       });
       
+      console.log("Formulaire popup soumis avec succès à FormSubmit");
+      
       // Fermer la boîte de dialogue après 2 secondes
       setTimeout(() => {
         setIsOpen(false);
@@ -81,9 +83,9 @@ const LeadCaptureDialog = () => {
             Profite de notre offre exclusive avant qu'elle disparaisse :
             Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
             
-            <p className="font-medium mt-4">
+            <div className="font-medium mt-4">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
-            </p>
+            </div>
           </DialogDescription>
         </DialogHeader>
         
@@ -100,9 +102,11 @@ const LeadCaptureDialog = () => {
           >
             {/* Configuration FormSubmit */}
             <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
-            <input type="hidden" name="_captcha" value="true" />
+            <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_next" value={window.location.href} />
+            <input type="hidden" name="_replyto" value="" />
+            <input type="hidden" name="_autoresponse" value="Merci pour votre intérêt pour notre offre de site vitrine" />
             
             {/* Champ pour empêcher le spam */}
             <input type="text" name="_honey" style={{ display: 'none' }} />

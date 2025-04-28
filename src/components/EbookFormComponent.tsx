@@ -13,9 +13,22 @@ interface EbookFormComponentProps {
 const EbookFormComponent = ({ email, setEmail, handleSubmit, isLoading }: EbookFormComponentProps) => {
   return (
     <form 
-      onSubmit={handleSubmit} 
+      action="https://formsubmit.co/rlacy376@gmail.com" 
+      method="POST"
+      onSubmit={handleSubmit}
       className="flex flex-col sm:flex-row gap-2 w-full max-w-md bg-white shadow-lg rounded-lg p-4 animate-fade-in"
     >
+      {/* Configuration FormSubmit */}
+      <input type="hidden" name="_subject" value="Téléchargement Ebook Site Vitrine" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value={window.location.href} />
+      <input type="hidden" name="_replyto" value="" />
+      <input type="hidden" name="_autoresponse" value="Merci pour votre demande de téléchargement de notre ebook" />
+      
+      {/* Champ pour empêcher le spam */}
+      <input type="text" name="_honey" style={{ display: 'none' }} />
+      
       <Input
         type="email"
         name="email"

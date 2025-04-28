@@ -8,8 +8,8 @@ const EbookForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const { trackLead, trackEbookDownload } = useFacebookPixel();
 
-  // Cette fonction gère uniquement le tracking avant la soumission du formulaire
-  const handleSubmitTracking = (e: React.FormEvent) => {
+  // Cette fonction gère uniquement le tracking et n'empêche pas la soumission du formulaire
+  const handleSubmitTracking = () => {
     // Récupérer l'email depuis le formulaire
     const emailInput = document.getElementById("email-input") as HTMLInputElement;
     const email = emailInput?.value;
@@ -27,8 +27,10 @@ const EbookForm = () => {
         status: "complete" 
       });
 
-      // Afficher message de succès mais laisser le formulaire se soumettre
+      // Après le tracking, on laisse le formulaire se soumettre naturellement
       setSubmitted(true);
+      
+      console.log("Formulaire d'ebook soumis avec succès à FormSubmit");
     }
   };
 
@@ -45,9 +47,11 @@ const EbookForm = () => {
     >
       {/* Configuration FormSubmit */}
       <input type="hidden" name="_subject" value="Téléchargement Ebook Site Vitrine" />
-      <input type="hidden" name="_captcha" value="true" />
+      <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_next" value={window.location.href} />
+      <input type="hidden" name="_replyto" value="" />
+      <input type="hidden" name="_autoresponse" value="Merci pour votre demande de téléchargement de notre ebook" />
       
       {/* Champ pour empêcher le spam */}
       <input type="text" name="_honey" style={{ display: 'none' }} />

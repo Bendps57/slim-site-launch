@@ -12,7 +12,23 @@ interface ContactFormProps {
 
 const ContactForm = ({ formData, isLoading, handleChange, handleSubmit }: ContactFormProps) => {
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form 
+      action="https://formsubmit.co/rlacy376@gmail.com" 
+      method="POST"
+      onSubmit={handleSubmit} 
+      className="space-y-6"
+    >
+      {/* Configuration FormSubmit */}
+      <input type="hidden" name="_subject" value="Nouveau contact depuis le site" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value={window.location.href} />
+      <input type="hidden" name="_replyto" value="" />
+      <input type="hidden" name="_autoresponse" value="Merci pour votre demande de contact" />
+      
+      {/* Champ pour empêcher le spam */}
+      <input type="text" name="_honey" style={{ display: 'none' }} />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
