@@ -39,11 +39,11 @@ const LeadCaptureDialog = () => {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
     console.log("Form submission started", { firstName, email, phone });
     
     if (!email || !firstName) {
       console.log("Form validation failed: missing required fields");
+      e.preventDefault(); // Only prevent default if validation fails
       return;
     }
 
@@ -62,26 +62,23 @@ const LeadCaptureDialog = () => {
       setSubmitted(true);
       console.log("Form marked as submitted");
       
-      // Submit the form to FormSubmit
-      // This is handled by the form action, but we need to manually submit
-      // since we're using preventDefault
-      const formElement = e.target as HTMLFormElement;
-      formElement.submit();
+      // Let the form submit naturally (removed preventDefault)
       
       // Close dialog after delay
       setTimeout(() => {
         setIsOpen(false);
         setSubmitted(false);
+        setIsLoading(false);
       }, 2000);
       
     } catch (error) {
       console.error("Error in form handling:", error);
+      e.preventDefault(); // Prevent form submission if there's an error
       toast({
         variant: "destructive",
         title: "Erreur",
         description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
-    } finally {
       setIsLoading(false);
     }
   };
@@ -93,14 +90,16 @@ const LeadCaptureDialog = () => {
           <DialogTitle className="text-2xl font-bold text-center text-primary">
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
-          <DialogDescription className="text-center pt-4 space-y-4">
-            <p>
-              Profite de notre offre exclusive avant qu'elle disparaisse :
-              Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
-            </p>
-            <p className="font-medium">
-              🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
-            </p>
+          <DialogDescription className="text-center pt-4">
+            <div className="space-y-4">
+              <p>
+                Profite de notre offre exclusive avant qu'elle disparaisse :
+                Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
+              </p>
+              <p className="font-medium">
+                🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
+              </p>
+            </div>
           </DialogDescription>
         </DialogHeader>
         
@@ -121,8 +120,8 @@ const LeadCaptureDialog = () => {
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_next" value={window.location.href} />
             <input type="hidden" name="_autoresponse" value="Merci pour votre demande ! Nous vous recontactons rapidement." />
-            <input type="hidden" name="message" value={`Nouveau lead pour site vitrine:
-            Source: Pop-up de capture`} />
+            <input type="text" name="_honey" style={{ display: 'none' }} /> {/* Honeypot anti-spam */}
+            <input type="hidden" name="message" value="Nouveau lead pour site vitrine: Source: Pop-up de capture" />
             
             <Input
               name="firstName"
