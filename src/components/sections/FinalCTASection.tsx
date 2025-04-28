@@ -51,10 +51,10 @@ const FinalCTASection = () => {
           <Button
             size="lg"
             onClick={handleContactClick}
-            className="w-full text-base px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white font-bold rounded-xl shadow-lg"
+            className="w-full text-lg px-8 py-6 h-auto bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start animate-gradient-x text-white font-bold rounded-xl shadow-lg"
           >
-            Transformer ma présence en ligne
-            <ArrowRight className="ml-2 h-5 w-5" />
+            Je transforme ma présence en ligne maintenant
+            <ArrowRight className="ml-2" />
           </Button>
         </div>
         <p className="text-sm text-muted-foreground">

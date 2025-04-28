@@ -3,23 +3,12 @@ import React from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import PricingCard from '@/components/sections/PricingCard';
 import { openContactPopup } from '@/utils/popupUtils';
-import useFacebookPixel from '@/hooks/useFacebookPixel';
 
-const HeroSection: React.FC<{ onScrollToForm: () => void }> = ({ onScrollToForm }) => {
-  const { trackEvent } = useFacebookPixel();
+interface HeroSectionProps {
+  onScrollToForm: () => void;
+}
 
-  const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    openContactPopup();
-    
-    trackEvent('Lead', {
-      content_name: 'Hero Button Click',
-      content_category: 'CTA',
-      value: 249.90,
-      currency: 'EUR'
-    });
-  };
-
+const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToForm }) => {
   return (
     <section className="relative py-16 md:py-20 px-4 hero-gradient animate-fade-in">
       <div className="max-w-6xl mx-auto">
@@ -41,16 +30,22 @@ const HeroSection: React.FC<{ onScrollToForm: () => void }> = ({ onScrollToForm 
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
-                onClick={handleContactClick}
-                className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center text-sm md:text-base"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openContactPopup();
+                }}
+                className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center pulse-animation"
               >
-                Profitez de l'offre <ArrowRight className="ml-2 h-4 w-4" />
+                Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
               </button>
               <button 
-                onClick={handleContactClick}
-                className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center text-sm md:text-base"
+                className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openContactPopup();
+                }}
               >
-                Réservez votre appel <Phone className="ml-2 h-4 w-4" />
+                Réservez votre appel gratuit <Phone className="ml-2 h-5 w-5" />
               </button>
             </div>
           </div>

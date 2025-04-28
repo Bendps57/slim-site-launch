@@ -31,9 +31,10 @@ const SecondCTASection = () => {
         </p>
         <Button
           onClick={handleContactClick}
-          className="bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start text-white font-bold py-2 px-4 sm:py-3 sm:px-8 rounded-lg shadow-lg pulse-animation text-xs sm:text-base"
+          className="bg-gradient-to-r from-button-start to-button-end hover:from-button-end hover:to-button-start text-white font-bold py-3 px-8 rounded-lg shadow-lg pulse-animation text-lg"
         >
-          Je veux mon site professionnel <ArrowRight className="ml-2 h-3 w-3 sm:h-5 sm:w-5" />
+          Je veux mon site professionnel à 249,90€
+          <ArrowRight className="ml-2" />
         </Button>
         <p className="mt-4 text-sm text-muted-foreground">
           Garanti 14 jours satisfait ou remboursé. Sans aucun engagement.
@@ -44,4 +45,3 @@ const SecondCTASection = () => {
 };
 
 export default SecondCTASection;
-

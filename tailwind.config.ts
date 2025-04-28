@@ -84,14 +84,6 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'gradient-x': 'button-gradient 3s ease infinite',
-      },
-      fontSize: {
-        'xs-mobile': ['0.75rem', { lineHeight: '1rem' }],
-        'sm-mobile': ['0.875rem', { lineHeight: '1.25rem' }],
-      },
-      padding: {
-        'btn-x-mobile': '0.75rem',
-        'btn-y-mobile': '0.625rem',
       }
     }
   },

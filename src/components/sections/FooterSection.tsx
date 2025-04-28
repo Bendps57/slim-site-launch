@@ -46,7 +46,7 @@ const FooterSection = () => (
           <a href="/politique-confidentialite" className="underline hover:text-primary">Politique de confidentialité</a>
         </div>
         <div>
-          Contact&nbsp;: <a href="mailto:rlacy376@gmail.com" className="hover:underline text-primary pl-1">rlacy376@gmail.com</a>
+          Contact&nbsp;: <a href="mailto:contact@elimyt.com" className="hover:underline text-primary pl-1">contact@elimyt.com</a>
         </div>
       </div>
       <p className="text-xs text-muted-foreground mt-2">
