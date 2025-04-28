@@ -6,6 +6,12 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { Phone } from "lucide-react";
+import emailjs from '@emailjs/browser';
+
+// EmailJS configuration constants
+const EMAILJS_SERVICE_ID = "service_qvrsqnj"; // Replace with your actual EmailJS service ID
+const EMAILJS_TEMPLATE_ID = "template_mensozk"; // Replace with your actual EmailJS template ID
+const EMAILJS_PUBLIC_KEY = "0CEWRW8YUpJxHROtZ"; // Replace with your actual EmailJS public key
 
 let setIsOpenDialog: React.Dispatch<React.SetStateAction<boolean>> | null = null;
 
@@ -50,6 +56,29 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
     
     try {
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: firstName,
+        from_email: email,
+        phone_number: phone,
+        message: `Nouveau lead pour site vitrine:
+        Prénom: ${firstName}
+        Email: ${email}
+        Téléphone: ${phone}
+        Source: Pop-up de capture`,
+        subject: "Nouvelle demande de site vitrine à 249,90€"
+      };
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log("EmailJS SUCCESS:", response);
+      
       // Track lead with Facebook Pixel (separate from form submission)
       trackLead({ 
         email_address: email,
@@ -105,18 +134,8 @@ const LeadCaptureDialog = () => {
         ) : (
           <form 
             onSubmit={handleSubmit}
-            action="https://formsubmit.co/rlacy376@gmail.com" 
-            method="POST"
             className="space-y-4 py-4"
           >
-            {/* FormSubmit configuration fields */}
-            <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_autoresponse" value="Merci pour votre demande ! Nous vous recontactons rapidement." />
-            <input type="hidden" name="message" value={`Nouveau lead pour site vitrine:
-            Source: Pop-up de capture`} />
-            
             <Input
               name="firstName"
               type="text"
