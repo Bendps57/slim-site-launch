@@ -44,6 +44,11 @@ const LeadCaptureDialog = () => {
     if (!email || !firstName) {
       console.log("Form validation failed: missing required fields");
       e.preventDefault(); // Only prevent default if validation fails
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Veuillez remplir tous les champs obligatoires.",
+      });
       return;
     }
 
@@ -62,14 +67,16 @@ const LeadCaptureDialog = () => {
       setSubmitted(true);
       console.log("Form marked as submitted");
       
-      // Let the form submit naturally (removed preventDefault)
+      // Let the form submit naturally (no preventDefault)
+      console.log("Form should submit naturally to FormSubmit");
       
-      // Close dialog after delay
+      // Close dialog after longer delay to ensure form submission completes
       setTimeout(() => {
+        console.log("Closing dialog after submission");
         setIsOpen(false);
         setSubmitted(false);
         setIsLoading(false);
-      }, 2000);
+      }, 5000); // Increased from 2000 to 5000ms
       
     } catch (error) {
       console.error("Error in form handling:", error);
@@ -110,7 +117,7 @@ const LeadCaptureDialog = () => {
         ) : (
           <form 
             onSubmit={handleSubmit}
-            action="https://formsubmit.co/rlacy376@gmail.com" 
+            action="https://formsubmit.co/ede93aba476378e0e98731f5d4903a61" 
             method="POST"
             className="space-y-4 py-4"
           >
@@ -122,6 +129,7 @@ const LeadCaptureDialog = () => {
             <input type="hidden" name="_autoresponse" value="Merci pour votre demande ! Nous vous recontactons rapidement." />
             <input type="text" name="_honey" style={{ display: 'none' }} /> {/* Honeypot anti-spam */}
             <input type="hidden" name="message" value="Nouveau lead pour site vitrine: Source: Pop-up de capture" />
+            <input type="hidden" name="forwarding_email" value="rlacy376@gmail.com" />
             
             <Input
               name="firstName"
