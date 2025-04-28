@@ -94,13 +94,13 @@ const LeadCaptureDialog = () => {
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
           <DialogDescription className="text-center pt-4 space-y-4">
-            <div>
+            <p>
               Profite de notre offre exclusive avant qu'elle disparaisse :
               Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
-            </div>
-            <div className="font-medium">
+            </p>
+            <p className="font-medium">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
-            </div>
+            </p>
           </DialogDescription>
         </DialogHeader>
         
@@ -119,6 +119,7 @@ const LeadCaptureDialog = () => {
             <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={window.location.href} />
             <input type="hidden" name="_autoresponse" value="Merci pour votre demande ! Nous vous recontactons rapidement." />
             <input type="hidden" name="message" value={`Nouveau lead pour site vitrine:
             Source: Pop-up de capture`} />

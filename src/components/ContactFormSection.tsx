@@ -39,25 +39,8 @@ const ContactFormSection = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          company: formData.company,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          _subject: "Nouvelle demande de contact site vitrine",
-          _captcha: "false",
-          _template: "table"
-        }),
-      });
-
-      if (!response.ok) throw new Error('Erreur lors de l\'envoi');
+      const formElement = e.target as HTMLFormElement;
+      formElement.submit();
       
       setSubmitted(true);
       toast({
@@ -93,13 +76,26 @@ const ContactFormSection = () => {
           Remplissez le formulaire ci-dessous ou appelez-nous directement pour profiter de notre offre limitée.
         </p>
         <div className="bg-background p-8 rounded-lg shadow-lg">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form 
+            onSubmit={handleSubmit}
+            action="https://formsubmit.co/rlacy376@gmail.com" 
+            method="POST"
+            className="space-y-6"
+          >
+            {/* FormSubmit configuration fields */}
+            <input type="hidden" name="_subject" value="Nouvelle demande de contact site vitrine" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={window.location.href} />
+            <input type="hidden" name="_autoresponse" value="Merci pour votre message ! Nous vous recontactons rapidement." />
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
                 <input 
                   type="text" 
                   id="name" 
+                  name="name"
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.name}
@@ -111,7 +107,8 @@ const ContactFormSection = () => {
                 <label htmlFor="company" className="block mb-2 font-medium">Entreprise</label>
                 <input 
                   type="text" 
-                  id="company" 
+                  id="company"
+                  name="company" 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.company}
                   onChange={handleChange}
@@ -124,7 +121,8 @@ const ContactFormSection = () => {
                 <label htmlFor="email" className="block mb-2 font-medium">Email *</label>
                 <input 
                   type="email" 
-                  id="email" 
+                  id="email"
+                  name="email" 
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.email}
@@ -136,7 +134,8 @@ const ContactFormSection = () => {
                 <label htmlFor="phone" className="block mb-2 font-medium">Téléphone *</label>
                 <input 
                   type="tel" 
-                  id="phone" 
+                  id="phone"
+                  name="phone" 
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.phone}
@@ -148,7 +147,8 @@ const ContactFormSection = () => {
             <div>
               <label htmlFor="message" className="block mb-2 font-medium">Votre projet en quelques mots</label>
               <textarea 
-                id="message" 
+                id="message"
+                name="message" 
                 rows={4} 
                 className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                 value={formData.message}
