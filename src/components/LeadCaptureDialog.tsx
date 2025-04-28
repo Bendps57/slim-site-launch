@@ -99,13 +99,13 @@ Source: Pop-up de capture`);
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
           <DialogDescription className="text-center pt-4 space-y-4">
-            <p>
+            <div>
               Profite de notre offre exclusive avant qu'elle disparaisse :
               Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
-            </p>
-            <p className="font-medium">
+            </div>
+            <div className="font-medium">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
-            </p>
+            </div>
           </DialogDescription>
         </DialogHeader>
         

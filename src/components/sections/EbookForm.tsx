@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const EbookForm = () => {
   const [email, setEmail] = useState("");
@@ -28,11 +29,15 @@ const EbookForm = () => {
 Email: ${email}
 Source: Formulaire ebook`);
 
-      // Using standard form submission method instead of JSON
+      // Envoyer directement le formulaire au service
       const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
         body: formData
       });
+
+      console.log("Réponse FormSubmit:", response.status);
+      const responseText = await response.text();
+      console.log("Contenu de la réponse:", responseText);
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
@@ -44,14 +49,19 @@ Source: Formulaire ebook`);
         status: "complete" 
       });
       
+      toast({
+        title: "Succès",
+        description: "Le guide a été envoyé à votre email.",
+      });
+      
       setSubmitted(true);
     } catch (error) {
+      console.error("Détails de l'erreur:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
         description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
-      console.error("Erreur d'envoi du formulaire ebook:", error);
     } finally {
       setIsLoading(false);
     }

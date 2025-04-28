@@ -49,11 +49,24 @@ const ContactFormSection = () => {
       formDataToSend.append('_captcha', 'false');
       formDataToSend.append('_template', 'table');
 
-      // Using standard form submission method instead of JSON
+      // Afficher les données envoyées pour le débogage
+      console.log("Données du formulaire envoyées:", {
+        name: formData.name,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message
+      });
+
+      // Envoi avec méthode FormData directe
       const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
         body: formDataToSend
       });
+
+      console.log("Statut de la réponse FormSubmit:", response.status);
+      const responseText = await response.text();
+      console.log("Contenu de la réponse:", responseText.substring(0, 500)); // Afficher les 500 premiers caractères
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
@@ -71,12 +84,12 @@ const ContactFormSection = () => {
         message: ''
       });
     } catch (error) {
+      console.error("Détails complets de l'erreur:", error);
       toast({
         variant: "destructive",
         title: "Erreur",
         description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
-      console.error("Erreur d'envoi du formulaire contact:", error);
     } finally {
       setIsLoading(false);
     }
@@ -92,7 +105,7 @@ const ContactFormSection = () => {
           Remplissez le formulaire ci-dessous ou appelez-nous directement pour profiter de notre offre limitée.
         </p>
         <div className="bg-background p-8 rounded-lg shadow-lg">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6" id="contactForm">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
