@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -52,7 +52,7 @@ const LeadCaptureDialog = () => {
         phone_number: phone
       });
       
-      // FormSubmit with activation string instead of naked email
+      // FormSubmit avec la chaîne d'activation au lieu de l'email nu
       const response = await fetch("https://formsubmit.co/1af96ee36446d1694daab4b1c6791dd2", {
         method: "POST",
         headers: {
@@ -65,6 +65,7 @@ const LeadCaptureDialog = () => {
           phone: phone || 'Non fourni',
           _subject: "Nouvelle demande de site vitrine à 249,90€",
           _captcha: "false",
+          _next: window.location.href, // Ajout d'un retour à la page actuelle
           message: `Nouvelle demande de site vitrine: Prénom: ${firstName}, Email: ${email}, Téléphone: ${phone || 'Non fourni'}`
         })
       });
@@ -106,7 +107,7 @@ const LeadCaptureDialog = () => {
           <DialogTitle className="text-2xl font-bold text-center text-primary">
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
-          <div className="text-center pt-4">
+          <DialogDescription className="text-center pt-4">
             <p className="mb-4">
               Profite de notre offre exclusive avant qu'elle disparaisse :
               Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
@@ -114,7 +115,7 @@ const LeadCaptureDialog = () => {
             <p className="font-medium">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
             </p>
-          </div>
+          </DialogDescription>
         </DialogHeader>
         
         {submitted ? (

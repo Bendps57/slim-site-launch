@@ -26,7 +26,7 @@ export const useEbookForm = () => {
         status: "complete" 
       });
       
-      // FormSubmit with activation string instead of naked email
+      // Assurez-vous que l'email est correctement formaté et envoyé
       const response = await fetch("https://formsubmit.co/1af96ee36446d1694daab4b1c6791dd2", {
         method: "POST",
         headers: {
@@ -37,11 +37,12 @@ export const useEbookForm = () => {
           email: email,
           _subject: "Téléchargement Ebook Site Vitrine",
           _captcha: "false",
+          _next: window.location.href, // Ajout d'un retour à la page actuelle
           message: `Nouveau téléchargement d'ebook: Email: ${email}`
         })
       });
       
-      console.log("Réponse FormSubmit:", response);
+      console.log("Réponse FormSubmit pour ebook:", response);
       
       if (!response.ok) {
         throw new Error(`Erreur FormSubmit: ${response.status}`);
