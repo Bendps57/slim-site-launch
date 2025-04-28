@@ -19,7 +19,8 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
+      // Utilisation directe de l'email dans l'URL FormSubmit pour une meilleure délivrabilité
+      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +31,6 @@ const EbookForm = () => {
           _subject: "Téléchargement Ebook Site Vitrine",
           _captcha: "false", 
           _template: "table", 
-          recipient: "rlacy376@gmail.com",
           message: `Nouveau téléchargement d'ebook:
           Email: ${email}
           Source: Formulaire ebook`
@@ -54,6 +54,7 @@ const EbookForm = () => {
         title: "Erreur",
         description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
+      console.error("Erreur d'envoi du formulaire ebook:", error);
     } finally {
       setIsLoading(false);
     }

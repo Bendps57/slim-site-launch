@@ -39,7 +39,8 @@ const ContactFormSection = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
+      // Utilisation directe de l'email dans l'URL FormSubmit pour une meilleure délivrabilité
+      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,8 +54,7 @@ const ContactFormSection = () => {
           message: formData.message,
           _subject: "Nouvelle demande de contact site vitrine",
           _captcha: "false",
-          _template: "table",
-          recipient: "rlacy376@gmail.com"
+          _template: "table"
         }),
       });
 
@@ -79,6 +79,7 @@ const ContactFormSection = () => {
         title: "Erreur",
         description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
+      console.error("Erreur d'envoi du formulaire contact:", error);
     } finally {
       setIsLoading(false);
     }
