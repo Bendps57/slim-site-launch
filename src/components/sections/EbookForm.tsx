@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { useToast } from "@/hooks/use-toast";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const EbookForm = () => {
   const [email, setEmail] = useState("");
@@ -20,29 +19,21 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      const formAction = "https://formsubmit.co/ajax/rlacy376@gmail.com";
+      // Create form data for direct submission
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('_subject', 'Téléchargement Ebook Site Vitrine');
+      formData.append('_captcha', 'false');
+      formData.append('message', `Nouveau téléchargement d'ebook: Email: ${email}`);
       
-      const response = await fetch(formAction, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          _subject: 'Téléchargement Ebook Site Vitrine',
-          _captcha: 'false',
-          _template: 'table',
-          message: `Nouveau téléchargement d'ebook:
-Email: ${email}
-Source: Formulaire ebook`
-        })
+      // Using direct FormSubmit URL
+      const response = await fetch('https://formsubmit.co/rlacy376@gmail.com', {
+        method: 'POST',
+        body: formData
       });
 
-      console.log("Réponse FormSubmit (JSON):", response.status);
-      const responseData = await response.json();
-      console.log("Données de réponse:", responseData);
-
+      console.log("Réponse FormSubmit:", response.status, response.statusText);
+      
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
       trackLead({ email_address: email });
@@ -76,9 +67,18 @@ Source: Formulaire ebook`
       🎉 Merci ! Le guide arrive dans votre boîte mail.
     </div>
   ) : (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full max-w-md bg-white shadow-lg rounded-lg p-4 animate-fade-in">
+    <form 
+      onSubmit={handleSubmit} 
+      className="flex flex-col sm:flex-row gap-2 w-full max-w-md bg-white shadow-lg rounded-lg p-4 animate-fade-in"
+      action="https://formsubmit.co/rlacy376@gmail.com"
+      method="POST"
+    >
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_subject" value="Téléchargement Ebook Site Vitrine" />
+      
       <Input
         type="email"
+        name="email"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}

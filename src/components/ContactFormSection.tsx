@@ -39,34 +39,30 @@ const ContactFormSection = () => {
     setIsLoading(true);
     
     try {
-      const formAction = "https://formsubmit.co/ajax/rlacy376@gmail.com";
+      // Create form data for direct submission
+      const form = e.target as HTMLFormElement;
+      const formDataSubmit = new FormData(form);
       
-      // Afficher les données envoyées pour le débogage
-      console.log("Données du formulaire envoyées:", formData);
-
-      // Envoi en JSON
-      const response = await fetch(formAction, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          company: formData.company,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          _subject: 'Nouvelle demande de contact site vitrine',
-          _captcha: 'false',
-          _template: 'table'
-        })
+      // Add hidden fields if not already in the form
+      if (!formDataSubmit.has('_captcha')) {
+        formDataSubmit.append('_captcha', 'false');
+      }
+      
+      if (!formDataSubmit.has('_subject')) {
+        formDataSubmit.append('_subject', 'Nouvelle demande de contact site vitrine');
+      }
+      
+      // Log the data being sent
+      console.log("Envoi du formulaire de contact avec les données:", Object.fromEntries(formDataSubmit));
+      
+      // Using direct FormSubmit URL
+      const response = await fetch('https://formsubmit.co/rlacy376@gmail.com', {
+        method: 'POST',
+        body: formDataSubmit
       });
 
-      console.log("Statut de la réponse FormSubmit (JSON):", response.status);
-      const responseData = await response.json();
-      console.log("Données de réponse:", responseData);
-
+      console.log("Statut de la réponse FormSubmit:", response.status, response.statusText);
+      
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
       setSubmitted(true);
@@ -104,13 +100,23 @@ const ContactFormSection = () => {
           Remplissez le formulaire ci-dessous ou appelez-nous directement pour profiter de notre offre limitée.
         </p>
         <div className="bg-background p-8 rounded-lg shadow-lg">
-          <form onSubmit={handleSubmit} className="space-y-6" id="contactForm">
+          <form 
+            onSubmit={handleSubmit} 
+            className="space-y-6" 
+            id="contactForm"
+            action="https://formsubmit.co/rlacy376@gmail.com"
+            method="POST"
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_subject" value="Nouvelle demande de contact site vitrine" />
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block mb-2 font-medium">Nom *</label>
                 <input 
                   type="text" 
                   id="name" 
+                  name="name"
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.name}
@@ -123,6 +129,7 @@ const ContactFormSection = () => {
                 <input 
                   type="text" 
                   id="company" 
+                  name="company"
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.company}
                   onChange={handleChange}
@@ -136,6 +143,7 @@ const ContactFormSection = () => {
                 <input 
                   type="email" 
                   id="email" 
+                  name="email"
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.email}
@@ -148,6 +156,7 @@ const ContactFormSection = () => {
                 <input 
                   type="tel" 
                   id="phone" 
+                  name="phone"
                   required 
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.phone}
@@ -160,6 +169,7 @@ const ContactFormSection = () => {
               <label htmlFor="message" className="block mb-2 font-medium">Votre projet en quelques mots</label>
               <textarea 
                 id="message" 
+                name="message"
                 rows={4} 
                 className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                 value={formData.message}

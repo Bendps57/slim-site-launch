@@ -45,33 +45,22 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      const formAction = "https://formsubmit.co/ajax/rlacy376@gmail.com";
+      // Create form data object with the standard FormSubmit approach
+      const formData = new FormData();
+      formData.append('firstName', firstName);
+      formData.append('email', email);
+      formData.append('phone', phone || 'Non fourni');
+      formData.append('_subject', 'Nouvelle demande de site vitrine à 249,90€');
+      formData.append('_captcha', 'false');
       
-      const response = await fetch(formAction, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          firstName: firstName,
-          email: email,
-          phone: phone,
-          _subject: 'Nouvelle demande de site vitrine à 249,90€',
-          _captcha: 'false',
-          _template: 'table',
-          message: `Nouveau lead pour site vitrine:
-Prénom: ${firstName}
-Email: ${email}
-Téléphone: ${phone}
-Source: Pop-up de capture`
-        })
+      // Using the direct FormSubmit URL (not the AJAX endpoint)
+      const response = await fetch('https://formsubmit.co/rlacy376@gmail.com', {
+        method: 'POST',
+        body: formData
       });
-
-      console.log("Statut de la réponse FormSubmit (JSON):", response.status);
-      const responseData = await response.json();
-      console.log("Données de réponse:", responseData);
-
+      
+      console.log("Réponse FormSubmit:", response.status, response.statusText);
+      
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
 
       trackLead({ 
@@ -81,6 +70,11 @@ Source: Pop-up de capture`
       });
       
       setSubmitted(true);
+      
+      toast({
+        title: "Succès",
+        description: "Votre demande a bien été envoyée. Nous vous recontacterons très vite.",
+      });
       
       setTimeout(() => {
         setIsOpen(false);
@@ -106,14 +100,14 @@ Source: Pop-up de capture`
           <DialogTitle className="text-2xl font-bold text-center text-primary">
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
-          <DialogDescription className="text-center pt-4 space-y-4">
-            <div>
+          <DialogDescription className="text-center pt-4">
+            <p className="mb-4">
               Profite de notre offre exclusive avant qu'elle disparaisse :
               Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
-            </div>
-            <div className="font-medium">
+            </p>
+            <p className="font-medium">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
-            </div>
+            </p>
           </DialogDescription>
         </DialogHeader>
         
@@ -122,9 +116,13 @@ Source: Pop-up de capture`
             ✨ Merci {firstName} ! Nous vous recontactons très vite.
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 py-4">
+          <form onSubmit={handleSubmit} className="space-y-4 py-4" action="https://formsubmit.co/rlacy376@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
+            
             <Input
               type="text"
+              name="firstName"
               placeholder="Votre prénom"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
@@ -134,6 +132,7 @@ Source: Pop-up de capture`
             />
             <Input
               type="email"
+              name="email"
               placeholder="Votre email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -145,6 +144,7 @@ Source: Pop-up de capture`
               <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
               <Input
                 type="tel"
+                name="phone"
                 placeholder="Votre numéro de téléphone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
