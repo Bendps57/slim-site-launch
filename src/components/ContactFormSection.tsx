@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactFormSection = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,9 @@ const ContactFormSection = () => {
     phone: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -22,8 +27,19 @@ const ContactFormSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!formData.name || !formData.email || !formData.phone) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Veuillez remplir tous les champs obligatoires.",
+      });
+      return;
+    }
+    
+    setIsLoading(true);
+    
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/ben.wemmert@gmail.com`, {
+      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,15 +53,34 @@ const ContactFormSection = () => {
           message: formData.message,
           _subject: "Nouvelle demande de contact site vitrine",
           _captcha: "false",
-          _template: "table"
+          _template: "table",
+          recipient: "ben.wemmert@gmail.com"
         }),
       });
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
-      // Optional: Add a toast or success message
+      setSubmitted(true);
+      toast({
+        title: "Succès",
+        description: "Votre message a bien été envoyé. Nous vous recontacterons rapidement.",
+      });
+      
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
     } catch (error) {
-      // Optional: Add error handling, perhaps using a toast
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -70,6 +105,7 @@ const ContactFormSection = () => {
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.name}
                   onChange={handleChange}
+                  disabled={isLoading}
                 />
               </div>
               <div>
@@ -80,6 +116,7 @@ const ContactFormSection = () => {
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.company}
                   onChange={handleChange}
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -93,6 +130,7 @@ const ContactFormSection = () => {
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={isLoading}
                 />
               </div>
               <div>
@@ -104,6 +142,7 @@ const ContactFormSection = () => {
                   className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                   value={formData.phone}
                   onChange={handleChange}
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -115,13 +154,15 @@ const ContactFormSection = () => {
                 className="w-full p-3 bg-secondary rounded-lg focus:ring-2 focus:ring-primary outline-none"
                 value={formData.message}
                 onChange={handleChange}
+                disabled={isLoading}
               ></textarea>
             </div>
             <button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
+              disabled={isLoading}
             >
-              Profitez de l'offre maintenant <ArrowRight className="ml-2 h-5 w-5" />
+              {isLoading ? "Envoi en cours..." : "Profitez de l'offre maintenant"} <ArrowRight className="ml-2 h-5 w-5" />
             </button>
           </form>
           <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
