@@ -45,7 +45,7 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
+      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,6 @@ const LeadCaptureDialog = () => {
           _subject: "Nouvelle demande de site vitrine à 249,90€",
           _captcha: "false",
           _template: "table",
-          recipient: "rlacy376@gmail.com",
           message: `Nouveau lead pour site vitrine:
           Prénom: ${firstName}
           Email: ${email}

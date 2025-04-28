@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { ArrowRight, Phone, Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { ArrowRight, Phone, Mail } from 'lucide-react';
 
 const ContactFormSection = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ const ContactFormSection = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/de6f1460387106439bcf91723d37902d`, {
+      const response = await fetch(`https://formsubmit.co/rlacy376@gmail.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,8 +53,7 @@ const ContactFormSection = () => {
           message: formData.message,
           _subject: "Nouvelle demande de contact site vitrine",
           _captcha: "false",
-          _template: "table",
-          recipient: "rlacy376@gmail.com"
+          _template: "table"
         }),
       });
 
@@ -169,8 +168,8 @@ const ContactFormSection = () => {
             <a href="tel:+33600000000" className="flex items-center text-primary hover:text-primary/80">
               <Phone className="h-5 w-5 mr-2" /> +33 6 00 00 00 00
             </a>
-            <a href="mailto:contact@elimyt.com" className="flex items-center text-primary hover:text-primary/80">
-              <Mail className="h-5 w-5 mr-2" /> contact@elimyt.com
+            <a href="mailto:rlacy376@gmail.com" className="flex items-center text-primary hover:text-primary/80">
+              <Mail className="h-5 w-5 mr-2" /> rlacy376@gmail.com
             </a>
           </div>
         </div>
