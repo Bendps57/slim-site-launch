@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
@@ -78,11 +77,10 @@ const ContactFormSection = () => {
         <div className="bg-background p-8 rounded-lg shadow-lg">
           <form 
             onSubmit={handleSubmit}
-            action="https://formsubmit.co/rlacy376@gmail.com" 
+            action="https://formsubmit.co/elimytagency@gmail.com" 
             method="POST"
             className="space-y-6"
           >
-            {/* FormSubmit configuration fields */}
             <input type="hidden" name="_subject" value="Nouvelle demande de contact site vitrine" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
@@ -168,8 +166,8 @@ const ContactFormSection = () => {
             <a href="tel:+33600000000" className="flex items-center text-primary hover:text-primary/80">
               <Phone className="h-5 w-5 mr-2" /> +33 6 00 00 00 00
             </a>
-            <a href="mailto:rlacy376@gmail.com" className="flex items-center text-primary hover:text-primary/80">
-              <Mail className="h-5 w-5 mr-2" /> rlacy376@gmail.com
+            <a href="mailto:elimytagency@gmail.com" className="flex items-center text-primary hover:text-primary/80">
+              <Mail className="h-5 w-5 mr-2" /> elimytagency@gmail.com
             </a>
           </div>
         </div>

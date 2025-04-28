@@ -41,21 +41,18 @@ const LeadCaptureDialog = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     console.log("Form submission started", { firstName, email, phone });
     
+    // Basic form validation - this won't prevent natural form submission
     if (!email || !firstName) {
-      console.log("Form validation failed: missing required fields");
-      e.preventDefault(); // Only prevent default if validation fails
       toast({
         variant: "destructive",
         title: "Erreur",
         description: "Veuillez remplir tous les champs obligatoires.",
       });
-      return;
+      return; // Allow form submission to continue naturally
     }
 
-    setIsLoading(true);
-    
     try {
-      // Track lead with Facebook Pixel (separate from form submission)
+      // Track lead with Facebook Pixel
       trackLead({ 
         email_address: email,
         first_name: firstName,
@@ -63,29 +60,27 @@ const LeadCaptureDialog = () => {
       });
       console.log("Facebook Pixel lead tracking triggered");
       
-      // Set form as submitted and show success message
+      // Show success message but don't prevent form submission
       setSubmitted(true);
-      console.log("Form marked as submitted");
-      console.log("Form should submit naturally to FormSubmit with direct email");
+      setIsLoading(true);
       
-      // Close dialog after longer delay to ensure form submission completes
-      setTimeout(() => {
-        console.log("Closing dialog after submission");
-        setIsOpen(false);
-        setSubmitted(false);
-        setIsLoading(false);
-      }, 8000); // Increased to 8 seconds to ensure form submission completes
+      console.log("Form marked as submitted");
+      console.log("Form will submit naturally to FormSubmit");
+      
+      // Form will submit naturally to FormSubmit
+      // We don't call e.preventDefault() here
       
     } catch (error) {
       console.error("Error in form handling:", error);
-      e.preventDefault(); // Prevent form submission if there's an error
       toast({
         variant: "destructive",
         title: "Erreur",
         description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
-      setIsLoading(false);
     }
+    
+    // Note: We intentionally don't prevent default form submission
+    // and don't close the dialog automatically to ensure FormSubmit receives the data
   };
 
   return (
@@ -109,22 +104,24 @@ const LeadCaptureDialog = () => {
         </DialogHeader>
         
         {submitted ? (
-          <div className="py-6 text-center text-green-600 font-semibold animate-fade-in">
-            ✨ Merci {firstName} ! Nous vous recontactons très vite.
+          <div className="py-6 text-center space-y-4">
+            <p className="text-green-600 font-semibold animate-fade-in">
+              ✨ Merci {firstName} ! Nous vous recontactons très vite.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Vérifiez votre boîte email pour confirmer la réception.
+            </p>
           </div>
         ) : (
           <form 
-            onSubmit={handleSubmit}
+            // No onSubmit handler to prevent interference with FormSubmit
             action="https://formsubmit.co/elimytagency@gmail.com" 
             method="POST"
             className="space-y-4 py-4"
           >
-            {/* FormSubmit configuration fields */}
+            {/* FormSubmit configuration fields - simplified */}
             <input type="hidden" name="_subject" value="Nouvelle demande de site vitrine à 249,90€" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value={window.location.href} />
-            <input type="hidden" name="_autoresponse" value="Merci pour votre demande ! Nous vous recontactons rapidement." />
             <input type="text" name="_honey" style={{ display: 'none' }} /> {/* Honeypot anti-spam */}
             <input type="hidden" name="message" value="Nouveau lead pour site vitrine: Source: Pop-up de capture" />
             
@@ -136,7 +133,6 @@ const LeadCaptureDialog = () => {
               onChange={(e) => setFirstName(e.target.value)}
               required
               className="border-2 border-primary/30 focus:border-primary"
-              disabled={isLoading}
             />
             <Input
               name="email"
@@ -146,7 +142,6 @@ const LeadCaptureDialog = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="border-2 border-primary/30 focus:border-primary"
-              disabled={isLoading}
             />
             <div className="relative">
               <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
@@ -157,15 +152,14 @@ const LeadCaptureDialog = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="border-2 border-primary/30 focus:border-primary pl-10"
-                disabled={isLoading}
               />
             </div>
             <Button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3"
-              disabled={isLoading}
+              onClick={handleSubmit} // Keep tracking without preventing submission
             >
-              {isLoading ? "Envoi en cours..." : "Je veux mon site pro à 249,90 €"}
+              Je veux mon site pro à 249,90 €
             </Button>
           </form>
         )}
