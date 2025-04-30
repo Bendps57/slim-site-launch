@@ -44,11 +44,20 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground; /* Cela utilisera le noir #212529 */
+  /* Force the background color explicitly, with !important to override any Facebook iframe styles */
+  html, body {
+    @apply bg-background text-foreground !important;
+    background-color: #E6F0FF !important;
     font-family: 'Montserrat', sans-serif;
   }
+
+  /* Ensure the root div also has the background explicitly set */
+  #root {
+    background-color: #E6F0FF !important;
+  }
 }
+
+/* ... keep existing code for gradient-text, hero-gradient, etc. */
 
 .gradient-text {
   background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%);

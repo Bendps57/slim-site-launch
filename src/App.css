@@ -1,8 +1,16 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #E6F0FF;
+}
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #E6F0FF !important;
 }
 
 .logo {
