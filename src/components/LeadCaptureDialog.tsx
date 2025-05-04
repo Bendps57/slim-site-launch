@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -38,7 +39,7 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/elimytagency@gmail.com`, {
+      const response = await fetch(`https://formsubmit.co/ajax/contact@elimyt.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

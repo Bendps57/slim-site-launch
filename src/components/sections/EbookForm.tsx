@@ -19,7 +19,7 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/elimytagency@gmail.com`, {
+      const response = await fetch(`https://formsubmit.co/ajax/contact@elimyt.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
