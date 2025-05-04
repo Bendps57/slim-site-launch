@@ -39,8 +39,8 @@ const ContactFormSection = () => {
             <a href="tel:+33600000000" className="flex items-center text-primary hover:text-primary/80">
               <Phone className="h-5 w-5 mr-2" /> +33 6 00 00 00 00
             </a>
-            <a href="mailto:contact@elimyt.com" className="flex items-center text-primary hover:text-primary/80">
-              <Mail className="h-5 w-5 mr-2" /> contact@elimyt.com
+            <a href="mailto:elimytagency@gmail.com" className="flex items-center text-primary hover:text-primary/80">
+              <Mail className="h-5 w-5 mr-2" /> elimytagency@gmail.com
             </a>
           </div>
         </div>
