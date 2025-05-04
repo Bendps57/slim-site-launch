@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -93,13 +94,13 @@ const LeadCaptureDialog = () => {
             🚨 Il reste 5 sites vitrine à 249,90 € ce mois-ci !
           </DialogTitle>
           <DialogDescription className="text-center pt-4 space-y-2 sm:space-y-4">
-            <div>
+            <p>
               Profite de notre offre exclusive avant qu'elle disparaisse :
               Un site pro, rapide, optimisé pour Google… livré en 7 jours, sans que tu aies à t'en occuper.
-            </div>
-            <div className="font-medium text-sm sm:text-base">
+            </p>
+            <p className="font-medium text-sm sm:text-base">
               🔒 Aucun engagement – Juste ton email pour qu'on te réserve ta place 😉
-            </div>
+            </p>
           </DialogDescription>
         </DialogHeader>
         
