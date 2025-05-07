@@ -12,7 +12,7 @@ const SecondCTASection = () => {
     e.preventDefault();
     openContactPopup();
     
-    trackEvent('Lead', {
+    trackEvent('ClickButton', {
       content_name: 'Second CTA Button Click',
       content_category: 'CTA',
       value: 249.90,

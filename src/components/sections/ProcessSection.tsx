@@ -16,7 +16,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({ onScrollToForm }) => {
     e.preventDefault();
     openContactPopup();
     
-    trackEvent('Lead', {
+    trackEvent('ClickButton', {
       content_name: 'Process Section CTA Button Click',
       content_category: 'CTA',
       value: 249.90,

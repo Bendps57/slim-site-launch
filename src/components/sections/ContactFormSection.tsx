@@ -15,7 +15,7 @@ const ContactFormSection = () => {
     // On ouvre d'abord la popup de contact
     openContactPopup();
     
-    trackEvent('Lead', { 
+    trackEvent('ClickButton', { 
       content_name: 'Contact Form Section Button Click',
       content_category: 'Contact'
     });

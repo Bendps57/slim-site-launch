@@ -11,7 +11,7 @@ const EbookForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { trackLead, trackEbookDownload } = useFacebookPixel();
+  const { trackEvent, trackEbookDownload } = useFacebookPixel();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,7 +40,7 @@ const EbookForm = () => {
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
       
-      trackLead({ email_address: email });
+      trackEvent('CompleteRegistration', { email_address: email });
       
       trackEbookDownload("Guide premier clients site vitrine", { 
         currency: "EUR", 

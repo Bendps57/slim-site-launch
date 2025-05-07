@@ -18,7 +18,7 @@ const LeadCaptureDialog = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { trackLead } = useFacebookPixel();
+  const { trackEvent } = useFacebookPixel();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ const LeadCaptureDialog = () => {
 
       if (!response.ok) throw new Error('Erreur lors de l\'envoi');
 
-      trackLead({ 
+      trackEvent('CompleteRegistration', { 
         email_address: email,
         first_name: firstName,
         phone_number: phone
