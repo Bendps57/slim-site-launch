@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const EbookForm = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ const EbookForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const { trackLead, trackEbookDownload } = useFacebookPixel();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +49,11 @@ const EbookForm = () => {
       });
       
       setSubmitted(true);
+      
+      // Redirection vers la page de remerciement après un court délai
+      setTimeout(() => {
+        navigate('/merci');
+      }, 1000);
     } catch (error) {
       toast({
         variant: "destructive",

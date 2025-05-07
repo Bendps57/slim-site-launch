@@ -8,6 +8,7 @@ import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { Phone } from "lucide-react";
 import { usePopupStore } from "@/utils/popupUtils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useNavigate } from "react-router-dom";
 
 const LeadCaptureDialog = () => {
   const { isLeadDialogOpen, closeLeadDialog } = usePopupStore();
@@ -19,6 +20,7 @@ const LeadCaptureDialog = () => {
   const { toast } = useToast();
   const { trackLead } = useFacebookPixel();
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Auto-open on page load after 10 seconds
@@ -70,10 +72,11 @@ const LeadCaptureDialog = () => {
       
       setSubmitted(true);
       
+      // Fermer le dialogue et rediriger vers la page de remerciement
       setTimeout(() => {
         closeLeadDialog();
-        setSubmitted(false);
-      }, 2000);
+        navigate('/merci');
+      }, 1000);
       
     } catch (error) {
       toast({

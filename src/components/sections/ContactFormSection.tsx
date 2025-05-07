@@ -3,18 +3,25 @@ import React from 'react';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 import { openContactPopup } from "@/utils/popupUtils";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
+import { useNavigate } from "react-router-dom";
 
 const ContactFormSection = () => {
   const { trackEvent } = useFacebookPixel();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // On ouvre d'abord la popup de contact
     openContactPopup();
     
     trackEvent('Lead', { 
       content_name: 'Contact Form Section Button Click',
       content_category: 'Contact'
     });
+    
+    // On peut aussi directement rediriger si besoin
+    // navigate('/merci');
   };
 
   return (
@@ -39,8 +46,8 @@ const ContactFormSection = () => {
             <a href="tel:+33600000000" className="flex items-center text-primary hover:text-primary/80">
               <Phone className="h-5 w-5 mr-2" /> +33 6 00 00 00 00
             </a>
-            <a href="mailto:elimytagency@gmail.com" className="flex items-center text-primary hover:text-primary/80">
-              <Mail className="h-5 w-5 mr-2" /> elimytagency@gmail.com
+            <a href="mailto:contact@elimyt.com" className="flex items-center text-primary hover:text-primary/80">
+              <Mail className="h-5 w-5 mr-2" /> contact@elimyt.com
             </a>
           </div>
         </div>
