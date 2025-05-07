@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 
 declare global {
@@ -17,10 +18,7 @@ export function useFacebookPixel() {
     }
   };
 
-  // Fonction spécifique pour suivre les conversions de leads
-  const trackLead = (options = {}) => {
-    trackEvent('Lead', options);
-  };
+  // Fonction trackLead supprimée
 
   // Fonction pour suivre les soumissions de formulaire
   const trackFormSubmission = (formName: string, options = {}) => {
@@ -34,7 +32,6 @@ export function useFacebookPixel() {
 
   return {
     trackEvent,
-    trackLead,
     trackFormSubmission,
     trackEbookDownload
   };

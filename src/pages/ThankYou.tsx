@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, ArrowLeft } from 'lucide-react';
@@ -15,6 +14,7 @@ const ThankYou = () => {
       content_name: 'Formulaire complété',
       status: 'success'
     });
+    // Tracking 'Lead' supprimé
     
     // Scroll to top on page load
     window.scrollTo(0, 0);

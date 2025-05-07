@@ -11,10 +11,8 @@ const FooterScripts: React.FC<FooterScriptsProps> = ({ type }) => {
       if (type === 'home') {
         window.fbq('track', 'ViewContent');
         console.log('Facebook Pixel: ViewContent event tracked');
-      } else if (type === 'thankyou') {
-        window.fbq('track', 'Lead');
-        console.log('Facebook Pixel: Lead event tracked');
       }
+      // Événement 'Lead' supprimé
     }
   }, [type]);
 
