@@ -9,110 +9,89 @@ const PolitiqueConfidentialite = () => {
         <h1 className="text-3xl font-bold mb-8">Politique de confidentialité</h1>
         
         <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">1. Introduction</h2>
+          <h2 className="text-xl font-semibold mb-4">1. Collecte des informations</h2>
           <p className="mb-4">
-            La présente politique de confidentialité a pour objectif d'informer les utilisateurs du site www.elimyt.com 
-            de la manière dont leurs informations personnelles sont collectées, utilisées et protégées.
+            Nous recueillons des informations lorsque vous vous inscrivez sur notre site, lorsque vous vous connectez à votre compte, 
+            faites un achat, participez à un concours, et/ou lorsque vous vous déconnectez. Les informations recueillies incluent 
+            votre nom, votre adresse e-mail, numéro de téléphone, et/ou carte de crédit.
+          </p>
+          <p className="mb-4">
+            En outre, nous recevons et enregistrons automatiquement des informations à partir de votre ordinateur et navigateur, 
+            y compris votre adresse IP, vos logiciels et votre matériel, et la page que vous demandez.
           </p>
         </section>
         
         <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">2. Collecte des données personnelles</h2>
+          <h2 className="text-xl font-semibold mb-4">2. Utilisation des informations</h2>
           <p className="mb-4">
-            Nous collectons les informations suivantes lorsque vous utilisez nos formulaires de contact ou d'inscription:
+            Toutes les informations que nous recueillons auprès de vous peuvent être utilisées pour :
           </p>
           <ul className="list-disc pl-6 mb-4 space-y-2">
-            <li>Nom et prénom</li>
-            <li>Adresse e-mail</li>
-            <li>Numéro de téléphone (le cas échéant)</li>
-            <li>Informations relatives à votre projet (le cas échéant)</li>
+            <li>Personnaliser votre expérience et répondre à vos besoins individuels</li>
+            <li>Fournir un contenu publicitaire personnalisé</li>
+            <li>Améliorer notre site Web</li>
+            <li>Améliorer le service client et vos besoins de prise en charge</li>
+            <li>Vous contacter par e-mail</li>
+            <li>Administrer un concours, une promotion, ou une enquête</li>
           </ul>
+        </section>
+        
+        <section className="mb-10">
+          <h2 className="text-xl font-semibold mb-4">3. Confidentialité du commerce en ligne</h2>
           <p className="mb-4">
-            Ces données sont collectées uniquement avec votre consentement explicite, lorsque vous remplissez volontairement 
-            un formulaire sur notre site.
+            Nous sommes les seuls propriétaires des informations recueillies sur ce site. Vos informations personnelles ne seront pas 
+            vendues, échangées, transférées, ou données à une autre société pour n'importe quelle raison, sans votre consentement, 
+            en dehors de ce qui est nécessaire pour répondre à une demande et/ou une transaction.
           </p>
         </section>
         
         <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">3. Utilisation des données</h2>
+          <h2 className="text-xl font-semibold mb-4">4. Divulgation à des tiers</h2>
           <p className="mb-4">
-            Les données personnelles que nous collectons sont utilisées pour:
-          </p>
-          <ul className="list-disc pl-6 mb-4 space-y-2">
-            <li>Répondre à vos demandes d'information</li>
-            <li>Vous contacter concernant votre projet</li>
-            <li>Améliorer nos services et notre site web</li>
-            <li>Vous envoyer des informations sur nos services (uniquement avec votre consentement explicite)</li>
-          </ul>
-          <p className="mb-4">
-            Nous ne vendons, n'échangeons ni ne transférons vos informations personnelles à des tiers, sauf si nous avons 
-            votre autorisation ou si nous sommes légalement tenus de le faire.
+            Nous ne vendons, n'échangeons et ne transférons pas vos informations personnelles identifiables à des tiers. 
+            Cela ne comprend pas les tierces parties de confiance qui nous aident à exploiter notre site Web ou à mener nos affaires, 
+            tant que ces parties conviennent de garder ces informations confidentielles.
           </p>
         </section>
         
         <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">4. Protection des données</h2>
+          <h2 className="text-xl font-semibold mb-4">5. Protection des informations</h2>
           <p className="mb-4">
-            Nous mettons en œuvre diverses mesures de sécurité pour préserver la sécurité de vos informations personnelles. 
-            Nous utilisons des protocoles de sécurité avancés pour protéger vos données contre tout accès non autorisé.
+            Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles. 
+            Nous utilisons un cryptage à la pointe de la technologie pour protéger les informations sensibles transmises en ligne. 
+            Nous protégeons également vos informations hors ligne.
+          </p>
+          <p className="mb-4">
+            Toutes vos données personnelles sont cryptées et stockées de manière sécurisée conformément aux normes de l'industrie.
           </p>
         </section>
         
         <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">5. Cookies</h2>
+          <h2 className="text-xl font-semibold mb-4">6. Cookies</h2>
           <p className="mb-4">
-            Notre site utilise des cookies pour améliorer votre expérience en ligne. Les cookies sont de petits fichiers 
-            texte stockés sur votre ordinateur qui nous aident à analyser la façon dont les utilisateurs naviguent sur notre site.
-          </p>
-          <p className="mb-4">
-            Nous utilisons principalement:
-          </p>
-          <ul className="list-disc pl-6 mb-4 space-y-2">
-            <li>Des cookies techniques, nécessaires au fonctionnement du site</li>
-            <li>Des cookies d'analyse pour comprendre comment les visiteurs utilisent notre site</li>
-            <li>Des cookies de marketing (via Facebook Pixel) pour mesurer l'efficacité de nos campagnes</li>
-          </ul>
-          <p className="mb-4">
-            Vous pouvez choisir de désactiver les cookies dans les paramètres de votre navigateur, mais certaines fonctionnalités 
-            de notre site pourraient ne plus fonctionner correctement.
+            Nos cookies améliorent l'accès à notre site et identifient les visiteurs réguliers. En outre, nos cookies améliorent 
+            l'expérience d'utilisateur grâce au suivi et au ciblage de ses intérêts. Cependant, cette utilisation des cookies n'est 
+            en aucune façon liée à des informations personnelles identifiables sur notre site.
           </p>
         </section>
         
         <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">6. Vos droits</h2>
+          <h2 className="text-xl font-semibold mb-4">7. Se désabonner</h2>
           <p className="mb-4">
-            Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants concernant 
-            vos données personnelles:
-          </p>
-          <ul className="list-disc pl-6 mb-4 space-y-2">
-            <li>Droit d'accès à vos données</li>
-            <li>Droit de rectification</li>
-            <li>Droit à l'effacement (droit à l'oubli)</li>
-            <li>Droit à la limitation du traitement</li>
-            <li>Droit à la portabilité des données</li>
-            <li>Droit d'opposition</li>
-          </ul>
-          <p className="mb-4">
-            Pour exercer l'un de ces droits, veuillez nous contacter à l'adresse email: contact@elimyt.com
+            Nous utilisons l'adresse e-mail que vous fournissez pour vous envoyer des informations et mises à jour relatives à votre 
+            commande, des nouvelles de l'entreprise de façon occasionnelle, des informations sur des produits liés, etc. 
+            Si à n'importe quel moment vous souhaitez vous désinscrire et ne plus recevoir d'e-mails, des instructions de 
+            désabonnement détaillées sont incluses en bas de chaque e-mail.
           </p>
         </section>
         
         <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">7. Modifications de notre politique de confidentialité</h2>
+          <h2 className="text-xl font-semibold mb-4">8. Consentement</h2>
           <p className="mb-4">
-            Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Tout changement sera 
-            immédiatement publié sur cette page. Nous vous encourageons à consulter régulièrement cette page pour rester 
-            informé de tout changement.
-          </p>
-        </section>
-        
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">8. Contact</h2>
-          <p className="mb-4">
-            Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter à:
+            En utilisant notre site, vous consentez à notre politique de confidentialité.
           </p>
           <p className="mb-4">
-            Email: contact@elimyt.com
+            Pour toute question concernant cette politique de confidentialité, n'hésitez pas à nous contacter à contact@elimyt.com
           </p>
         </section>
       </div>
