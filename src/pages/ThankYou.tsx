@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Check, ArrowLeft } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
+import FooterSection from '@/components/sections/FooterSection';
+import FooterScripts from '@/components/FooterScripts';
 
 const ThankYou = () => {
   const { trackEvent } = useFacebookPixel();
@@ -85,6 +87,9 @@ const ThankYou = () => {
           </a>
         </p>
       </div>
+      
+      <FooterSection />
+      <FooterScripts type="thankyou" />
     </div>
   );
 };

@@ -11,6 +11,8 @@ import FinalCTASection from '@/components/sections/FinalCTASection';
 import SecondCTASection from '@/components/sections/SecondCTASection';
 import AuthenticTestimonialSection from '@/components/sections/AuthenticTestimonialSection';
 import LeadCaptureDialog from '@/components/LeadCaptureDialog';
+import FooterSection from '@/components/sections/FooterSection';
+import FooterScripts from '@/components/FooterScripts';
 
 const Index = () => {
   const { trackEvent } = useFacebookPixel();
@@ -37,6 +39,8 @@ const Index = () => {
         <SecondCTASection />
         <NewFAQSection />
         <FinalCTASection />
+        <FooterSection />
+        <FooterScripts type="home" />
       </div>
     </div>
   );
