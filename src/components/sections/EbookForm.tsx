@@ -5,9 +5,13 @@ import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { PhoneInput, phonePrefixes } from "@/components/ui/phone-input";
 
 const EbookForm = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [phonePrefix, setPhonePrefix] = useState("+33"); // France par défaut
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -21,6 +25,8 @@ const EbookForm = () => {
     setIsLoading(true);
     
     try {
+      const fullPhoneNumber = phone ? `${phonePrefix}${phone.startsWith('0') ? phone.substring(1) : phone}` : '';
+      
       const response = await fetch(`https://formsubmit.co/ajax/contact@elimyt.com`, {
         method: "POST",
         headers: {
@@ -28,12 +34,16 @@ const EbookForm = () => {
           "Accept": "application/json"
         },
         body: JSON.stringify({
+          name,
           email,
+          phone: fullPhoneNumber,
           _subject: "Téléchargement Ebook Site Vitrine",
           _captcha: "false", 
           _template: "table", 
           message: `Nouveau téléchargement d'ebook:
+          Nom: ${name || "Non renseigné"}
           Email: ${email}
+          Téléphone: ${fullPhoneNumber || "Non renseigné"}
           Source: Formulaire ebook`
         }),
       });
@@ -70,14 +80,31 @@ const EbookForm = () => {
       🎉 Merci ! Le guide arrive dans votre boîte mail.
     </div>
   ) : (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full max-w-md bg-white shadow-lg rounded-lg p-4 animate-fade-in">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full max-w-md bg-white shadow-lg rounded-lg p-4 animate-fade-in">
+      <Input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Votre nom (optionnel)"
+        className="border-2 border-primary/30 bg-white placeholder:text-gray-500 text-foreground"
+        disabled={isLoading}
+      />
       <Input
         type="email"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Votre adresse email"
-        className="flex-1 border-2 border-primary/30 bg-white placeholder:text-gray-500 text-foreground"
+        placeholder="Votre adresse email *"
+        className="border-2 border-primary/30 bg-white placeholder:text-gray-500 text-foreground"
+        disabled={isLoading}
+      />
+      <PhoneInput
+        prefix={phonePrefix}
+        setPrefix={setPhonePrefix}
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        placeholder="Votre numéro de téléphone (optionnel)"
+        className="border-2 border-primary/30 bg-white"
         disabled={isLoading}
       />
       <Button 

@@ -9,12 +9,14 @@ import { Phone } from "lucide-react";
 import { usePopupStore } from "@/utils/popupUtils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useNavigate } from "react-router-dom";
+import { PhoneInput, phonePrefixes } from "@/components/ui/phone-input";
 
 const LeadCaptureDialog = () => {
   const { isLeadDialogOpen, closeLeadDialog } = usePopupStore();
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [phonePrefix, setPhonePrefix] = useState("+33"); // France par défaut
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -41,6 +43,8 @@ const LeadCaptureDialog = () => {
     setIsLoading(true);
 
     try {
+      const fullPhoneNumber = `${phonePrefix}${phone.startsWith('0') ? phone.substring(1) : phone}`;
+      
       const response = await fetch(`https://formsubmit.co/ajax/contact@elimyt.com`, {
         method: "POST",
         headers: {
@@ -50,14 +54,14 @@ const LeadCaptureDialog = () => {
         body: JSON.stringify({
           firstName,
           email,
-          phone,
+          phone: fullPhoneNumber,
           _subject: "Nouvelle demande de site vitrine à 249,90€",
           _captcha: "false",
           _template: "table",
           message: `Nouveau lead pour site vitrine:
           Prénom: ${firstName}
           Email: ${email}
-          Téléphone: ${phone}
+          Téléphone: ${fullPhoneNumber}
           Source: Pop-up de capture`
         }),
       });
@@ -67,7 +71,7 @@ const LeadCaptureDialog = () => {
       trackEvent('CompleteRegistration', { 
         email_address: email,
         first_name: firstName,
-        phone_number: phone
+        phone_number: fullPhoneNumber
       });
       
       setSubmitted(true);
@@ -131,17 +135,15 @@ const LeadCaptureDialog = () => {
               className="border-2 border-primary/30 focus:border-primary"
               disabled={isLoading}
             />
-            <div className="relative">
-              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
-              <Input
-                type="tel"
-                placeholder="Votre numéro de téléphone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="border-2 border-primary/30 focus:border-primary pl-10"
-                disabled={isLoading}
-              />
-            </div>
+            <PhoneInput
+              prefix={phonePrefix}
+              setPrefix={setPhonePrefix}
+              placeholder="Votre numéro de téléphone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="border-2 border-primary/30 focus:border-primary"
+              disabled={isLoading}
+            />
             <Button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 sm:py-3 text-sm sm:text-base"
