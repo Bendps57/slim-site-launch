@@ -3,6 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "./input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select";
+import { useState } from "react";
 
 const phonePrefixes = [
   // Pays existants
@@ -82,20 +83,53 @@ export interface PhoneInputProps extends React.InputHTMLAttributes<HTMLInputElem
 
 const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
   ({ className, prefix, setPrefix, ...props }, ref) => {
+    const [isCustomPrefix, setIsCustomPrefix] = useState(false);
+
     return (
       <div className={cn("flex flex-row", className)}>
-        <Select value={prefix} onValueChange={setPrefix}>
-          <SelectTrigger className="w-[90px] rounded-r-none border-r-0 focus:ring-0">
-            <SelectValue placeholder={prefix} />
-          </SelectTrigger>
-          <SelectContent className="max-h-[300px]">
-            {phonePrefixes.map((country) => (
-              <SelectItem key={country.code} value={country.prefix}>
-                {country.prefix} ({country.code})
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        {isCustomPrefix ? (
+          <div className="relative flex items-center">
+            <Input
+              className="w-[90px] rounded-r-none border-r-0"
+              type="text"
+              value={prefix}
+              onChange={(e) => setPrefix(e.target.value)}
+              placeholder="+XX"
+            />
+            <button
+              type="button"
+              onClick={() => setIsCustomPrefix(false)}
+              className="absolute right-2 text-xs text-primary hover:text-primary/80"
+            >
+              liste
+            </button>
+          </div>
+        ) : (
+          <Select value={prefix} onValueChange={setPrefix}>
+            <SelectTrigger className="w-[90px] rounded-r-none border-r-0 focus:ring-0">
+              <SelectValue placeholder={prefix} />
+            </SelectTrigger>
+            <SelectContent className="max-h-[300px]">
+              <div className="p-2">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsCustomPrefix(true);
+                  }}
+                  className="w-full text-left text-xs text-primary hover:underline p-1"
+                >
+                  Saisir manuellement
+                </button>
+              </div>
+              {phonePrefixes.map((country) => (
+                <SelectItem key={country.code} value={country.prefix}>
+                  {country.prefix} ({country.code})
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
         <Input
           ref={ref}
           className="rounded-l-none flex-1"
