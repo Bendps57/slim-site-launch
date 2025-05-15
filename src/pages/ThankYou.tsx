@@ -38,6 +38,17 @@ const ThankYou = () => {
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold text-white">Merci pour votre demande !</h1>
           <p className="text-white/90 mt-2">Nous avons bien reçu vos informations</p>
+          
+          {/* WhatsApp Button - now positioned directly below the title */}
+          <div className="mt-6">
+            <Button 
+              onClick={handleWhatsAppClick}
+              className="py-3 sm:py-4 px-4 sm:px-6 text-base sm:text-lg font-bold bg-green-500 hover:bg-green-600 transition-all duration-300 pulse-animation flex items-center justify-center gap-2"
+            >
+              <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6" />
+              Nous contacter sur WhatsApp
+            </Button>
+          </div>
         </div>
         
         <div className="p-6 sm:p-8">
@@ -76,20 +87,7 @@ const ThankYou = () => {
               </div>
             </div>
 
-            {/* WhatsApp Button */}
-            <div className="mt-8 pt-4 border-t border-border">
-              <h3 className="font-semibold text-center mb-3">Besoin d'une réponse immédiate ?</h3>
-              <Button 
-                onClick={handleWhatsAppClick}
-                className="w-full py-6 text-lg font-bold bg-green-500 hover:bg-green-600 transition-all duration-300 pulse-animation flex items-center justify-center gap-3"
-              >
-                <MessageSquare className="h-6 w-6" />
-                Nous contacter sur WhatsApp
-              </Button>
-              <p className="text-xs text-center text-muted-foreground mt-2">
-                Disponible du lundi au vendredi, de 9h à 18h
-              </p>
-            </div>
+            {/* WhatsApp Button section removed from here */}
           </div>
           
           <div className="mt-8 text-center">
