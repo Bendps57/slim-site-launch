@@ -143,6 +143,38 @@
   }
 }
 
+/* Color blink animation for the WhatsApp button */
+@keyframes color-blink {
+  0% { background-color: #25D366; }
+  25% { background-color: #22B359; }
+  50% { background-color: #25D366; }
+  75% { background-color: #1EA14F; }
+  100% { background-color: #25D366; }
+}
+
+.color-blink {
+  animation: color-blink 2s infinite;
+}
+
+/* Rainbow border for the WhatsApp button */
+.rainbow-border {
+  position: relative;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    45deg,
+    #ff0000, #ff9a00, #d0de21, #4fdc4a, #3fdad8, #2fc9e2, #1c7fee, #5f15f2, #ba0cf8, #fb07d9
+  );
+  background-size: 200% 200%;
+  animation: gradient 3s linear infinite;
+  padding: 3px;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
   opacity: 0;

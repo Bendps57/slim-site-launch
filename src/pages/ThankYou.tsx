@@ -39,15 +39,15 @@ const ThankYou = () => {
           <h1 className="text-2xl sm:text-3xl font-bold text-white">Merci pour votre demande !</h1>
           <p className="text-white/90 mt-2">Nous avons bien reçu vos informations</p>
           
-          {/* WhatsApp Button - with smaller text and multi-color animation */}
-          <div className="mt-6 mx-auto max-w-sm px-2 sm:px-4">
+          {/* WhatsApp Button - smaller size for mobile compatibility */}
+          <div className="mt-6 mx-auto max-w-xs px-2">
             <div className="p-2 rounded-lg rainbow-border">
               <Button 
                 onClick={handleWhatsAppClick}
-                className="w-full py-3 sm:py-4 px-3 sm:px-4 text-sm sm:text-base font-bold bg-green-600 hover:bg-green-700 transition-all duration-300 shadow-lg border-2 border-white/30 flex items-center justify-center gap-2 color-blink"
+                className="w-full py-2 px-2 text-xs sm:text-sm font-bold bg-green-600 hover:bg-green-700 transition-all duration-300 shadow-lg border-2 border-white/30 flex items-center justify-center gap-2 color-blink"
               >
-                <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6 animate-bounce" />
-                <span className="font-extrabold tracking-wide">Nous contacter sur WhatsApp</span>
+                <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5 animate-bounce" />
+                <span className="font-extrabold tracking-tight">Nous contacter sur WhatsApp</span>
               </Button>
             </div>
             <p className="text-xs text-white/80 text-center mt-2">
@@ -91,8 +91,6 @@ const ThankYou = () => {
                 </div>
               </div>
             </div>
-
-            {/* WhatsApp Button section removed from here */}
           </div>
           
           <div className="mt-8 text-center">
