@@ -1,6 +1,7 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, ArrowLeft } from 'lucide-react';
+import { Check, ArrowLeft, WhatsApp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import FooterSection from '@/components/sections/FooterSection';
@@ -19,6 +20,14 @@ const ThankYou = () => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, [trackEvent]);
+
+  const handleWhatsAppClick = () => {
+    trackEvent('Contact', {
+      content_name: 'WhatsApp Contact',
+      content_category: 'Contact'
+    });
+    window.open('https://wa.me/33789026890', '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 sm:p-6 animate-fade-in">
@@ -65,6 +74,21 @@ const ThankYou = () => {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* WhatsApp Button */}
+            <div className="mt-8 pt-4 border-t border-border">
+              <h3 className="font-semibold text-center mb-3">Besoin d'une réponse immédiate ?</h3>
+              <Button 
+                onClick={handleWhatsAppClick}
+                className="w-full py-6 text-lg font-bold bg-green-500 hover:bg-green-600 transition-all duration-300 pulse-animation flex items-center justify-center gap-3"
+              >
+                <WhatsApp className="h-6 w-6" />
+                Nous contacter sur WhatsApp
+              </Button>
+              <p className="text-xs text-center text-muted-foreground mt-2">
+                Disponible du lundi au vendredi, de 9h à 18h
+              </p>
             </div>
           </div>
           
