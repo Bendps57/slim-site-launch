@@ -39,14 +39,14 @@ const ThankYou = () => {
           <h1 className="text-2xl sm:text-3xl font-bold text-white">Merci pour votre demande !</h1>
           <p className="text-white/90 mt-2">Nous avons bien reçu vos informations</p>
           
-          {/* WhatsApp Button - enhanced with better visibility, responsiveness and animation */}
-          <div className="mt-6 mx-auto max-w-md px-4 sm:px-6">
-            <div className="p-2 sm:p-3 bg-white/20 rounded-lg animate-pulse">
+          {/* WhatsApp Button - with smaller text and multi-color animation */}
+          <div className="mt-6 mx-auto max-w-sm px-2 sm:px-4">
+            <div className="p-2 rounded-lg rainbow-border">
               <Button 
                 onClick={handleWhatsAppClick}
-                className="w-full py-4 sm:py-5 px-4 sm:px-6 text-base sm:text-lg font-bold bg-green-600 hover:bg-green-700 transition-all duration-300 shadow-lg border-2 border-white/30 flex items-center justify-center gap-3 animate-[pulse_2s_infinite]"
+                className="w-full py-3 sm:py-4 px-3 sm:px-4 text-sm sm:text-base font-bold bg-green-600 hover:bg-green-700 transition-all duration-300 shadow-lg border-2 border-white/30 flex items-center justify-center gap-2 color-blink"
               >
-                <MessageSquare className="h-6 w-6 sm:h-7 sm:w-7 animate-bounce" />
+                <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6 animate-bounce" />
                 <span className="font-extrabold tracking-wide">Nous contacter sur WhatsApp</span>
               </Button>
             </div>
