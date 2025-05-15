@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, ArrowLeft, WhatsApp } from 'lucide-react';
+import { Check, ArrowLeft, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import useFacebookPixel from "@/hooks/useFacebookPixel";
 import FooterSection from '@/components/sections/FooterSection';
@@ -83,7 +83,7 @@ const ThankYou = () => {
                 onClick={handleWhatsAppClick}
                 className="w-full py-6 text-lg font-bold bg-green-500 hover:bg-green-600 transition-all duration-300 pulse-animation flex items-center justify-center gap-3"
               >
-                <WhatsApp className="h-6 w-6" />
+                <MessageSquare className="h-6 w-6" />
                 Nous contacter sur WhatsApp
               </Button>
               <p className="text-xs text-center text-muted-foreground mt-2">
